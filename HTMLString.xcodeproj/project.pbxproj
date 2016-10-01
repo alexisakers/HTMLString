@@ -1,0 +1,344 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5E19F86C1D9D0D4700865103 /* Mappings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E19F86B1D9D0D4700865103 /* Mappings.swift */; };
+		_LinkFileRef_HTMLString_via_HTMLStringTests /* HTMLString.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_HTMLString" /* HTMLString.framework */; };
+		__src_cc_ref_Sources/HTMLString.swift /* HTMLString.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/HTMLString.swift /* HTMLString.swift */; };
+		__src_cc_ref_Tests/HTMLStringTests/HTMLStringTests.swift /* HTMLStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/HTMLStringTests/HTMLStringTests.swift /* HTMLStringTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5E19F86A1D9D097200865103 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = __RootObject_ /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_HTMLString";
+			remoteInfo = HTMLString;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		5E19F86B1D9D0D4700865103 /* Mappings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mappings.swift; sourceTree = "<group>"; };
+		5EC421E11D9FA21700C4B6FB /* LinuxMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LinuxMain.swift; path = Tests/LinuxMain.swift; sourceTree = "<group>"; };
+		5EC421E31D9FA2FF00C4B6FB /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		5EC421E41D9FA30900C4B6FB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		5EC421E61D9FA33800C4B6FB /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
+		5EC421E71D9FA3DD00C4B6FB /* HTMLString.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = HTMLString.podspec; sourceTree = "<group>"; };
+		__PBXFileRef_HTMLString.xcodeproj/Configs/Project.xcconfig /* HTMLString.xcodeproj/Configs/Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = HTMLString.xcodeproj/Configs/Project.xcconfig; sourceTree = "<group>"; };
+		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/HTMLString.swift /* HTMLString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLString.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Tests/HTMLStringTests/HTMLStringTests.swift /* HTMLStringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLStringTests.swift; sourceTree = "<group>"; };
+		"_____Product_HTMLString" /* HTMLString.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = HTMLString.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"_____Product_HTMLStringTests" /* HTMLStringTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = HTMLStringTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		"___LinkPhase_HTMLString" /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		"___LinkPhase_HTMLStringTests" /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				_LinkFileRef_HTMLString_via_HTMLStringTests /* HTMLString.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5EC421E21D9FA24500C4B6FB /* Meta */ = {
+			isa = PBXGroup;
+			children = (
+				5EC421E71D9FA3DD00C4B6FB /* HTMLString.podspec */,
+				5EC421E31D9FA2FF00C4B6FB /* LICENSE */,
+				5EC421E61D9FA33800C4B6FB /* .travis.yml */,
+				5EC421E41D9FA30900C4B6FB /* README.md */,
+			);
+			name = Meta;
+			sourceTree = "<group>";
+		};
+		TestProducts_ /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				"_____Product_HTMLStringTests" /* HTMLStringTests.xctest */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
+		"___RootGroup_" = {
+			isa = PBXGroup;
+			children = (
+				__PBXFileRef_Package.swift /* Package.swift */,
+				5EC421E21D9FA24500C4B6FB /* Meta */,
+				"_____Configs_" /* Configs */,
+				"_____Sources_" /* Sources */,
+				"_______Tests_" /* Tests */,
+				"____Products_" /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		"____Products_" /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				TestProducts_ /* Tests */,
+				"_____Product_HTMLString" /* HTMLString.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		"_____Configs_" /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				__PBXFileRef_HTMLString.xcodeproj/Configs/Project.xcconfig /* HTMLString.xcodeproj/Configs/Project.xcconfig */,
+			);
+			name = Configs;
+			sourceTree = "<group>";
+		};
+		"_____Sources_" /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				"_______Group_HTMLString" /* HTMLString */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		"_______Group_HTMLString" /* HTMLString */ = {
+			isa = PBXGroup;
+			children = (
+				__PBXFileRef_Sources/HTMLString.swift /* HTMLString.swift */,
+				5E19F86B1D9D0D4700865103 /* Mappings.swift */,
+			);
+			name = HTMLString;
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		"_______Group_HTMLStringTests" /* HTMLStringTests */ = {
+			isa = PBXGroup;
+			children = (
+				__PBXFileRef_Tests/HTMLStringTests/HTMLStringTests.swift /* HTMLStringTests.swift */,
+			);
+			name = HTMLStringTests;
+			path = Tests/HTMLStringTests;
+			sourceTree = "<group>";
+		};
+		"_______Tests_" /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				5EC421E11D9FA21700C4B6FB /* LinuxMain.swift */,
+				"_______Group_HTMLStringTests" /* HTMLStringTests */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		"______Target_HTMLString" /* HTMLString */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = "_______Confs_HTMLString" /* Build configuration list for PBXNativeTarget "HTMLString" */;
+			buildPhases = (
+				CompilePhase_HTMLString /* Sources */,
+				"___LinkPhase_HTMLString" /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HTMLString;
+			productName = HTMLString;
+			productReference = "_____Product_HTMLString" /* HTMLString.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"______Target_HTMLStringTests" /* HTMLStringTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = "_______Confs_HTMLStringTests" /* Build configuration list for PBXNativeTarget "HTMLStringTests" */;
+			buildPhases = (
+				CompilePhase_HTMLStringTests /* Sources */,
+				"___LinkPhase_HTMLStringTests" /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				__Dependency_HTMLString /* PBXTargetDependency */,
+			);
+			name = HTMLStringTests;
+			productName = HTMLStringTests;
+			productReference = "_____Product_HTMLStringTests" /* HTMLStringTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		__RootObject_ /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 9999;
+			};
+			buildConfigurationList = "___RootConfs_" /* Build configuration list for PBXProject "HTMLString" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = "___RootGroup_";
+			productRefGroup = "____Products_" /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				"______Target_HTMLString" /* HTMLString */,
+				"______Target_HTMLStringTests" /* HTMLStringTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CompilePhase_HTMLString /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				5E19F86C1D9D0D4700865103 /* Mappings.swift in Sources */,
+				__src_cc_ref_Sources/HTMLString.swift /* HTMLString.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CompilePhase_HTMLStringTests /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				__src_cc_ref_Tests/HTMLStringTests/HTMLStringTests.swift /* HTMLStringTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		__Dependency_HTMLString /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "______Target_HTMLString" /* HTMLString */;
+			targetProxy = 5E19F86A1D9D097200865103 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		_ReleaseConf_HTMLString /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				INFOPLIST_FILE = HTMLString.xcodeproj/HTMLString_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = HTMLString;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		_ReleaseConf_HTMLStringTests /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				INFOPLIST_FILE = HTMLString.xcodeproj/HTMLStringTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		"___DebugConf_HTMLString" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				INFOPLIST_FILE = HTMLString.xcodeproj/HTMLString_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = HTMLString;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		"___DebugConf_HTMLStringTests" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				INFOPLIST_FILE = HTMLString.xcodeproj/HTMLStringTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		"_____Release_" /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = __PBXFileRef_HTMLString.xcodeproj/Configs/Project.xcconfig /* HTMLString.xcodeproj/Configs/Project.xcconfig */;
+			buildSettings = {
+				SDKROOT = "";
+			};
+			name = Release;
+		};
+		"_______Debug_" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = __PBXFileRef_HTMLString.xcodeproj/Configs/Project.xcconfig /* HTMLString.xcodeproj/Configs/Project.xcconfig */;
+			buildSettings = {
+				SDKROOT = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		"___RootConfs_" /* Build configuration list for PBXProject "HTMLString" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"_______Debug_" /* Debug */,
+				"_____Release_" /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		"_______Confs_HTMLString" /* Build configuration list for PBXNativeTarget "HTMLString" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"___DebugConf_HTMLString" /* Debug */,
+				_ReleaseConf_HTMLString /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		"_______Confs_HTMLStringTests" /* Build configuration list for PBXNativeTarget "HTMLStringTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"___DebugConf_HTMLStringTests" /* Debug */,
+				_ReleaseConf_HTMLStringTests /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = __RootObject_ /* Project object */;
+}

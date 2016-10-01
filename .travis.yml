@@ -1,0 +1,8 @@
+language: objective-c
+osx_image: xcode8
+script:
+    - xcodebuild build -project HTMLString.xcodeproj -scheme HTMLString -destination "platform=macOS,arch=x86_64"
+    - xcodebuild build -project HTMLString.xcodeproj -scheme HTMLString -destination "platform=iOS Simulator,name=iPhone 7 Plus"
+    - xcodebuild build -project HTMLString.xcodeproj -scheme HTMLString -destination "platform=watchOS Simulator,name=Apple Watch Series 2 - 42mm"
+    - xcodebuild build -project HTMLString.xcodeproj -scheme HTMLString -destination "platform=tvOS Simulator,name=Apple TV 1080p"
+    - xcodebuild test -project HTMLString.xcodeproj -scheme HTMLString -destination "platform=macOS,arch=x86_64"
