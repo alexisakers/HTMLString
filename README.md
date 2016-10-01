@@ -10,6 +10,14 @@
 
 ## Installation
 
+### CocoaPods
+
+Add this line to your `Podfile`:
+
+~~~
+pod 'HTMLString' '~> 0.1'
+~~~
+
 ### Manual
 
 Add the `HTMLString.swift` and `Mappings.swift` files to your projects.
