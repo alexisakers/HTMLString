@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "HTMLString"
-  s.version      = "0.1"
+  s.version      = "1.0"
   s.summary      = "Deal with Strings that contains HTML in Swift"
 
   s.description  = <<-DESC
