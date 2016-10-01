@@ -2212,7 +2212,7 @@ extension String {
     }()
     
     ///
-    /// The list of Unicode scalars that need to be escaped even if the 
+    /// The list of Unicode scalars that need to be escaped even if the encoding is not ASCII. 
     ///
 
     static var escapableUnicodeCodePoints: Dictionary<UInt32, String> = {
