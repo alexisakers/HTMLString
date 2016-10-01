@@ -53,7 +53,7 @@ This library adds three properties to String instances :
 import HTMLString 
 
 let emoji = "My favorite emoji is 🙃"
-let escapedEmoji = escapingForASCIIHTML // "My favorite emoji is &#128579;"
+let escapedEmoji = emoji.escapingForASCIIHTML // "My favorite emoji is &#128579;"
 
 let snack = "Fish & Chips"
 let escapedSnack = snack.escapingForUnicodeHTML // "Fish &amp; Chips"
