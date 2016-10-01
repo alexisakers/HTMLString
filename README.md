@@ -25,7 +25,7 @@
 Add this line to your `Podfile`:
 
 ~~~
-pod 'HTMLString' '~> 1.0'
+pod 'HTMLString' '~> 1.0.1'
 ~~~
 
 ### Swift Package Manager
