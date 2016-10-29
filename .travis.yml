@@ -1,8 +1,15 @@
-language: objective-c
+os:
+  - linux
+  - osx
+
+language: generic
+sudo: required
+dist: trusty
 osx_image: xcode8
+
+install:
+  - eval "$(curl -sL https://gist.githubusercontent.com/kylef/5c0475ff02b7c7671d2a/raw/02090c7ede5a637b76e6df1710e83cd0bbe7dcdf/swiftenv-install.sh)"
+
 script:
-    - xcodebuild build -project HTMLString.xcodeproj -scheme HTMLString -destination "platform=macOS,arch=x86_64"
-    - xcodebuild build -project HTMLString.xcodeproj -scheme HTMLString -destination "platform=iOS Simulator,name=iPhone 7 Plus"
-    - xcodebuild build -project HTMLString.xcodeproj -scheme HTMLString -destination "platform=watchOS Simulator,name=Apple Watch Series 2 - 42mm"
-    - xcodebuild build -project HTMLString.xcodeproj -scheme HTMLString -destination "platform=tvOS Simulator,name=Apple TV 1080p"
-    - xcodebuild test -project HTMLString.xcodeproj -scheme HTMLString -destination "platform=macOS,arch=x86_64"
+  - swift build
+  - swift test
