@@ -130,12 +130,25 @@ public extension String {
                 if isHexadecimal {
                     
                     let scanner = Scanner(string: sequence)
+
+                    #if os(OSX) || os(iOS) || os(watchOS) || os(tvOS)
                     
                     guard scanner.scanHexInt32(&value) && value > 0 else {
                         searchRange = escapeRange.upperBound ..< finalString.endIndex
                         continue
                     }
                     
+                    #else 
+
+		    guard let _value = scanner.scanHexInt() else {
+                        searchRange = escapeRange.upperBound ..< finalString.endIndex
+                        continue
+                    }
+
+                    value = _value
+
+                    #endif
+
                 } else {
                     
                     guard let _value = UInt32(sequence) else {
