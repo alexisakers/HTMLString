@@ -1,8 +1,11 @@
 # `import HTMLString`
 
-![Build Status](https://travis-ci.org/alexaubry/HTMLString.svg?branch=master) ![Swift 3.0](https://img.shields.io/badge/Swift-3.0-Orange.svg) ![CocoaPods](https://img.shields.io/cocoapods/v/HTMLString.svg?maxAge=86400") ![The MIT License](https://img.shields.io/cocoapods/l/HTMLString.svg?maxAge=86400")
+![Swift 3.0](https://img.shields.io/badge/Swift-3.0-Orange.svg)
+![The MIT License](https://img.shields.io/cocoapods/l/HTMLString.svg")
+[![Build Status](https://travis-ci.org/alexaubry/HTMLString.svg?branch=master)](https://travis-ci.org/alexaubry/HTMLString)
+![CocoaPods](https://img.shields.io/cocoapods/v/HTMLString.svg?maxAge=86400") 
 
-`HTMLString` is a micro-library written in Swift that enables your app to deal with Strings that contain HTML.
+`HTMLString` is a micro-library written in Swift that enables conversions of Strings that contain HTML.
 
 ## Features
 
