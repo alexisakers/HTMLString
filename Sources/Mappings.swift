@@ -39,48 +39,48 @@ import Foundation
 ///
 
 internal struct HTMLEscapeMap {
-    
+
     ///
     /// The escaping sequence of the special character.
     ///
-    
+
     let escapeSequence: String
-    
+
     ///
-    /// The scalars associated with the characters.
+    /// The Unicode code points associated with the characters.
     ///
-    
+
     let scalarValues: Array<UInt32>
 
     internal init(_ escapeSequence: String, _ scalarValues: Array<UInt32>) {
         self.escapeSequence = escapeSequence
         self.scalarValues = scalarValues
     }
-    
+
 }
 
 extension HTMLEscapeMap: Equatable, Hashable {
-    
+
     static func == (lhs: HTMLEscapeMap, rhs: HTMLEscapeMap) -> Bool {
         return (lhs.escapeSequence == rhs.escapeSequence)
     }
-    
+
     var hashValue: Int {
         return escapeSequence.hashValue
     }
-    
+
 }
 
 extension String {
-    
+
     ///
     /// The list of HTML-escapable characters.
     ///
 
     static var htmlEscapeTable: Set<HTMLEscapeMap> = {
-        
+
         return [
-            
+
             HTMLEscapeMap("Aacute", [193]),
             HTMLEscapeMap("aacute", [225]),
             HTMLEscapeMap("Abreve", [258]),
@@ -2206,19 +2206,19 @@ extension String {
             HTMLEscapeMap("zscr", [120015]),
             HTMLEscapeMap("zwj", [8205]),
             HTMLEscapeMap("zwnj", [8204])
-            
+
         ]
-        
+
     }()
-    
+
     ///
-    /// The list of Unicode scalars that need to be escaped even if the encoding is not ASCII. 
+    /// The list of Unicode scalars that need to be escaped even if the encoding is not ASCII.
     ///
 
     static var escapableUnicodeCodePoints: Dictionary<UInt32, String> = {
 
         return [
-           
+
             34: "quot",
             38: "amp",
             39: "apos",
@@ -2253,7 +2253,7 @@ extension String {
             8250: "rsaquo",
             8364: "euro"
 
-        ] 
+        ]
 
     }()
 
