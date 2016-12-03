@@ -42,7 +42,7 @@ extension Dictionary where Value: Equatable {
     /// Returns all the keys with the specified value.
     ///
 
-    func allKeys(withValue value: Value) -> [Key] {
+    internal func allKeys(withValue value: Value) -> [Key] {
         return filter { $1 == value }.map { $0.0 }
     }
 
@@ -50,21 +50,21 @@ extension Dictionary where Value: Equatable {
 
 // MARK: - Escaping
 
-internal extension Character {
+public extension Character {
 
     ///
     /// Escapes the character for ASCII web pages.
     ///
 
-    internal var escapingForASCII: String {
+    public var escapingForASCII: String {
 
         let str = String(self)
 
         if let escapeSequence = HTMLEscaping.escapeSequenceTable.allKeys(withValue: str).first {
             return "&" + escapeSequence + ";"
-        } else {
-            return str.unicodeScalars.map { $0.escapingForASCII }.joined()
         }
+        
+        return str.unicodeScalars.map { $0.escapingForASCII }.joined()
 
     }
 
@@ -72,19 +72,19 @@ internal extension Character {
     /// Escapes the character for Unicode web pages.
     ///
 
-    internal var escapingForUnicode: String {
+    public var escapingForUnicode: String {
         return String(self).unicodeScalars.map { $0.escapingIfNeeded }.joined()
     }
 
 }
 
-internal extension UnicodeScalar {
+public extension UnicodeScalar {
 
     ///
     /// Escapes the scalar for ASCII web pages.
     ///
 
-    internal var escapingForASCII: String {
+    public var escapingForASCII: String {
         return isASCII ? escapingIfNeeded : ("&#" + String(value) + ";")
     }
 
@@ -94,7 +94,7 @@ internal extension UnicodeScalar {
     /// A scalar needs to be escaped if its value exists in the `HTMLEscaping.escapedCharactersTable`.
     ///
 
-    internal var escapingIfNeeded: String {
+    public var escapingIfNeeded: String {
 
         guard let escapedCharacter = HTMLEscaping.escapedCharactersTable[value] else {
             return String(Character(self))

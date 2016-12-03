@@ -105,7 +105,7 @@ public extension String {
 
         var finalString = self
         var searchRange = finalString.startIndex ..< finalString.endIndex
-
+        
         while let delimiterRange = finalString.range(of: "&", options: [], range: searchRange, locale: nil) {
 
             let semicolonSearchRange = delimiterRange.upperBound ..< finalString.endIndex
@@ -116,9 +116,10 @@ public extension String {
             }
 
             let escapeSequenceBounds = delimiterRange.lowerBound ..< semicolonRange.upperBound
-            let escapeRange = finalString.index(after: delimiterRange.lowerBound) ..< finalString.index(before: semicolonRange.upperBound)
+            let escapeRange = delimiterRange.upperBound ..< semicolonRange.lowerBound
+            
             let escapeString = finalString.substring(with: escapeRange)
-
+            
             let replacementString: String
 
             if escapeString[escapeString.startIndex] == "#" {
@@ -129,6 +130,7 @@ public extension String {
                 let firstCharacterOffset = isHexadecimal ? 2 : 1
 
                 let sequenceRange = escapeString.index(escapeString.startIndex, offsetBy: firstCharacterOffset) ..< escapeString.endIndex
+                
                 let sequence = escapeString.substring(with: sequenceRange)
 
                 var value = UInt32()
@@ -140,14 +142,14 @@ public extension String {
                     #if os(OSX) || os(iOS) || os(watchOS) || os(tvOS)
 
                     guard scanner.scanHexInt32(&value) && value > 0 else {
-                        searchRange = escapeRange.upperBound ..< finalString.endIndex
+                        searchRange = escapeSequenceBounds.upperBound ..< finalString.endIndex
                         continue
                     }
 
                     #else
 
 		            guard let _value = scanner.scanHexInt() else {
-                        searchRange = escapeRange.upperBound ..< finalString.endIndex
+                        searchRange = escapeSequenceBounds.upperBound ..< finalString.endIndex
                         continue
                     }
 
@@ -158,7 +160,7 @@ public extension String {
                 } else {
 
                     guard let _value = UInt32(sequence) else {
-                        searchRange = escapeRange.upperBound ..< finalString.endIndex
+                        searchRange = escapeSequenceBounds.upperBound ..< finalString.endIndex
                         continue
                     }
 
@@ -167,7 +169,7 @@ public extension String {
                 }
 
                 guard let scalar = UnicodeScalar(value) else {
-                    searchRange = escapeRange.upperBound ..< finalString.endIndex
+                    searchRange = escapeSequenceBounds.upperBound ..< finalString.endIndex
                     continue
                 }
 
@@ -176,7 +178,7 @@ public extension String {
             } else {
 
                 guard let escapeSequence = HTMLEscaping.escapeSequenceTable[escapeString] else {
-                    searchRange = escapeRange.upperBound ..< finalString.endIndex
+                    searchRange = escapeSequenceBounds.upperBound ..< finalString.endIndex
                     continue
                 }
 
