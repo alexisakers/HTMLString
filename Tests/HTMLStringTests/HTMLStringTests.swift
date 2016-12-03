@@ -35,70 +35,145 @@
 import XCTest
 @testable import HTMLString
 
+///
+/// Tests HTML escaping/unescaping.
+///
+
 class HTMLStringTests: XCTestCase {
 
-    func testUnicode() {
-     
-        let unicodeString = "My favorite emoji is 🙃"
-        let escapedUnicode = unicodeString.escapingForUnicodeHTML
-        XCTAssertEqual(escapedUnicode, "My favorite emoji is 🙃")
-        
-        let unicodeWithEscapableScalar = "Fish & Chips"
-        let escapedUnicode2 = unicodeWithEscapableScalar.escapingForUnicodeHTML
-        XCTAssertEqual(escapedUnicode2, "Fish &amp; Chips")
-     
-        let dualString = "My favorite emoji is 🙃 & \\_(🙃)_/"
-        let escapedUnicode3 = dualString.escapingForUnicodeHTML
-        XCTAssertEqual(escapedUnicode3, "My favorite emoji is 🙃 &amp; \\_(🙃)_/")
-        
+    // MARK: - Escaping
+
+    ///
+    /// Tests escaping a character for ASCII.
+    ///
+
+    func testCharacterASCIIEscape() {
+
+        let namedEscape = Character("&").escapingForASCII
+        XCTAssertTrue(namedEscape == "&AMP;" || namedEscape == "&amp;")
+
+        let namedDualEscape = Character("⪰̸").escapingForASCII
+        XCTAssertEqual(namedDualEscape, "&nsucceq;")
+
+        let emojiEscape = Character("🙃").escapingForASCII
+        XCTAssertEqual(emojiEscape, "&#128579;")
+
+        let doubleEmojiEscape = Character("🇺🇸").escapingForASCII
+        XCTAssertEqual(doubleEmojiEscape, "&#127482;&#127480;")
+
+        let basicCharacterEscape = Character("A").escapingForASCII
+        XCTAssertEqual(basicCharacterEscape, "A")
+
     }
-    
-    func testASCII() {
-        
-        let unicodeString = "My favorite emoji is 🙃"
-        let escapedUnicode = unicodeString.escapingForASCIIHTML
-        XCTAssertEqual(escapedUnicode, "My favorite emoji is &#128579;")
-        
-        let unicodeWithEscapableScalar = "Fish & Chips"
-        let escapedUnicode2 = unicodeWithEscapableScalar.escapingForASCIIHTML
-        XCTAssertEqual(escapedUnicode2, "Fish &amp; Chips")
-        
-        let dualString = "My favorite emoji is 🙃 & \\_(🙃)_/"
-        let escapedUnicode3 = dualString.escapingForASCIIHTML
-        XCTAssertEqual(escapedUnicode3, "My favorite emoji is &#128579; &amp; \\_(&#128579;)_/")
-    
+
+    ///
+    /// Tests escaping a character for Unicode.
+    ///
+
+    func testCharacterUnicodeEscape() {
+
+        let requiredEscape = Character("&").escapingForUnicode
+        XCTAssertTrue(requiredEscape == "&AMP;" || requiredEscape == "&amp;")
+
+        let namedDualEscape = Character("⪰̸").escapingForUnicode
+        XCTAssertEqual(namedDualEscape, "⪰̸")
+
+        let emojiEscape = Character("🙃").escapingForUnicode
+        XCTAssertEqual(emojiEscape, "🙃")
+
+        let doubleEmojiEscape = Character("🇺🇸").escapingForUnicode
+        XCTAssertEqual(doubleEmojiEscape, "🇺🇸")
+
+        let basicCharacterEscape = Character("A").escapingForUnicode
+        XCTAssertEqual(basicCharacterEscape, "A")
+
     }
-    
+
+    ///
+    /// Tests escaping a string for ASCII.
+    ///
+
+    func testStringASCIIEscaping() {
+
+        let namedEscape = ("Fish & Chips").escapingForASCIIHTML
+        XCTAssertTrue(namedEscape == "Fish &AMP; Chips" || namedEscape == "Fish &amp; Chips")
+
+        let namedDualEscape = ("a ⪰̸ b").escapingForASCIIHTML
+        XCTAssertEqual(namedDualEscape, "a &nsucceq; b")
+
+        let emojiEscape = ("Hey 🙃").escapingForASCIIHTML
+        XCTAssertEqual(emojiEscape, "Hey &#128579;")
+
+        let doubleEmojiEscape = ("Going to the 🇺🇸 next June").escapingForASCIIHTML
+        XCTAssertEqual(doubleEmojiEscape, "Going to the &#127482;&#127480; next June")
+
+    }
+
+    ///
+    /// Tests escaping a string for Unicode.
+    ///
+
+    func testStringUnicodeEscaping() {
+
+        let requiredEscape = ("Fish & Chips").escapingForUnicodeHTML
+        XCTAssertTrue(requiredEscape == "Fish &AMP; Chips" || requiredEscape == "Fish &amp; Chips")
+
+        let namedDualEscape = ("a ⪰̸ b").escapingForUnicodeHTML
+        XCTAssertEqual(namedDualEscape, "a ⪰̸ b")
+
+        let emojiEscape = ("Hey 🙃!").escapingForUnicodeHTML
+        XCTAssertEqual(emojiEscape, "Hey 🙃!")
+
+        let doubleEmojiEscape = ("Going to the 🇺🇸 next June").escapingForUnicodeHTML
+        XCTAssertEqual(doubleEmojiEscape, "Going to the 🇺🇸 next June")
+
+    }
+
+    // MARK: - Unescaping
+
     func testUnescaping() {
-        
-        let decimalEscaped = "My favorite emoji is &#128579;"
-        let decimalUnescaped = decimalEscaped.unescapingFromHTML
-        XCTAssertEqual(decimalUnescaped, "My favorite emoji is 🙃")
-        
-        let hexEscaped = "My favorite emoji is &#x1F643;"
-        let hexUnescaped = hexEscaped.unescapingFromHTML
-        XCTAssertEqual(hexUnescaped, "My favorite emoji is 🙃")
-        
-        let rawEscaped = "Fish &amp; Chips"
-        let rawUnescaped = rawEscaped.unescapingFromHTML
-        XCTAssertEqual(rawUnescaped, "Fish & Chips")
-        
-        let dualString = "My favorite emoji is &#128579; &amp; \\_(&#128579;)_/"
-        let escapedUnicode3 = dualString.unescapingFromHTML
-        XCTAssertEqual(escapedUnicode3, "My favorite emoji is 🙃 & \\_(🙃)_/")
-        
+
+        let withoutMarker = "Hello, world.".unescapingFromHTML
+        XCTAssertEqual(withoutMarker, "Hello, world.")
+
+        let noSemicolon = "Fish & Chips"
+        XCTAssertEqual(noSemicolon, "Fish & Chips")
+
+        let decimal = "My phone number starts with a &#49;".unescapingFromHTML
+        XCTAssertEqual(decimal, "My phone number starts with a 1")
+
+        let invalidDecimal = "My phone number starts with a &#4_9;!".unescapingFromHTML
+        XCTAssertEqual(invalidDecimal, "My phone number starts with a &#4_9;!")
+
+        let hex = "Let's meet at the caf&#xe9;".unescapingFromHTML
+        XCTAssertEqual(hex, "Let's meet at the café")
+
+        let invalidHex = "Let's meet at the caf&#xzi;!".unescapingFromHTML
+        XCTAssertEqual(invalidHex, "Let's meet at the caf&#xzi;!")
+
+        let badSequence = "I love &swift;".unescapingFromHTML
+        XCTAssertEqual(badSequence, "I love &swift;")
+
+        let goodSequence = "Do you know &aleph;?".unescapingFromHTML
+        XCTAssertEqual(goodSequence, "Do you know ℵ?")
+
+        let twoSequences = "a &amp;&amp; b".unescapingFromHTML
+        XCTAssertEqual(twoSequences, "a && b")
+
     }
 
 }
 
 extension HTMLStringTests {
-    
+
     static var allTests : [(String, (HTMLStringTests) -> () throws -> Void)] {
         return [
-            ("testUnicode", testUnicode),
-            ("testASCII", testASCII),
+            ("testCharacterASCIIEscape", testCharacterASCIIEscape),
+            ("testCharacterUnicodeEscape", testCharacterUnicodeEscape),
+            ("testStringASCIIEscaping", testStringASCIIEscaping),
+            ("testStringUnicodeEscaping", testStringUnicodeEscaping),
             ("testUnescaping", testUnescaping)
         ]
     }
-    
+
 }
