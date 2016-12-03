@@ -16,7 +16,7 @@
 <li><input type="checkbox" disabled checked>ASCII and Unicode Escaping</li>
 <li><input type="checkbox" disabled checked>Unescaping</li>
 <li><input type="checkbox" disabled checked>Full support of Swift extended grapheme clusters</li>
-<li><input type="checkbox" disabled checked>Support of 2125 named escape sequences (`&amp;`) as well as decimal (`&#128;`) and hexadecimal (`&#x1F643;`) sequences</li>
+<li><input type="checkbox" disabled checked>Support of 2125 named escape sequences (`amp;`) as well as decimal (`#128;`) and hexadecimal (`#x1F643;`) sequences</li>
 </ul>
 
 ## Platforms
