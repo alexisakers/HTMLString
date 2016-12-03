@@ -3,7 +3,7 @@
 ![Swift 3.0](https://img.shields.io/badge/Swift-3.0-Orange.svg)
 ![The MIT License](https://img.shields.io/cocoapods/l/HTMLString.svg)
 [![Build Status](https://travis-ci.org/alexaubry/HTMLString.svg?branch=master)](https://travis-ci.org/alexaubry/HTMLString)
-![CocoaPods](https://img.shields.io/cocoapods/v/HTMLString.svg?maxAge=86400") 
+![CocoaPods](https://img.shields.io/cocoapods/v/HTMLString.svg?maxAge=86400")
 
 `HTMLString` is a micro-library written in Swift that enables your app to convert Strings that contain HTML.
 
@@ -34,6 +34,7 @@ pod 'HTMLString' '~> 1.0.2'
 ### Swift Package Manager
 
 Add this line to your `Package.swift` :
+
 ~~~swift
 .Package(url: "https://github.com/alexaubry/HTMLString", majorVersion: 1, minor: 0)
 ~~~
