@@ -68,7 +68,7 @@ public extension String {
     ///
     /// Replaces all characters that need to be encoded for use in HTML documents.
     ///
-    /// If the encoding is Unicode, only characters that have a keyword in the `String.htmlEscapeTable`
+    /// If the encoding is Unicode, only characters that have a keyword in the `String.escapeSequenceTable`
     /// will be escaped. Otherwise, all non-ASCII characters will be escaped using their code point (&#128;).
     ///
     /// - parameter isEncodingUnicode: A Boolean indicating whether the string should be escaped with Unicode (`true`) or ASCII (`false`) encoding.
@@ -80,8 +80,8 @@ public extension String {
 
         var finalString = String()
 
-        for scalar in unicodeScalars {
-            let escapingSequence = isEncodingUnicode ? scalar.escapingForUnicode : scalar.escapingForASCII
+        for character in characters {
+            let escapingSequence = isEncodingUnicode ? character.escapingForUnicode : character.escapingForASCII
             finalString.append(escapingSequence)
         }
 
@@ -108,9 +108,9 @@ public extension String {
 
         while let delimiterRange = finalString.range(of: "&", options: [], range: searchRange, locale: nil) {
 
-            let semicolonCheckRange = delimiterRange.upperBound ..< finalString.endIndex
+            let semicolonSearchRange = delimiterRange.upperBound ..< finalString.endIndex
 
-            guard let semicolonRange = finalString.range(of: ";", options: [], range: semicolonCheckRange, locale: nil) else {
+            guard let semicolonRange = finalString.range(of: ";", options: [], range: semicolonSearchRange, locale: nil) else {
                 searchRange = delimiterRange.upperBound ..< finalString.endIndex
                 continue
             }
@@ -119,7 +119,7 @@ public extension String {
             let escapeRange = finalString.index(after: delimiterRange.lowerBound) ..< finalString.index(before: semicolonRange.upperBound)
             let escapeString = finalString.substring(with: escapeRange)
 
-            var scalars: Array<UnicodeScalar>
+            let replacementString: String
 
             if escapeString[escapeString.startIndex] == "#" {
 
@@ -166,70 +166,30 @@ public extension String {
 
                 }
 
-
-                guard let _scalar = UnicodeScalar(value) else {
+                guard let scalar = UnicodeScalar(value) else {
                     searchRange = escapeRange.upperBound ..< finalString.endIndex
                     continue
                 }
 
-                scalars = [_scalar]
+                replacementString = String(Character(scalar))
 
             } else {
 
-                guard let escapeMap = String.htmlEscapeTable.first(where: { $0.escapeSequence == escapeString }) else {
+                guard let escapeSequence = HTMLEscaping.escapeSequenceTable[escapeString] else {
                     searchRange = escapeRange.upperBound ..< finalString.endIndex
                     continue
                 }
 
-                scalars = escapeMap.scalarValues.map({ UnicodeScalar($0) }).filter { $0 != nil }.map { $0! }
+                replacementString = escapeSequence
 
             }
 
-            let escapeSequenceStart = escapeSequenceBounds.lowerBound.samePosition(in: finalString.unicodeScalars)
-            let escapeSequenceEnd = escapeSequenceBounds.upperBound.samePosition(in: finalString.unicodeScalars)
-
-            finalString.unicodeScalars.replaceSubrange(escapeSequenceStart ..< escapeSequenceEnd, with: scalars)
+            finalString.replaceSubrange(escapeSequenceBounds, with: replacementString)
             searchRange = delimiterRange.upperBound ..< finalString.endIndex
 
         }
 
         return finalString
-
-    }
-
-}
-
-fileprivate extension UnicodeScalar {
-
-    ///
-    /// Escapes the unicode scalar for ASCII web pages.
-    ///
-
-    fileprivate var escapingForASCII: String {
-
-        if isASCII {
-            return escapingForUnicode
-        }
-
-        if let escapeTable = String.htmlEscapeTable.first(where: { $0.scalarValues == [value] }) {
-            return ("&" + escapeTable.escapeSequence.lowercased() + ";")
-        } else {
-            return ("&#" + String(value) + ";")
-        }
-
-    }
-
-    ///
-    /// Escapes the unicode scalar for Unicode web pages.
-    ///
-
-    fileprivate var escapingForUnicode: String {
-
-        if let escapableUnicodeCodePoint = String.escapableUnicodeCodePoints[value] {
-            return ("&" + escapableUnicodeCodePoint + ";")
-        }
-
-        return String(describing: self)
 
     }
 
