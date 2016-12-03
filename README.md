@@ -10,24 +10,22 @@
 
 `HTMLString` is a micro-library written in Swift that enables your app to encode and decode Strings that contain HTML escapes.
 
+📚  [Documentation](https://alexaubry.github.io/HTMLString)
+
 ## Features
 
-<ul>
-<li><input type="checkbox" disabled checked>ASCII and Unicode Escaping</li>
-<li><input type="checkbox" disabled checked>Unescaping</li>
-<li><input type="checkbox" disabled checked>Full support of Swift extended grapheme clusters</li>
-<li><input type="checkbox" disabled checked>Support of 2125 named escape sequences (`amp;`) as well as decimal (`#128;`) and hexadecimal (`#x1F643;`) sequences</li>
-</ul>
+- ASCII and Unicode Escaping
+- Unescaping
+- Full support of Swift extended grapheme clusters
+- Support of 2125 named escape sequences (`&amp;`) as well as decimal (`&#128;`) and hexadecimal (`&#x1F643;`) sequences
 
 ## Platforms
 
-<ul>
-<li><input type="checkbox" disabled checked>iOS 8.0+</li>
-<li><input type="checkbox" disabled checked>macOS 10.10+</li>
-<li><input type="checkbox" disabled checked>tvOS 9.0+</li>
-<li><input type="checkbox" disabled checked>watchOS 2.0+</li>
-<li><input type="checkbox" disabled checked>Linux</li>
-</ul>
+- iOS 8.0+
+- macOS 10.10+
+- tvOS 9.0+
+- watchOS 2.0+
+- Linux
 
 ## Installation
 
