@@ -63,7 +63,7 @@ public extension Character {
         if let escapeSequence = HTMLEscaping.escapeSequenceTable.allKeys(withValue: str).first {
             return "&" + escapeSequence + ";"
         }
-        
+
         return str.unicodeScalars.map { $0.escapingForASCII }.joined()
 
     }

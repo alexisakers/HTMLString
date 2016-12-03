@@ -105,7 +105,7 @@ public extension String {
 
         var finalString = self
         var searchRange = finalString.startIndex ..< finalString.endIndex
-        
+
         while let delimiterRange = finalString.range(of: "&", options: [], range: searchRange, locale: nil) {
 
             let semicolonSearchRange = delimiterRange.upperBound ..< finalString.endIndex
@@ -117,9 +117,9 @@ public extension String {
 
             let escapeSequenceBounds = delimiterRange.lowerBound ..< semicolonRange.upperBound
             let escapeRange = delimiterRange.upperBound ..< semicolonRange.lowerBound
-            
+
             let escapeString = finalString.substring(with: escapeRange)
-            
+
             let replacementString: String
 
             if escapeString[escapeString.startIndex] == "#" {
@@ -130,7 +130,7 @@ public extension String {
                 let firstCharacterOffset = isHexadecimal ? 2 : 1
 
                 let sequenceRange = escapeString.index(escapeString.startIndex, offsetBy: firstCharacterOffset) ..< escapeString.endIndex
-                
+
                 let sequence = escapeString.substring(with: sequenceRange)
 
                 var value = UInt32()
