@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5E19F86C1D9D0D4700865103 /* Mappings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E19F86B1D9D0D4700865103 /* Mappings.swift */; };
+		5E4116B01DF3147800F0572F /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4116AF1DF3147800F0572F /* Utilities.swift */; };
 		_LinkFileRef_HTMLString_via_HTMLStringTests /* HTMLString.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_HTMLString" /* HTMLString.framework */; };
 		__src_cc_ref_Sources/HTMLString.swift /* HTMLString.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/HTMLString.swift /* HTMLString.swift */; };
 		__src_cc_ref_Tests/HTMLStringTests/HTMLStringTests.swift /* HTMLStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/HTMLStringTests/HTMLStringTests.swift /* HTMLStringTests.swift */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		5E19F86B1D9D0D4700865103 /* Mappings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mappings.swift; sourceTree = "<group>"; };
+		5E4116AF1DF3147800F0572F /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		5EC421E11D9FA21700C4B6FB /* LinuxMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LinuxMain.swift; path = Tests/LinuxMain.swift; sourceTree = "<group>"; };
 		5EC421E31D9FA2FF00C4B6FB /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		5EC421E41D9FA30900C4B6FB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			children = (
 				__PBXFileRef_Sources/HTMLString.swift /* HTMLString.swift */,
 				5E19F86B1D9D0D4700865103 /* Mappings.swift */,
+				5E4116AF1DF3147800F0572F /* Utilities.swift */,
 			);
 			name = HTMLString;
 			path = Sources;
@@ -208,6 +211,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				5E4116B01DF3147800F0572F /* Utilities.swift in Sources */,
 				5E19F86C1D9D0D4700865103 /* Mappings.swift in Sources */,
 				__src_cc_ref_Sources/HTMLString.swift /* HTMLString.swift in Sources */,
 			);

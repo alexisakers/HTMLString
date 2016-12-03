@@ -35,15 +35,17 @@
 import Foundation
 
 public extension String {
-    
+
     // MARK: - Escaping
-    
+
     ///
     /// A string where internal characters that need escaping for HTML are escaped.
     ///
-    /// For example, '&' become '\&amp;'.
+    /// Only special Unicode characters will be escaped.
     ///
-    
+    /// For example, `"&"` become `"\&amp;"`.
+    ///
+
     public var escapingForUnicodeHTML: String {
         return escapeHTML(isEncodingUnicode: true)
     }
@@ -53,95 +55,101 @@ public extension String {
     ///
     /// For instance, '&' becomes '\&amp;' and '🙃' becomes '\&#x1F643;'.
     ///
-    /// All non-mapped characters (unicode that don't have a &keyword; mapping) will be converted to the appropriate &#xxx; value. If your webpage is unicode encoded (UTF16 or UTF8) use `escapingForHTML` instead as it is faster, and produces less bloated and more readable HTML (as long as you are using a unicode compliant HTML reader).
+    /// All non-mapped characters (unicode that don't have a `&keyword;` mapping) will be converted to the appropriate &#xxx; value.
     ///
-    
+    /// If your webpage is unicode encoded (UTF16 or UTF8) use `escapingForHTML` instead as it is faster,
+    /// and produces less bloated and more readable HTML (as long as you are using a unicode compliant HTML reader).
+    ///
+
     public var escapingForASCIIHTML: String {
         return escapeHTML(isEncodingUnicode: false)
     }
-    
+
     ///
     /// Replaces all characters that need to be encoded for use in HTML documents.
     ///
-    /// If the encoding is Unicode, only characters that have a keyword in the `String.htmlEscapeTable` will be escaped. Otherwise, all non-ASCII characters will be escaped using their code point (&#128;).
+    /// If the encoding is Unicode, only characters that have a keyword in the `String.escapeSequenceTable`
+    /// will be escaped. Otherwise, all non-ASCII characters will be escaped using their code point (&#128;).
     ///
     /// - parameter isEncodingUnicode: A Boolean indicating whether the string should be escaped with Unicode (`true`) or ASCII (`false`) encoding.
     ///
     /// - returns: A string escaped with respect to the specified encoding.
     ///
-    
+
     fileprivate func escapeHTML(isEncodingUnicode: Bool) -> String {
-        
+
         var finalString = String()
-        
-        for scalar in unicodeScalars {
-            let escapingSequence = isEncodingUnicode ? scalar.escapingForUnicode : scalar.escapingForASCII
+
+        for character in characters {
+            let escapingSequence = isEncodingUnicode ? character.escapingForUnicode : character.escapingForASCII
             finalString.append(escapingSequence)
         }
-        
+
         return finalString
-        
+
     }
-    
+
     // MARK: - Unescaping
-    
+
     ///
     /// A string where internal characters that are escaped for HTML are unescaped.
     ///
-    /// For example, '&amp;' becomes '&'. Handles &#32; and &#x32; cases as well.
+    /// For example, `&amp;` becomes `&`. Handles `&#32;` and `&#x32;` cases as well.
     ///
-    
+
     public var unescapingFromHTML: String {
-        
+
         guard self.contains("&") else {
             return self
         }
-        
+
         var finalString = self
         var searchRange = finalString.startIndex ..< finalString.endIndex
-        
+
         while let delimiterRange = finalString.range(of: "&", options: [], range: searchRange, locale: nil) {
-            
-            let semicolonCheckRange = delimiterRange.upperBound ..< finalString.endIndex
-            
-            guard let semicolonRange = finalString.range(of: ";", options: [], range: semicolonCheckRange, locale: nil) else {
+
+            let semicolonSearchRange = delimiterRange.upperBound ..< finalString.endIndex
+
+            guard let semicolonRange = finalString.range(of: ";", options: [], range: semicolonSearchRange, locale: nil) else {
                 searchRange = delimiterRange.upperBound ..< finalString.endIndex
                 continue
             }
-            
+
             let escapeSequenceBounds = delimiterRange.lowerBound ..< semicolonRange.upperBound
-            let escapeRange = finalString.index(after: delimiterRange.lowerBound) ..< finalString.index(before: semicolonRange.upperBound)
+            let escapeRange = delimiterRange.upperBound ..< semicolonRange.lowerBound
+
             let escapeString = finalString.substring(with: escapeRange)
-                        
-            var scalars: Array<UnicodeScalar>
-            
+
+            let replacementString: String
+
             if escapeString[escapeString.startIndex] == "#" {
-                
+
                 let secondCharacter = escapeString[escapeString.index(after: escapeString.startIndex)]
-                
+
                 let isHexadecimal = (secondCharacter == "X" || secondCharacter == "x")
                 let firstCharacterOffset = isHexadecimal ? 2 : 1
-                
+
                 let sequenceRange = escapeString.index(escapeString.startIndex, offsetBy: firstCharacterOffset) ..< escapeString.endIndex
+
                 let sequence = escapeString.substring(with: sequenceRange)
-                
+
                 var value = UInt32()
-                
+
                 if isHexadecimal {
-                    
+
                     let scanner = Scanner(string: sequence)
 
                     #if os(OSX) || os(iOS) || os(watchOS) || os(tvOS)
-                    
+
                     guard scanner.scanHexInt32(&value) && value > 0 else {
-                        searchRange = escapeRange.upperBound ..< finalString.endIndex
+                        searchRange = escapeSequenceBounds.upperBound ..< finalString.endIndex
                         continue
                     }
-                    
-                    #else 
 
-		    guard let _value = scanner.scanHexInt() else {
-                        searchRange = escapeRange.upperBound ..< finalString.endIndex
+                    #else
+
+		            guard let _value = scanner.scanHexInt() else {
+                        searchRange = escapeSequenceBounds.upperBound ..< finalString.endIndex
                         continue
                     }
 
@@ -150,81 +158,41 @@ public extension String {
                     #endif
 
                 } else {
-                    
+
                     guard let _value = UInt32(sequence) else {
-                        searchRange = escapeRange.upperBound ..< finalString.endIndex
+                        searchRange = escapeSequenceBounds.upperBound ..< finalString.endIndex
                         continue
                     }
-                    
-                    value = _value
-                    
-                }
-                
-                
-                guard let _scalar = UnicodeScalar(value) else {
-                    searchRange = escapeRange.upperBound ..< finalString.endIndex
-                    continue
-                }
-                
-                scalars = [_scalar]
-                
-            } else {
-                
-                guard let escapeMap = String.htmlEscapeTable.first(where: { $0.escapeSequence == escapeString }) else {
-                    searchRange = escapeRange.upperBound ..< finalString.endIndex
-                    continue
-                }
-                
-                scalars = escapeMap.scalarValues.map({ UnicodeScalar($0) }).filter { $0 != nil }.map { $0! }
-                
-            }
-            
-            let escapeSequenceStart = escapeSequenceBounds.lowerBound.samePosition(in: finalString.unicodeScalars)
-            let escapeSequenceEnd = escapeSequenceBounds.upperBound.samePosition(in: finalString.unicodeScalars)
-            
-            finalString.unicodeScalars.replaceSubrange(escapeSequenceStart ..< escapeSequenceEnd, with: scalars)
-            searchRange = delimiterRange.upperBound ..< finalString.endIndex
-            
-        }
-        
-        return finalString
-        
-    }
-    
-}
 
-fileprivate extension UnicodeScalar {
-    
-    ///
-    /// Escapes the unicode scalar for ASCII web pages.
-    ///
-    
-    fileprivate var escapingForASCII: String {
-        
-        if isASCII {
-            return escapingForUnicode
+                    value = _value
+
+                }
+
+                guard let scalar = UnicodeScalar(value) else {
+                    searchRange = escapeSequenceBounds.upperBound ..< finalString.endIndex
+                    continue
+                }
+
+                replacementString = String(Character(scalar))
+
+            } else {
+
+                guard let escapeSequence = HTMLEscaping.escapeSequenceTable[escapeString] else {
+                    searchRange = escapeSequenceBounds.upperBound ..< finalString.endIndex
+                    continue
+                }
+
+                replacementString = escapeSequence
+
+            }
+
+            finalString.replaceSubrange(escapeSequenceBounds, with: replacementString)
+            searchRange = delimiterRange.upperBound ..< finalString.endIndex
+
         }
-        
-        if let escapeTable = String.htmlEscapeTable.first(where: { $0.scalarValues == [value] }) {
-            return ("&" + escapeTable.escapeSequence.lowercased() + ";")
-        } else {
-            return ("&#" + String(value) + ";")
-        }
-        
+
+        return finalString
+
     }
-    
-    ///
-    /// Escapes the unicode scalar for Unicode web pages.
-    ///
-    
-    fileprivate var escapingForUnicode: String {
-        
-        if let escapableUnicodeCodePoint = String.escapableUnicodeCodePoints[value] {
-            return ("&" + escapableUnicodeCodePoint + ";")
-        }
-        
-        return String(describing: self)
-        
-    }
-    
+
 }
