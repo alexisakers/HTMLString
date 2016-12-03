@@ -10,7 +10,7 @@
 
 `HTMLString` is a micro-library written in Swift that enables your app to encode and decode Strings that contain HTML escapes.
 
-📚  [Documentation](https://alexaubry.github.io/HTMLString)
+📚  [Documentation](https://alexaubry.github.io/HTMLString/)
 
 ## Features
 
