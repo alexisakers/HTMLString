@@ -96,29 +96,29 @@ public extension String {
             return self
         }
 
-        var finalString = self
-        var searchRange = finalString.startIndex ..< finalString.endIndex
+        var unescapedString = self
+        var searchRange = unescapedString.startIndex ..< unescapedString.endIndex
 
-        while let delimiterRange = finalString.range(of: "&", options: [], range: searchRange, locale: nil) {
+        while let delimiterRange = unescapedString.range(of: "&", range: searchRange) {
 
-            let semicolonSearchRange = delimiterRange.upperBound ..< finalString.endIndex
+            let semicolonSearchRange = delimiterRange.upperBound ..< unescapedString.endIndex
 
-            guard let semicolonRange = finalString.range(of: ";", options: [], range: semicolonSearchRange, locale: nil) else {
-                searchRange = delimiterRange.upperBound ..< finalString.endIndex
+            guard let semicolonRange = unescapedString.range(of: ";", range: semicolonSearchRange) else {
+                searchRange = delimiterRange.upperBound ..< unescapedString.endIndex
                 continue
             }
 
             let escapeSequenceBounds = delimiterRange.lowerBound ..< semicolonRange.upperBound
-            let escapeRange = delimiterRange.upperBound ..< semicolonRange.lowerBound
 
-            let escapeString = finalString.substring(with: escapeRange)
+            let escapableContentRange = delimiterRange.upperBound ..< semicolonRange.lowerBound
+            let escapableContent = unescapedString.substring(with: escapableContentRange)
 
             let replacementString: String
 
-            if escapeString[escapeString.startIndex] == "#" {
+            if escapableContent[escapableContent.startIndex] == "#" {
 
-                guard let unescapedNumericalSequence = unescaped(numericalSequence: escapeString) else {
-                    searchRange = escapeSequenceBounds.upperBound ..< finalString.endIndex
+                guard let unescapedNumericalSequence = unescaped(numericalSequence: escapableContent) else {
+                    searchRange = escapeSequenceBounds.upperBound ..< unescapedString.endIndex
                     continue
                 }
 
@@ -126,21 +126,21 @@ public extension String {
 
             } else {
 
-                guard let escapeSequence = HTMLEscaping.escapeSequenceTable[escapeString] else {
-                    searchRange = escapeSequenceBounds.upperBound ..< finalString.endIndex
+                guard let unescapedCharacter = HTMLEscaping.escapeSequenceTable[escapableContent] else {
+                    searchRange = escapeSequenceBounds.upperBound ..< unescapedString.endIndex
                     continue
                 }
 
-                replacementString = escapeSequence
+                replacementString = unescapedCharacter
 
             }
 
-            finalString.replaceSubrange(escapeSequenceBounds, with: replacementString)
-            searchRange = delimiterRange.upperBound ..< finalString.endIndex
+            unescapedString.replaceSubrange(escapeSequenceBounds, with: replacementString)
+            searchRange = delimiterRange.upperBound ..< unescapedString.endIndex
 
         }
 
-        return finalString
+        return unescapedString
 
     }
 
