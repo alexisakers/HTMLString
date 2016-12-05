@@ -151,6 +151,9 @@ class HTMLStringTests: XCTestCase {
         let invalidHex = "Let's meet at the caf&#xzi;!".unescapingFromHTML
         XCTAssertEqual(invalidHex, "Let's meet at the caf&#xzi;!")
 
+        let invalidUnicodePoint = "What is this character ? -> &#xd8ff;".unescapingFromHTML
+        XCTAssertEqual(invalidHex, "What is this character ? -> &#xd8ff;")
+
         let badSequence = "I love &swift;".unescapingFromHTML
         XCTAssertEqual(badSequence, "I love &swift;")
 
