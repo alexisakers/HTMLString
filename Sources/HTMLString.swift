@@ -126,7 +126,7 @@ public extension String {
 
             } else {
 
-                guard let unescapedCharacter = HTMLEscaping.escapeSequenceTable[escapableContent] else {
+                guard let unescapedCharacter = HTMLTables.unescapingTable[escapableContent] else {
                     searchRange = escapeSequenceBounds.upperBound ..< unescapedString.endIndex
                     continue
                 }

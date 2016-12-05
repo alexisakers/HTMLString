@@ -50,10 +50,10 @@ class HTMLStringTests: XCTestCase {
     func testCharacterASCIIEscape() {
 
         let namedEscape = Character("&").escapingForASCII
-        XCTAssertTrue(namedEscape == "&AMP;" || namedEscape == "&amp;")
+        XCTAssertEqual(namedEscape, "&amp;")
 
         let namedDualEscape = Character("⪰̸").escapingForASCII
-        XCTAssertEqual(namedDualEscape, "&nsucceq;")
+        XCTAssertEqual(namedDualEscape, "&NotSucceedsEqual;")
 
         let emojiEscape = Character("🙃").escapingForASCII
         XCTAssertEqual(emojiEscape, "&#128579;")
@@ -73,7 +73,7 @@ class HTMLStringTests: XCTestCase {
     func testCharacterUnicodeEscape() {
 
         let requiredEscape = Character("&").escapingForUnicode
-        XCTAssertTrue(requiredEscape == "&AMP;" || requiredEscape == "&amp;")
+        XCTAssertEqual(requiredEscape, "&amp;")
 
         let namedDualEscape = Character("⪰̸").escapingForUnicode
         XCTAssertEqual(namedDualEscape, "⪰̸")
@@ -96,10 +96,10 @@ class HTMLStringTests: XCTestCase {
     func testStringASCIIEscaping() {
 
         let namedEscape = ("Fish & Chips").escapingForASCIIHTML
-        XCTAssertTrue(namedEscape == "Fish &AMP; Chips" || namedEscape == "Fish &amp; Chips")
+        XCTAssertEqual(namedEscape, "Fish &amp; Chips")
 
         let namedDualEscape = ("a ⪰̸ b").escapingForASCIIHTML
-        XCTAssertEqual(namedDualEscape, "a &nsucceq; b")
+        XCTAssertEqual(namedDualEscape, "a &NotSucceedsEqual; b")
 
         let emojiEscape = ("Hey 🙃").escapingForASCIIHTML
         XCTAssertEqual(emojiEscape, "Hey &#128579;")
@@ -116,7 +116,7 @@ class HTMLStringTests: XCTestCase {
     func testStringUnicodeEscaping() {
 
         let requiredEscape = ("Fish & Chips").escapingForUnicodeHTML
-        XCTAssertTrue(requiredEscape == "Fish &AMP; Chips" || requiredEscape == "Fish &amp; Chips")
+        XCTAssertEqual(requiredEscape, "Fish &amp; Chips")
 
         let namedDualEscape = ("a ⪰̸ b").escapingForUnicodeHTML
         XCTAssertEqual(namedDualEscape, "a ⪰̸ b")

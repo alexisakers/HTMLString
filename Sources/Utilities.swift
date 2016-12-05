@@ -34,20 +34,6 @@
 
 import Foundation
 
-// MARK: - Dictionary+AllKeys
-
-extension Dictionary where Value: Equatable {
-
-    ///
-    /// Returns all the keys with the specified value.
-    ///
-
-    internal func allKeys(withValue value: Value) -> [Key] {
-        return filter { $1 == value }.map { $0.0 }
-    }
-
-}
-
 // MARK: - Cross-Platform Scanner
 
 extension Scanner {
@@ -90,7 +76,7 @@ public extension Character {
 
         let str = String(self)
 
-        if let escapeSequence = HTMLEscaping.escapeSequenceTable.allKeys(withValue: str).first {
+        if let escapeSequence = HTMLTables.escapingTable[str] {
             return "&" + escapeSequence + ";"
         }
 
@@ -121,12 +107,12 @@ public extension UnicodeScalar {
     ///
     /// Escapes the scalar if needed.
     ///
-    /// A scalar needs to be escaped if its value exists in the `HTMLEscaping.escapedCharactersTable`.
+    /// A scalar needs to be escaped if its value exists in the `HTMLTables.requiredEscapingsTable` dictionary.
     ///
 
     public var escapingIfNeeded: String {
 
-        guard let escapedCharacter = HTMLEscaping.escapedCharactersTable[value] else {
+        guard let escapedCharacter = HTMLTables.requiredEscapingsTable[value] else {
             return String(Character(self))
         }
 
