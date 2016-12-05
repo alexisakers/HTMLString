@@ -77,16 +77,9 @@ public extension String {
     ///
 
     fileprivate func escapeHTML(isEncodingUnicode: Bool) -> String {
-
-        var finalString = String()
-
-        for character in characters {
-            let escapingSequence = isEncodingUnicode ? character.escapingForUnicode : character.escapingForASCII
-            finalString.append(escapingSequence)
-        }
-
-        return finalString
-
+        return self.characters.map {
+            isEncodingUnicode ? $0.escapingForUnicode : $0.escapingForASCII
+        }.joined()
     }
 
     // MARK: - Unescaping
