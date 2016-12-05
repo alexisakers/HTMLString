@@ -136,7 +136,7 @@ class HTMLStringTests: XCTestCase {
         let withoutMarker = "Hello, world.".unescapingFromHTML
         XCTAssertEqual(withoutMarker, "Hello, world.")
 
-        let noSemicolon = "Fish & Chips"
+        let noSemicolon = "Fish & Chips".unescapingFromHTML
         XCTAssertEqual(noSemicolon, "Fish & Chips")
 
         let decimal = "My phone number starts with a &#49;".unescapingFromHTML
