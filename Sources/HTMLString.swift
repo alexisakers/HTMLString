@@ -117,56 +117,12 @@ public extension String {
 
             if escapeString[escapeString.startIndex] == "#" {
 
-                let secondCharacter = escapeString[escapeString.index(after: escapeString.startIndex)]
-
-                let isHexadecimal = (secondCharacter == "X" || secondCharacter == "x")
-                let firstCharacterOffset = isHexadecimal ? 2 : 1
-
-                let sequenceRange = escapeString.index(escapeString.startIndex, offsetBy: firstCharacterOffset) ..< escapeString.endIndex
-
-                let sequence = escapeString.substring(with: sequenceRange)
-
-                var value = UInt32()
-
-                if isHexadecimal {
-
-                    let scanner = Scanner(string: sequence)
-
-                    #if os(OSX) || os(iOS) || os(watchOS) || os(tvOS)
-
-                    guard scanner.scanHexInt32(&value) && value > 0 else {
-                        searchRange = escapeSequenceBounds.upperBound ..< finalString.endIndex
-                        continue
-                    }
-
-                    #else
-
-		            guard let _value = scanner.scanHexInt() else {
-                        searchRange = escapeSequenceBounds.upperBound ..< finalString.endIndex
-                        continue
-                    }
-
-                    value = _value
-
-                    #endif
-
-                } else {
-
-                    guard let _value = UInt32(sequence) else {
-                        searchRange = escapeSequenceBounds.upperBound ..< finalString.endIndex
-                        continue
-                    }
-
-                    value = _value
-
-                }
-
-                guard let scalar = UnicodeScalar(value) else {
+                guard let unescapedNumericalSequence = unescaped(numericalSequence: escapeString) else {
                     searchRange = escapeSequenceBounds.upperBound ..< finalString.endIndex
                     continue
                 }
 
-                replacementString = String(Character(scalar))
+                replacementString = unescapedNumericalSequence
 
             } else {
 
@@ -185,6 +141,66 @@ public extension String {
         }
 
         return finalString
+
+    }
+
+    ///
+    /// Unescapes a numerical escape sequence.
+    ///
+    /// Numerical sequences can be either decimal (`&#45;`) or hexadecimal (`&#xc1`).
+    ///
+    /// - parameter numericalSequence: The sequence to escape. It must not contain the `&` prefix of the `;` suffix.
+    ///
+    /// - returns: The unescaped version of the sequence, or `nil` if unescaping failed.
+    ///
+
+    fileprivate func unescaped(numericalSequence: String) -> String? {
+
+        let secondCharacter = numericalSequence[numericalSequence.index(after: numericalSequence.startIndex)]
+
+        let isHexadecimal = (secondCharacter == "X" || secondCharacter == "x")
+        let numberStartIndexOffset = isHexadecimal ? 2 : 1
+
+        let numberStringRange = numericalSequence.index(numericalSequence.startIndex, offsetBy: numberStartIndexOffset) ..< numericalSequence.endIndex
+        let numberString = numericalSequence.substring(with: numberStringRange)
+
+        var codePoint = UInt32()
+
+        if isHexadecimal {
+
+            let scanner = Scanner(string: numberString)
+
+            #if os(OSX) || os(iOS) || os(watchOS) || os(tvOS)
+
+                guard scanner.scanHexInt32(&codePoint) else {
+                    return nil
+                }
+
+            #else
+
+                guard let _codePoint = scanner.scanHexInt() else {
+                    return nil
+                }
+
+                codePoint = _codePoint
+
+            #endif
+
+        } else {
+
+            guard let _codePoint = UInt32(numberString) else {
+                return nil
+            }
+
+            codePoint = _codePoint
+
+        }
+
+        guard let scalar = UnicodeScalar(codePoint) else {
+            return nil
+        }
+
+        return String(Character(scalar))
 
     }
 
