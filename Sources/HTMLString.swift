@@ -170,21 +170,11 @@ public extension String {
 
             let scanner = Scanner(string: numberString)
 
-            #if os(OSX) || os(iOS) || os(watchOS) || os(tvOS)
+            guard let _codePoint = scanner.scanHexInt() else {
+                return nil
+            }
 
-                guard scanner.scanHexInt32(&codePoint) else {
-                    return nil
-                }
-
-            #else
-
-                guard let _codePoint = scanner.scanHexInt() else {
-                    return nil
-                }
-
-                codePoint = _codePoint
-
-            #endif
+            codePoint = _codePoint
 
         } else {
 

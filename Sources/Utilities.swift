@@ -48,6 +48,36 @@ extension Dictionary where Value: Equatable {
 
 }
 
+// MARK: - Cross-Platform Scanner
+
+extension Scanner {
+
+    #if os(OSX) || os(iOS) || os(watchOS) || os(tvOS)
+
+        ///
+        /// Scans for an unsigned value from a hexadecimal representation.
+        ///
+        /// Provided on Darwin to match open-source syntax.
+        ///
+        /// - seealso: scanHexInt32(_:)
+        ///
+
+        internal func scanHexInt() -> UInt32? {
+
+            var scannedValue = UInt32()
+
+            guard self.scanHexInt32(&scannedValue) else {
+                return nil
+            }
+
+            return scannedValue
+
+        }
+
+    #endif
+
+}
+
 // MARK: - Escaping
 
 public extension Character {
