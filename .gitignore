@@ -4,3 +4,4 @@ xcuserdata/
 Packages/
 .build/
 Carthage/Build
+docs/undocumented.json
