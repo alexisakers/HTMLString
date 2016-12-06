@@ -131,6 +131,10 @@ class HTMLStringTests: XCTestCase {
 
     // MARK: - Unescaping
 
+    ///
+    /// Tests unescaping sequences.
+    ///
+
     func testUnescaping() {
 
         let withoutMarker = "Hello, world.".unescapingFromHTML
@@ -165,6 +169,65 @@ class HTMLStringTests: XCTestCase {
 
     }
 
+    // MARK: - Benchmark
+
+    ///
+    /// Measures the performance of unescaping.
+    ///
+
+    func testUnescapingPerformance() {
+
+        self.measure {
+
+            _ = "Hello, world.".unescapingFromHTML
+            _ = "Fish & Chips".unescapingFromHTML
+            _ = "My phone number starts with a &#49;".unescapingFromHTML
+            _ = "My phone number starts with a &#4_9;!".unescapingFromHTML
+            _ = "Let's meet at the caf&#xe9;".unescapingFromHTML
+            _ = "Let's meet at the caf&#xzi;!".unescapingFromHTML
+            _ = "What is this character ? -> &#xd8ff;".unescapingFromHTML
+            _ = "I love &swift;".unescapingFromHTML
+            _ = "Do you know &aleph;?".unescapingFromHTML
+            _ = "a &amp;&amp; b".unescapingFromHTML
+
+        }
+
+    }
+
+    ///
+    /// Measures performance of unescaping.
+    ///
+
+    func testEscapingPerformance() {
+
+        self.measure {
+
+            _ = Character("&").escapingForASCII
+            _ = Character("⪰̸").escapingForASCII
+            _ = Character("🙃").escapingForASCII
+            _ = Character("🇺🇸").escapingForASCII
+            _ = Character("A").escapingForASCII
+
+            _ = Character("&").escapingForUnicode
+            _ = Character("⪰̸").escapingForUnicode
+            _ = Character("🙃").escapingForUnicode
+            _ = Character("🇺🇸").escapingForUnicode
+            _ = Character("A").escapingForUnicode
+
+            _ = ("Fish & Chips").escapingForASCIIHTML
+            _ = ("a ⪰̸ b").escapingForASCIIHTML
+            _ = ("Hey 🙃").escapingForASCIIHTML
+            _ = ("Going to the 🇺🇸 next June").escapingForASCIIHTML
+
+            _ = ("Fish & Chips").escapingForUnicodeHTML
+            _ = ("a ⪰̸ b").escapingForUnicodeHTML
+            _ = ("Hey 🙃!").escapingForUnicodeHTML
+            _ = ("Going to the 🇺🇸 next June").escapingForUnicodeHTML
+
+        }
+
+    }
+
 }
 
 extension HTMLStringTests {
@@ -175,7 +238,9 @@ extension HTMLStringTests {
             ("testCharacterUnicodeEscape", testCharacterUnicodeEscape),
             ("testStringASCIIEscaping", testStringASCIIEscaping),
             ("testStringUnicodeEscaping", testStringUnicodeEscaping),
-            ("testUnescaping", testUnescaping)
+            ("testUnescaping", testUnescaping),
+            ("testUnescapingPerformance", testUnescapingPerformance),
+            ("testEscapingPerformance", testEscapingPerformance)
         ]
     }
 
