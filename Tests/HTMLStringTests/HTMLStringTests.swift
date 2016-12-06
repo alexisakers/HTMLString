@@ -50,10 +50,10 @@ class HTMLStringTests: XCTestCase {
     func testCharacterASCIIEscape() {
 
         let namedEscape = Character("&").escapingForASCII
-        XCTAssertTrue(namedEscape == "&AMP;" || namedEscape == "&amp;")
+        XCTAssertEqual(namedEscape, "&amp;")
 
         let namedDualEscape = Character("⪰̸").escapingForASCII
-        XCTAssertEqual(namedDualEscape, "&nsucceq;")
+        XCTAssertEqual(namedDualEscape, "&NotSucceedsEqual;")
 
         let emojiEscape = Character("🙃").escapingForASCII
         XCTAssertEqual(emojiEscape, "&#128579;")
@@ -73,7 +73,7 @@ class HTMLStringTests: XCTestCase {
     func testCharacterUnicodeEscape() {
 
         let requiredEscape = Character("&").escapingForUnicode
-        XCTAssertTrue(requiredEscape == "&AMP;" || requiredEscape == "&amp;")
+        XCTAssertEqual(requiredEscape, "&amp;")
 
         let namedDualEscape = Character("⪰̸").escapingForUnicode
         XCTAssertEqual(namedDualEscape, "⪰̸")
@@ -96,10 +96,10 @@ class HTMLStringTests: XCTestCase {
     func testStringASCIIEscaping() {
 
         let namedEscape = ("Fish & Chips").escapingForASCIIHTML
-        XCTAssertTrue(namedEscape == "Fish &AMP; Chips" || namedEscape == "Fish &amp; Chips")
+        XCTAssertEqual(namedEscape, "Fish &amp; Chips")
 
         let namedDualEscape = ("a ⪰̸ b").escapingForASCIIHTML
-        XCTAssertEqual(namedDualEscape, "a &nsucceq; b")
+        XCTAssertEqual(namedDualEscape, "a &NotSucceedsEqual; b")
 
         let emojiEscape = ("Hey 🙃").escapingForASCIIHTML
         XCTAssertEqual(emojiEscape, "Hey &#128579;")
@@ -116,7 +116,7 @@ class HTMLStringTests: XCTestCase {
     func testStringUnicodeEscaping() {
 
         let requiredEscape = ("Fish & Chips").escapingForUnicodeHTML
-        XCTAssertTrue(requiredEscape == "Fish &AMP; Chips" || requiredEscape == "Fish &amp; Chips")
+        XCTAssertEqual(requiredEscape, "Fish &amp; Chips")
 
         let namedDualEscape = ("a ⪰̸ b").escapingForUnicodeHTML
         XCTAssertEqual(namedDualEscape, "a ⪰̸ b")
@@ -131,12 +131,16 @@ class HTMLStringTests: XCTestCase {
 
     // MARK: - Unescaping
 
+    ///
+    /// Tests unescaping sequences.
+    ///
+
     func testUnescaping() {
 
         let withoutMarker = "Hello, world.".unescapingFromHTML
         XCTAssertEqual(withoutMarker, "Hello, world.")
 
-        let noSemicolon = "Fish & Chips"
+        let noSemicolon = "Fish & Chips".unescapingFromHTML
         XCTAssertEqual(noSemicolon, "Fish & Chips")
 
         let decimal = "My phone number starts with a &#49;".unescapingFromHTML
@@ -151,6 +155,9 @@ class HTMLStringTests: XCTestCase {
         let invalidHex = "Let's meet at the caf&#xzi;!".unescapingFromHTML
         XCTAssertEqual(invalidHex, "Let's meet at the caf&#xzi;!")
 
+        let invalidUnicodePoint = "What is this character ? -> &#xd8ff;".unescapingFromHTML
+        XCTAssertEqual(invalidUnicodePoint, "What is this character ? -> &#xd8ff;")
+
         let badSequence = "I love &swift;".unescapingFromHTML
         XCTAssertEqual(badSequence, "I love &swift;")
 
@@ -159,6 +166,65 @@ class HTMLStringTests: XCTestCase {
 
         let twoSequences = "a &amp;&amp; b".unescapingFromHTML
         XCTAssertEqual(twoSequences, "a && b")
+
+    }
+
+    // MARK: - Benchmark
+
+    ///
+    /// Measures the performance of unescaping.
+    ///
+
+    func testUnescapingPerformance() {
+
+        self.measure {
+
+            _ = "Hello, world.".unescapingFromHTML
+            _ = "Fish & Chips".unescapingFromHTML
+            _ = "My phone number starts with a &#49;".unescapingFromHTML
+            _ = "My phone number starts with a &#4_9;!".unescapingFromHTML
+            _ = "Let's meet at the caf&#xe9;".unescapingFromHTML
+            _ = "Let's meet at the caf&#xzi;!".unescapingFromHTML
+            _ = "What is this character ? -> &#xd8ff;".unescapingFromHTML
+            _ = "I love &swift;".unescapingFromHTML
+            _ = "Do you know &aleph;?".unescapingFromHTML
+            _ = "a &amp;&amp; b".unescapingFromHTML
+
+        }
+
+    }
+
+    ///
+    /// Measures performance of unescaping.
+    ///
+
+    func testEscapingPerformance() {
+
+        self.measure {
+
+            _ = Character("&").escapingForASCII
+            _ = Character("⪰̸").escapingForASCII
+            _ = Character("🙃").escapingForASCII
+            _ = Character("🇺🇸").escapingForASCII
+            _ = Character("A").escapingForASCII
+
+            _ = Character("&").escapingForUnicode
+            _ = Character("⪰̸").escapingForUnicode
+            _ = Character("🙃").escapingForUnicode
+            _ = Character("🇺🇸").escapingForUnicode
+            _ = Character("A").escapingForUnicode
+
+            _ = ("Fish & Chips").escapingForASCIIHTML
+            _ = ("a ⪰̸ b").escapingForASCIIHTML
+            _ = ("Hey 🙃").escapingForASCIIHTML
+            _ = ("Going to the 🇺🇸 next June").escapingForASCIIHTML
+
+            _ = ("Fish & Chips").escapingForUnicodeHTML
+            _ = ("a ⪰̸ b").escapingForUnicodeHTML
+            _ = ("Hey 🙃!").escapingForUnicodeHTML
+            _ = ("Going to the 🇺🇸 next June").escapingForUnicodeHTML
+
+        }
 
     }
 
@@ -172,7 +238,9 @@ extension HTMLStringTests {
             ("testCharacterUnicodeEscape", testCharacterUnicodeEscape),
             ("testStringASCIIEscaping", testStringASCIIEscaping),
             ("testStringUnicodeEscaping", testStringUnicodeEscaping),
-            ("testUnescaping", testUnescaping)
+            ("testUnescaping", testUnescaping),
+            ("testUnescapingPerformance", testUnescapingPerformance),
+            ("testEscapingPerformance", testEscapingPerformance)
         ]
     }
 

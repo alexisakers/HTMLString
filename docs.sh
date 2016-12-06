@@ -1,8 +1,8 @@
 MODULE=HTMLString
-VERSION=2.0
+VERSION=2.0.1
 SCHEME=HTMLString
 
-jazzy \
+bundle exec jazzy \
   --clean \
   --author Alexis Aubry Radanovic \
   --author_url https://github.com/alexaubry \

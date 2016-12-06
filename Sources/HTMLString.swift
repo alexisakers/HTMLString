@@ -77,16 +77,9 @@ public extension String {
     ///
 
     fileprivate func escapeHTML(isEncodingUnicode: Bool) -> String {
-
-        var finalString = String()
-
-        for character in characters {
-            let escapingSequence = isEncodingUnicode ? character.escapingForUnicode : character.escapingForASCII
-            finalString.append(escapingSequence)
-        }
-
-        return finalString
-
+        return self.characters.map {
+            isEncodingUnicode ? $0.escapingForUnicode : $0.escapingForASCII
+        }.joined()
     }
 
     // MARK: - Unescaping
@@ -103,95 +96,101 @@ public extension String {
             return self
         }
 
-        var finalString = self
-        var searchRange = finalString.startIndex ..< finalString.endIndex
+        var unescapedString = self
+        var searchRange = unescapedString.startIndex ..< unescapedString.endIndex
 
-        while let delimiterRange = finalString.range(of: "&", options: [], range: searchRange, locale: nil) {
+        while let delimiterRange = unescapedString.range(of: "&", range: searchRange) {
 
-            let semicolonSearchRange = delimiterRange.upperBound ..< finalString.endIndex
+            let semicolonSearchRange = delimiterRange.upperBound ..< unescapedString.endIndex
 
-            guard let semicolonRange = finalString.range(of: ";", options: [], range: semicolonSearchRange, locale: nil) else {
-                searchRange = delimiterRange.upperBound ..< finalString.endIndex
+            guard let semicolonRange = unescapedString.range(of: ";", range: semicolonSearchRange) else {
+                searchRange = delimiterRange.upperBound ..< unescapedString.endIndex
                 continue
             }
 
             let escapeSequenceBounds = delimiterRange.lowerBound ..< semicolonRange.upperBound
-            let escapeRange = delimiterRange.upperBound ..< semicolonRange.lowerBound
 
-            let escapeString = finalString.substring(with: escapeRange)
+            let escapableContentRange = delimiterRange.upperBound ..< semicolonRange.lowerBound
+            let escapableContent = unescapedString.substring(with: escapableContentRange)
 
             let replacementString: String
 
-            if escapeString[escapeString.startIndex] == "#" {
+            if escapableContent[escapableContent.startIndex] == "#" {
 
-                let secondCharacter = escapeString[escapeString.index(after: escapeString.startIndex)]
-
-                let isHexadecimal = (secondCharacter == "X" || secondCharacter == "x")
-                let firstCharacterOffset = isHexadecimal ? 2 : 1
-
-                let sequenceRange = escapeString.index(escapeString.startIndex, offsetBy: firstCharacterOffset) ..< escapeString.endIndex
-
-                let sequence = escapeString.substring(with: sequenceRange)
-
-                var value = UInt32()
-
-                if isHexadecimal {
-
-                    let scanner = Scanner(string: sequence)
-
-                    #if os(OSX) || os(iOS) || os(watchOS) || os(tvOS)
-
-                    guard scanner.scanHexInt32(&value) && value > 0 else {
-                        searchRange = escapeSequenceBounds.upperBound ..< finalString.endIndex
-                        continue
-                    }
-
-                    #else
-
-		            guard let _value = scanner.scanHexInt() else {
-                        searchRange = escapeSequenceBounds.upperBound ..< finalString.endIndex
-                        continue
-                    }
-
-                    value = _value
-
-                    #endif
-
-                } else {
-
-                    guard let _value = UInt32(sequence) else {
-                        searchRange = escapeSequenceBounds.upperBound ..< finalString.endIndex
-                        continue
-                    }
-
-                    value = _value
-
-                }
-
-                guard let scalar = UnicodeScalar(value) else {
-                    searchRange = escapeSequenceBounds.upperBound ..< finalString.endIndex
+                guard let unescapedNumericalSequence = unescaped(numericalSequence: escapableContent) else {
+                    searchRange = escapeSequenceBounds.upperBound ..< unescapedString.endIndex
                     continue
                 }
 
-                replacementString = String(Character(scalar))
+                replacementString = unescapedNumericalSequence
 
             } else {
 
-                guard let escapeSequence = HTMLEscaping.escapeSequenceTable[escapeString] else {
-                    searchRange = escapeSequenceBounds.upperBound ..< finalString.endIndex
+                guard let unescapedCharacter = HTMLTables.unescapingTable[escapableContent] else {
+                    searchRange = escapeSequenceBounds.upperBound ..< unescapedString.endIndex
                     continue
                 }
 
-                replacementString = escapeSequence
+                replacementString = unescapedCharacter
 
             }
 
-            finalString.replaceSubrange(escapeSequenceBounds, with: replacementString)
-            searchRange = delimiterRange.upperBound ..< finalString.endIndex
+            unescapedString.replaceSubrange(escapeSequenceBounds, with: replacementString)
+            searchRange = delimiterRange.upperBound ..< unescapedString.endIndex
 
         }
 
-        return finalString
+        return unescapedString
+
+    }
+
+    ///
+    /// Unescapes a numerical escape sequence.
+    ///
+    /// Numerical sequences can be either decimal (`&#45;`) or hexadecimal (`&#xc1`).
+    ///
+    /// - parameter numericalSequence: The sequence to escape. It must not contain the `&` prefix of the `;` suffix.
+    ///
+    /// - returns: The unescaped version of the sequence, or `nil` if unescaping failed.
+    ///
+
+    fileprivate func unescaped(numericalSequence: String) -> String? {
+
+        let secondCharacter = numericalSequence[numericalSequence.index(after: numericalSequence.startIndex)]
+
+        let isHexadecimal = (secondCharacter == "X" || secondCharacter == "x")
+        let numberStartIndexOffset = isHexadecimal ? 2 : 1
+
+        let numberStringRange = numericalSequence.index(numericalSequence.startIndex, offsetBy: numberStartIndexOffset) ..< numericalSequence.endIndex
+        let numberString = numericalSequence.substring(with: numberStringRange)
+
+        var codePoint = UInt32()
+
+        if isHexadecimal {
+
+            let scanner = Scanner(string: numberString)
+
+            guard let _codePoint = scanner.scanHexInt() else {
+                return nil
+            }
+
+            codePoint = _codePoint
+
+        } else {
+
+            guard let _codePoint = UInt32(numberString) else {
+                return nil
+            }
+
+            codePoint = _codePoint
+
+        }
+
+        guard let scalar = UnicodeScalar(codePoint) else {
+            return nil
+        }
+
+        return String(Character(scalar))
 
     }
 
