@@ -110,50 +110,6 @@ class HTMLStringTests: XCTestCase {
     }
 
     ///
-    /// Tests escaping a character for Unicode.
-    ///
-
-    func testCharacterUnicodeEscape() {
-
-        let requiredEscape = Character("&").escapingForUnicode
-        XCTAssertTrue(requiredEscape == "&AMP;" || requiredEscape == "&amp;")
-
-        let namedDualEscape = Character("⪰̸").escapingForUnicode
-        XCTAssertEqual(namedDualEscape, "⪰̸")
-
-        let emojiEscape = Character("🙃").escapingForUnicode
-        XCTAssertEqual(emojiEscape, "🙃")
-
-        let doubleEmojiEscape = Character("🇺🇸").escapingForUnicode
-        XCTAssertEqual(doubleEmojiEscape, "🇺🇸")
-
-        let basicCharacterEscape = Character("A").escapingForUnicode
-        XCTAssertEqual(basicCharacterEscape, "A")
->>>>>>> origin/master
-
-    }
-
-    ///
-    /// Tests escaping a string for ASCII.
-    ///
-
-    func testStringASCIIEscaping() {
-
-        let namedEscape = ("Fish & Chips").escapingForASCIIHTML
-        XCTAssertTrue(namedEscape == "Fish &AMP; Chips" || namedEscape == "Fish &amp; Chips")
-
-        let namedDualEscape = ("a ⪰̸ b").escapingForASCIIHTML
-        XCTAssertEqual(namedDualEscape, "a &nsucceq; b")
-
-        let emojiEscape = ("Hey 🙃").escapingForASCIIHTML
-        XCTAssertEqual(emojiEscape, "Hey &#128579;")
-
-        let doubleEmojiEscape = ("Going to the 🇺🇸 next June").escapingForASCIIHTML
-        XCTAssertEqual(doubleEmojiEscape, "Going to the &#127482;&#127480; next June")
-
-    }
-
-    ///
     /// Tests escaping a string for Unicode.
     ///
 
