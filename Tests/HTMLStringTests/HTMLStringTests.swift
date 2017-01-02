@@ -232,7 +232,7 @@ class HTMLStringTests: XCTestCase {
 
 extension HTMLStringTests {
 
-    static var allTests : [(String, (HTMLStringTests) -> () throws -> Void)] {
+    static var allTests: [(String, (HTMLStringTests) -> () throws -> Void)] {
         return [
             ("testCharacterASCIIEscape", testCharacterASCIIEscape),
             ("testCharacterUnicodeEscape", testCharacterUnicodeEscape),

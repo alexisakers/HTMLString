@@ -107,7 +107,8 @@ public extension UnicodeScalar {
     ///
     /// Escapes the scalar if needed.
     ///
-    /// A scalar needs to be escaped if its value exists in the `HTMLTables.requiredEscapingsTable` dictionary.
+    /// A scalar needs to be escaped if its value exists in the `HTMLTables.requiredEscapingsTable`
+    /// dictionary.
     ///
 
     public var escapingIfNeeded: String {
