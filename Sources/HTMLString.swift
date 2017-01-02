@@ -55,10 +55,12 @@ public extension String {
     ///
     /// For instance, '&' becomes '\&amp;' and '🙃' becomes '\&#x1F643;'.
     ///
-    /// All non-mapped characters (unicode that don't have a `&keyword;` mapping) will be converted to the appropriate &#xxx; value.
+    /// All non-mapped characters (unicode that don't have a `&keyword;` mapping) will be converted
+    /// to the appropriate &#xxx; value.
     ///
-    /// If your webpage is unicode encoded (UTF16 or UTF8) use `escapingForHTML` instead as it is faster,
-    /// and produces less bloated and more readable HTML (as long as you are using a unicode compliant HTML reader).
+    /// If your webpage is unicode encoded (UTF16 or UTF8) use `escapingForHTML` instead as it is
+    /// faster, and produces less bloated and more readable HTML (as long as you are using a unicode
+    /// compliant HTML reader).
     ///
 
     public var escapingForASCIIHTML: String {
@@ -68,10 +70,12 @@ public extension String {
     ///
     /// Replaces all characters that need to be encoded for use in HTML documents.
     ///
-    /// If the encoding is Unicode, only characters that have a keyword in the `String.escapeSequenceTable`
-    /// will be escaped. Otherwise, all non-ASCII characters will be escaped using their code point (&#128;).
+    /// If the encoding is Unicode, only characters that have a keyword in the
+    /// `String.escapeSequenceTable` will be escaped. Otherwise, all non-ASCII characters will be
+    /// escaped using their code point (&#128;).
     ///
-    /// - parameter isEncodingUnicode: A Boolean indicating whether the string should be escaped with Unicode (`true`) or ASCII (`false`) encoding.
+    /// - parameter isEncodingUnicode: A Boolean indicating whether the string should be escaped 
+    /// with Unicode (`true`) or ASCII (`false`) encoding.
     ///
     /// - returns: A string escaped with respect to the specified encoding.
     ///
@@ -157,11 +161,12 @@ public extension String {
     fileprivate func unescaped(numericalSequence: String) -> String? {
 
         let secondCharacter = numericalSequence[numericalSequence.index(after: numericalSequence.startIndex)]
-
         let isHexadecimal = (secondCharacter == "X" || secondCharacter == "x")
-        let numberStartIndexOffset = isHexadecimal ? 2 : 1
 
-        let numberStringRange = numericalSequence.index(numericalSequence.startIndex, offsetBy: numberStartIndexOffset) ..< numericalSequence.endIndex
+        let numberStartIndexOffset = isHexadecimal ? 2 : 1
+        let numberStartIndex = numericalSequence.index(numericalSequence.startIndex, offsetBy: numberStartIndexOffset)
+
+        let numberStringRange = numberStartIndex ..< numericalSequence.endIndex
         let numberString = numericalSequence.substring(with: numberStringRange)
 
         var codePoint = UInt32()
