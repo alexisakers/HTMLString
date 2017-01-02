@@ -1,6 +1,6 @@
 # HTMLString
 
-![Swift 3.0.1](https://img.shields.io/badge/Swift-3.0.1-ee4f37.svg)
+![Swift 3.0.2](https://img.shields.io/badge/Swift-3.0.2-ee4f37.svg)
 ![License](https://img.shields.io/badge/License-MIT-000000.svg)
 [![CocoaPods](https://img.shields.io/cocoapods/v/HTMLString.svg)](https://cocoapods.org/pods/HTMLString)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
