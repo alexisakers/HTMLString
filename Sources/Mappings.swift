@@ -1,16 +1,16 @@
-/*
+/**
  * ==---------------------------------------------------------------------------------==
  *
  *  File            :   Mappings.swift
  *  Project         :   HTMLString
- *  Author          :   ALEXIS AUBRY RADANOVIC
+ *  Author          :   Alexis Aubry Radanovic
  *
  *  License         :   The MIT License (MIT)
  *
  * ==---------------------------------------------------------------------------------==
  *
  *	The MIT License (MIT)
- *	Copyright (c) 2016 ALEXIS AUBRY RADANOVIC
+ *	Copyright (c) 2016-2017 Alexis Aubry Radanovic
  *
  *	Permission is hereby granted, free of charge, to any person obtaining a copy of
  *	this software and associated documentation files (the "Software"), to deal in
