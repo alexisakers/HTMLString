@@ -214,7 +214,7 @@ func test() -> [Int: TimeInterval] {
 
 func table(from results: [Int: TimeInterval]) -> String {
 
-    let v = history.map { "| v\($0.value)) " }.joined() + "| v\(version) |"
+    let v = history.map { "| v\($0.key) " }.joined() + "| v\(version) |"
     let s = history.map { _ in "|---" }.joined() + "|---|"
 
     let header = "| Task " + v
