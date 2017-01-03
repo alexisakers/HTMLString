@@ -158,19 +158,7 @@ class HTMLStringTests: XCTestCase {
     func testEscapingPerformance() {
 
         self.measure {
-/*
-            _ = Character("&").escapingForASCII
-            _ = Character("⪰̸").escapingForASCII
-            _ = Character("🙃").escapingForASCII
-            _ = Character("🇺🇸").escapingForASCII
-            _ = Character("A").escapingForASCII
 
-            _ = Character("&").escapingForUnicode
-            _ = Character("⪰̸").escapingForUnicode
-            _ = Character("🙃").escapingForUnicode
-            _ = Character("🇺🇸").escapingForUnicode
-            _ = Character("A").escapingForUnicode
-*/
             _ = ("Fish & Chips").escapingForASCIIHTML
             _ = ("a ⪰̸ b").escapingForASCIIHTML
             _ = ("Hey 🙃").escapingForASCIIHTML
