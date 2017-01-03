@@ -21,6 +21,6 @@ DESC
   s.tvos.deployment_target = "9.0"
 
   s.source       = { :git => "https://github.com/alexaubry/HTMLString.git", :tag => "#{s.version}" }
-  s.source_files  = "Sources"
+  s.source_files  = "Sources/HTMLString"
 
 end

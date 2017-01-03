@@ -1,5 +1,5 @@
 MODULE=HTMLString
-VERSION=2.1
+VERSION=2.1.0
 SCHEME=HTMLString
 
 bundle exec jazzy \
