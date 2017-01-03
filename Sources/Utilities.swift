@@ -38,12 +38,12 @@ import Foundation
 
 extension Scanner {
 
-    #if os(OSX) || os(iOS) || os(watchOS) || os(tvOS)
+    #if  os(iOS) || os(macOS) ||  os(tvOS) || os(watchOS)
 
         ///
         /// Scans for an unsigned value from a hexadecimal representation.
         ///
-        /// Provided on Darwin to match open-source syntax.
+        /// Implemented on Darwin to match the open-source standard library syntax.
         ///
         /// - seealso: scanHexInt32(_:)
         ///
@@ -64,26 +64,23 @@ extension Scanner {
 
 }
 
-// MARK: - Escaping
+// MARK: - UnicodeScalar Escaping
 
-public extension UnicodeScalar {
+extension UnicodeScalar {
 
     ///
     /// Escapes the scalar for ASCII web pages.
     ///
 
-    public var escapingForASCII: String {
+    internal var escapingForASCII: String {
         return isASCII ? escapingIfNeeded : ("&#" + String(value) + ";")
     }
 
     ///
     /// Escapes the scalar if needed.
     ///
-    /// A scalar needs to be escaped if its value exists in the `HTMLTables.requiredEscapingsTable`
-    /// dictionary.
-    ///
 
-    public var escapingIfNeeded: String {
+    internal var escapingIfNeeded: String {
 
         // Avoid unnecessary lookups
         guard value > 0x22 && value < 0x20ac else {
@@ -95,4 +92,3 @@ public extension UnicodeScalar {
     }
 
 }
-
