@@ -34,6 +34,12 @@
 
 import PackageDescription
 
+let targets = [
+    Target(name: "HTMLString"),
+    Target(name: "Performance", dependencies: [.Target(name: "HTMLString")])
+]
+
 let package = Package(
-    name: "HTMLString"
+    name: "HTMLString",
+    targets: targets
 )

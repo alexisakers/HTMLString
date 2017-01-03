@@ -10,6 +10,14 @@
           ReferencedContainer = "container:HTMLString.xcodeproj">
         </BuildableReference>
       </BuildActionEntry>
+      <BuildActionEntry buildForTesting = "YES" buildForRunning = "YES" buildForProfiling = "YES" buildForArchiving = "YES" buildForAnalyzing = "YES">
+        <BuildableReference
+          BuildableIdentifier = "primary"
+          BuildableName = "'$(TARGET_NAME)'"
+          BlueprintName = "Performance"
+          ReferencedContainer = "container:HTMLString.xcodeproj">
+        </BuildableReference>
+      </BuildActionEntry>
     </BuildActionEntries>
   </BuildAction>
   <TestAction
