@@ -188,14 +188,12 @@ func test() -> [String: TimeInterval] {
 
 func table(from results: [String: TimeInterval]) -> String {
 
-    let sortedResults = results.sorted { $0.value < $1.value }
-
     let header1 = "| Task | v\(version) |"
     let header2 = "|:---|---|"
 
     var lines = [header1, header2]
 
-    for (task, result) in sortedResults {
+    for (task, result) in results {
         let line = "| \(task) | \(result)s |"
         lines.append(line)
     }
