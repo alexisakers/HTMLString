@@ -1,23 +1,65 @@
-# HTMLString
+<p align="center">
+    <img src="./assets/logo.png" height="300" max-width="50%" alt="HTMLString" />
+</p>
 
-![Swift 3.0.2](https://img.shields.io/badge/Swift-3.0.2-ee4f37.svg)
-![License](https://img.shields.io/badge/License-MIT-000000.svg)
-[![CocoaPods](https://img.shields.io/cocoapods/v/HTMLString.svg)](https://cocoapods.org/pods/HTMLString)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![Build Status](https://travis-ci.org/alexaubry/HTMLString.svg?branch=master)](https://travis-ci.org/alexaubry/HTMLString)
-[![codecov](https://codecov.io/gh/alexaubry/HTMLString/branch/master/graph/badge.svg)](https://codecov.io/gh/alexaubry/HTMLString)
-[![Twitter : @leksantoine](https://img.shields.io/badge/Twitter-%40leksantoine-6C7A89.svg)](https://twitter.com/leksantoine)
+<p align="center" style="margin:30px;">
+    <a href="https://alexaubry.github.io/HTMLString/">📚 Documentation</a>
+</p>
+
+<p align="center">
+    <a href="https://travis-ci.org/JohnSundell/Unbox/branches">
+        <img src="https://img.shields.io/badge/Swift-3.0.2-ee4f37.svg" alt="Swift 3.0.2" />
+    </a>
+    <a href="https://cocoapods.org/pods/Unbox">
+        <img src="https://img.shields.io/badge/License-MIT-000000.svg" alt="License" />
+    </a>
+    <a href="https://cocoapods.org/pods/HTMLString">
+        <img src="https://img.shields.io/cocoapods/v/HTMLString.svg" alt="CocoaPods" />
+    </a>
+    <a href="https://github.com/Carthage/Carthage">
+        <img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible" />
+    </a>
+    <a href="https://travis-ci.org/alexaubry/HTMLString">
+        <img src="https://travis-ci.org/alexaubry/HTMLString.svg?branch=master" alt="Build Status" />
+    </a>
+    <a href="https://codecov.io/gh/alexaubry/HTMLString">
+        <img src="https://codecov.io/gh/alexaubry/HTMLString/branch/master/graph/badge.svg" alt="Code coverage" />
+    </a>
+    <a href="https://twitter.com/leksantoine">
+        <img src="https://img.shields.io/badge/Twitter-%40leksantoine-6C7A89.svg" alt="Twitter : @leksantoine" />
+    </a>
+</p>
 
 `HTMLString` is a micro-library written in Swift that enables your app to encode and decode Strings that contain HTML escapes.
 
-📚  [Documentation](https://alexaubry.github.io/HTMLString/)
-
 ## Features
 
-- ASCII and Unicode Escaping
-- Unescaping
-- Full support of Swift extended grapheme clusters
-- Support of 2125 named escape sequences (`&amp;`) as well as decimal (`&#128;`) and hexadecimal (`&#x1F643;`) sequences
+<table>
+<tr>
+    <td>🤖</td>
+    <td>ASCII and Unicode Escaping</td>
+</tr>
+<tr>
+    <td>🔠</td>
+    <td>Unescaping</td>
+</tr>
+<tr>
+    <td>🇺🇸</td>
+    <td>Full support of Swift extended grapheme cluster</td>
+</tr>
+<tr>
+    <td>🔣</td>
+    <td>Support of 2125 named escape sequences (&<code>amp;</code>) as well as decimal (&<code>#128;</code>) and hexadecimal (&<code>#x1F643;</code>) sequences</td>
+</tr>
+<tr>
+    <td>⚡</td>
+    <td><a href="./Benchmark.md">Fast</a></td>
+</tr>
+<tr>
+    <td>✅</td>
+    <td>Unit tested</td>
+</tr>
+</table>
 
 ## Platforms
 
@@ -34,7 +76,7 @@
 Add this line to your `Package.swift` :
 
 ~~~swift
-.Package(url: "https://github.com/alexaubry/HTMLString", majorVersion: 2, minor: 0)
+.Package(url: "https://github.com/alexaubry/HTMLString", majorVersion: 2, minor: 1)
 ~~~
 
 ### CocoaPods
@@ -61,14 +103,9 @@ Add the contents of `Sources` directory to your project.
 
 This library adds three properties to String instances:
 
-- `escapingForUnicodeHTML`: Escapes the characters in the String for display in Unicode-encoded HTML pages.
-- `escapingForASCIIHTML` : Escapes the characters in the String for display in ASCII-encoded HTML pages
-- `unescapingFromHTML` : Replaces all escape sequences in the String by their corresponding Unicode Scalar.
-
-You can also escape individual characters using these `Character` extensions:
-
-- `escapingForASCII`
-- `escapingForUnicode`
+- `escapingForUnicodeHTML`: Replaces every character incompatible with HTML Unicode encoding HTML escape.
+- `escapingForASCIIHTML` : Replaces every character incompatible with HTML ASCII encoding by a standard HTML escape.
+- `unescapingFromHTML` : Replaces every HTML escape sequence with the matching Unicode character.
 
 ### Escaping
 
