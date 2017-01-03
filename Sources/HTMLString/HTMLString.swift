@@ -194,16 +194,13 @@ extension String {
 
     private func unescapeAsNumber() -> String? {
 
-        let secondCharacter = self[index(after: startIndex)]
-        let isHexadecimal = (secondCharacter == "X" || secondCharacter == "x")
+        let isHexadecimal = self.hasPrefix("#X") || self.hasPrefix("#x")
 
-        // Drop the leading '#' and hexadecimal token
         let numberStartIndexOffset = isHexadecimal ? 2 : 1
         let numberStartIndex = index(startIndex, offsetBy: numberStartIndexOffset)
-
         let numberStringRange = numberStartIndex ..< endIndex
-        let numberString = substring(with: numberStringRange)
 
+        let numberString = substring(with: numberStringRange)
         let radix = isHexadecimal ? 16 : 10
 
         guard let codePoint = UInt32(numberString, radix: radix),
