@@ -94,14 +94,14 @@ public extension String {
                 return $0 + character
             }
 
-            let escaped = isEncodingUnicode ? character._performUnicodeEscaping() : character._performASCIIEscaping()
+            let escaped = isEncodingUnicode ? character.performUnicodeEscaping() : character.performASCIIEscaping()
             return $0 + escaped
 
         }
 
     }
 
-    private func _performASCIIEscaping() -> String {
+    private func performASCIIEscaping() -> String {
 
         guard let escapeSequence = HTMLTables.escapingTable[self] else {
             return unicodeScalars.reduce(String()) { $0 + $1.escapingForASCII }
@@ -111,7 +111,7 @@ public extension String {
 
     }
 
-    private func _performUnicodeEscaping() -> String {
+    private func performUnicodeEscaping() -> String {
         return unicodeScalars.reduce(String()) { $0 + $1.escapingIfNeeded }
     }
 
@@ -165,7 +165,7 @@ extension String {
 
             if escapableContent[escapableContent.startIndex] == "#" {
 
-                guard let unescapedNumber = escapableContent._unescapeAsNumber() else {
+                guard let unescapedNumber = escapableContent.unescapeAsNumber() else {
                     searchRange = escapeSequenceBounds.upperBound ..< unescapedString.endIndex
                     continue
                 }
@@ -192,7 +192,7 @@ extension String {
 
     }
 
-    private func _unescapeAsNumber() -> String? {
+    private func unescapeAsNumber() -> String? {
 
         let secondCharacter = self[index(after: startIndex)]
         let isHexadecimal = (secondCharacter == "X" || secondCharacter == "x")
