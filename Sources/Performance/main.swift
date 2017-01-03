@@ -57,11 +57,19 @@ let tasks = [
     9: "Unescaping 3,026 words with 366 escapes"
 ]
 
+#if DEBUG
+
 let history: Dictionary<String, [Int:TimeInterval]> = [
-    :
+    "2.0.1":[1:0.000083,2:0.000104,3:0.000046,4:0.000085,5:0.000844,6:0.001023,7:0.159909,8:0.198981,9:0.165962]
 ]
 
+#elseif RELEASE
 
+let history: Dictionary<String, [Int:TimeInterval]> = [
+    "2.0.1":[1:0.000022,2:0.000033,3:0.000031,4:0.000052,5:0.000183,6:0.000276,7:0.034701,8:0.052937,9:0.014192]
+]
+
+#endif
 
 // MARK: - Utility
 
@@ -280,6 +288,12 @@ print()
 print(outputTable)
 
 print()
-print("Add this line to the `history` dictionary in order")
+
+#if DEBUG
+print("Add this line to the `DEBUG.history` dictionary in order")
+#elseif RELEASE
+print("Add this line to the `RELEASE.history` dictionary in order")
+#endif
+
 print("to reuse the results from this test:")
 print(outputAppendix)
