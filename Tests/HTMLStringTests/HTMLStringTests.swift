@@ -167,6 +167,9 @@ class HTMLStringTests: XCTestCase {
         let twoSequences = "a &amp;&amp; b".unescapingFromHTML
         XCTAssertEqual(twoSequences, "a && b")
 
+        let doubleEmojiEscape = ("Going to the &#127482;&#127480; next June").escapingForASCIIHTML
+        XCTAssertEqual(doubleEmojiEscape, "Going to the 🇺🇸 next June")
+
     }
 
     // MARK: - Benchmark
