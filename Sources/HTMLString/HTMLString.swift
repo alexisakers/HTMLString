@@ -144,29 +144,31 @@ extension String {
             return self
         }
 
-        var unescapedString = self
-        var searchRange = unescapedString.startIndex ..< unescapedString.endIndex
+        var result = String()
+        var idx = startIndex
 
-        while let delimiterRange = unescapedString.range(of: "&", range: searchRange) {
+        while let delimiterRange = range(of: "&", range: idx ..< endIndex) {
 
-            let semicolonSearchRange = delimiterRange.upperBound ..< searchRange.upperBound
+            // Avoid unnecessary operations
+            let head = self[idx ..< delimiterRange.lowerBound]
+            result += head
 
-            guard let semicolonRange = unescapedString.range(of: ";", range: semicolonSearchRange) else {
-                searchRange = delimiterRange.upperBound ..< unescapedString.endIndex
-                continue
+            let semicolonSearchRange = delimiterRange.upperBound ..< endIndex
+
+            guard let semicolonRange = range(of: ";", range: semicolonSearchRange) else {
+                result += "&"
+                idx = delimiterRange.upperBound
+                break
             }
 
-            let escapeSequenceBounds = delimiterRange.lowerBound ..< semicolonRange.upperBound
-
-            let escapableContentRange = delimiterRange.upperBound ..< semicolonRange.lowerBound
-            let escapableContent = unescapedString.substring(with: escapableContentRange)
-
+            let escapableContent = self[delimiterRange.upperBound ..< semicolonRange.lowerBound]
             let replacementString: String
 
-            if escapableContent[escapableContent.startIndex] == "#" {
+            if escapableContent.hasPrefix("#") {
 
                 guard let unescapedNumber = escapableContent.unescapeAsNumber() else {
-                    searchRange = escapeSequenceBounds.upperBound ..< unescapedString.endIndex
+                    result += self[delimiterRange.lowerBound ..< semicolonRange.upperBound]
+                    idx = semicolonRange.upperBound
                     continue
                 }
 
@@ -175,7 +177,8 @@ extension String {
             } else {
 
                 guard let unescapedCharacter = HTMLTables.unescapingTable[escapableContent] else {
-                    searchRange = escapeSequenceBounds.upperBound ..< unescapedString.endIndex
+                    result += self[delimiterRange.lowerBound ..< semicolonRange.upperBound]
+                    idx = semicolonRange.upperBound
                     continue
                 }
 
@@ -183,12 +186,16 @@ extension String {
 
             }
 
-            unescapedString.replaceSubrange(escapeSequenceBounds, with: replacementString)
-            searchRange = delimiterRange.upperBound ..< unescapedString.endIndex
+            result += replacementString
+            idx = semicolonRange.upperBound
 
         }
 
-        return unescapedString
+        // Append unprocessed data, if unprocessed data there is
+        let tail = self[idx ..< endIndex]
+        result += tail
+
+        return result
 
     }
 
@@ -197,10 +204,8 @@ extension String {
         let isHexadecimal = self.hasPrefix("#X") || self.hasPrefix("#x")
 
         let numberStartIndexOffset = isHexadecimal ? 2 : 1
-        let numberStartIndex = index(startIndex, offsetBy: numberStartIndexOffset)
-        let numberStringRange = numberStartIndex ..< endIndex
+        let numberString = self [ index(startIndex, offsetBy: numberStartIndexOffset) ..< endIndex ]
 
-        let numberString = substring(with: numberStringRange)
         let radix = isHexadecimal ? 16 : 10
 
         guard let codePoint = UInt32(numberString, radix: radix),

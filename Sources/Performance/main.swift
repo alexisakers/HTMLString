@@ -45,6 +45,11 @@ import HTMLString
 let averageTimeSamplesCount = 1_000
 let version = "2.1.0"
 
+let tasks = [
+    1: "Unicode-escaping 2 emojis",
+    //2: 
+]
+
 // MARK: - Utility
 
 func measure(_ block: () -> Void) -> TimeInterval {
