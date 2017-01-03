@@ -7,7 +7,7 @@ bundle exec jazzy \
   --author "Alexis Aubry Radanovic" \
   --author_url https://github.com/alexaubry \
   --github_url https://github.com/alexaubry/$MODULE \
-  --github-file-prefix https://github.com/alexaubry/$MODULE/tree/master \
+  --github-file-prefix https://github.com/alexaubry/$MODULE/tree/2.1.0 \
   --module-version $VERSION \
   --xcodebuild-arguments -scheme,$SCHEME \
   --module $MODULE \
@@ -16,4 +16,4 @@ bundle exec jazzy \
   --swift-version 3.0.2 \
   --copyright "Copyright © 2016-2017 Alexis Aubry Radanovic. Licensed under the [MIT License](https://github.com/alexaubry/HTMLString/blob/master/LICENSE)" \
   --podspec ./$MODULE.podspec \
-  --skip-undocumented
+  --skip-undocumented \

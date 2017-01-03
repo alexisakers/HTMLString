@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="./assets/logo.png" height="300" max-width="50%" alt="HTMLString" />
+    <img src="logo.png" height="300" max-width="50%" alt="HTMLString" />
 </p>
 
 <p align="center" style="margin:30px;">
@@ -34,32 +34,12 @@
 
 ## Features
 
-<table>
-<tr>
-    <td>🤖</td>
-    <td>ASCII and Unicode Escaping</td>
-</tr>
-<tr>
-    <td>🔠</td>
-    <td>Unescaping</td>
-</tr>
-<tr>
-    <td>🇺🇸</td>
-    <td>Full support of Swift extended grapheme cluster</td>
-</tr>
-<tr>
-    <td>🔣</td>
-    <td>Support of 2125 named escape sequences (&<code>amp;</code>) as well as decimal (&<code>#128;</code>) and hexadecimal (&<code>#x1F643;</code>) sequences</td>
-</tr>
-<tr>
-    <td>⚡</td>
-    <td><a href="./Benchmark.md">Fast</a></td>
-</tr>
-<tr>
-    <td>✅</td>
-    <td>Unit tested</td>
-</tr>
-</table>
+🤖    ASCII and Unicode Escaping</td>
+🔠    Unescaping</td>
+🇺🇸    Full support of Swift extended grapheme cluster</td>
+🔣    Support of 2125 named escape sequences (`&amp;`) and all decimal (`&#128;`) and hexadecimal (`&#x1F643;`) entities
+⚡     [Fast](Benchmark.md)
+✅    Unit tested</td>
 
 ## Platforms
 
