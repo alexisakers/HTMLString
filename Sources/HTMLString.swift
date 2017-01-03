@@ -91,7 +91,7 @@ public extension String {
             return unicodeScalars.reduce(String()) { $0 + $1.escapingForASCII }
         }
 
-        return "&" + escapeSequence + ";"
+        return escapeSequence
 
     }
 
