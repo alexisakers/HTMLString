@@ -30,7 +30,7 @@
     </a>
 </p>
 
-`HTMLString` is a micro-library written in Swift that enables your app to encode and decode Strings that contain HTML escapes.
+`HTMLString` is a micro-library written in Swift that enables your app to encode and decode HTML `String`s.
 
 ## Features
 
