@@ -81,9 +81,33 @@ public extension String {
     ///
 
     fileprivate func escapeHTML(isEncodingUnicode: Bool) -> String {
-        return self.characters.map {
-            isEncodingUnicode ? $0.escapingForUnicode : $0.escapingForASCII
-        }.joined()
+
+        return self.characters.reduce(String()) {
+
+            let character = String($1)
+
+            // ignore alphanumerical characters
+            guard character < "\u{2f}" || character > "\u{7a}" else {
+                return $0 + character
+            }
+
+            var escaped: String
+
+            if !(isEncodingUnicode) {
+
+                guard let escapeSequence = HTMLTables.escapingTable[character] else {
+                    return $0 + character.unicodeScalars.map { $0.escapingForASCII }.joined()
+                }
+
+                escaped = "&" + escapeSequence + ";"
+
+            } else {
+                escaped = character.unicodeScalars.map { $0.escapingIfNeeded }.joined()
+            }
+
+            return $0 + escaped
+
+        }
     }
 
     // MARK: - Unescaping
