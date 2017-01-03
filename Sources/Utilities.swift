@@ -34,7 +34,7 @@
 
 import Foundation
 
-// MARK: - Cross-Platform Scanner
+// MARK: Cross-Platform Scanner
 
 extension Scanner {
 
@@ -66,34 +66,6 @@ extension Scanner {
 
 // MARK: - Escaping
 
-public extension Character {
-
-    ///
-    /// Escapes the character for ASCII web pages.
-    ///
-
-    public var escapingForASCII: String {
-
-        let str = String(self)
-
-        if let escapeSequence = HTMLTables.escapingTable[str] {
-            return "&" + escapeSequence + ";"
-        }
-
-        return str.unicodeScalars.map { $0.escapingForASCII }.joined()
-
-    }
-
-    ///
-    /// Escapes the character for Unicode web pages.
-    ///
-
-    public var escapingForUnicode: String {
-        return String(self).unicodeScalars.map { $0.escapingIfNeeded }.joined()
-    }
-
-}
-
 public extension UnicodeScalar {
 
     ///
@@ -113,12 +85,14 @@ public extension UnicodeScalar {
 
     public var escapingIfNeeded: String {
 
-        guard let escapedCharacter = HTMLTables.requiredEscapingsTable[value] else {
-            return String(Character(self))
+        // Avoid unnecessary lookups
+        guard value > 0x22 && value < 0x20ac else {
+            return String(self)
         }
 
-        return ("&" + escapedCharacter + ";")
+        return HTMLTables.requiredEscapingsTable[value] ?? String(self)
 
     }
 
 }
+

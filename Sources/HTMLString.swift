@@ -34,9 +34,9 @@
 
 import Foundation
 
-public extension String {
+// MARK: Escaping
 
-    // MARK: - Escaping
+public extension String {
 
     ///
     /// A string where internal characters that need escaping for HTML are escaped.
@@ -67,50 +67,43 @@ public extension String {
         return escapeHTML(isEncodingUnicode: false)
     }
 
-    ///
-    /// Replaces all characters that need to be encoded for use in HTML documents.
-    ///
-    /// If the encoding is Unicode, only characters that have a keyword in the
-    /// `String.escapeSequenceTable` will be escaped. Otherwise, all non-ASCII characters will be
-    /// escaped using their code point (&#128;).
-    ///
-    /// - parameter isEncodingUnicode: A Boolean indicating whether the string should be escaped 
-    /// with Unicode (`true`) or ASCII (`false`) encoding.
-    ///
-    /// - returns: A string escaped with respect to the specified encoding.
-    ///
-
-    fileprivate func escapeHTML(isEncodingUnicode: Bool) -> String {
+    private func escapeHTML(isEncodingUnicode: Bool) -> String {
 
         return self.characters.reduce(String()) {
 
             let character = String($1)
 
-            // ignore alphanumerical characters
-            guard character < "\u{2f}" || character > "\u{7a}" else {
+            // Ignore alphanumerical characters to improve performance.
+            guard character < "\u{30}" || character > "\u{7a}" else {
                 return $0 + character
             }
 
-            var escaped: String
-
-            if !(isEncodingUnicode) {
-
-                guard let escapeSequence = HTMLTables.escapingTable[character] else {
-                    return $0 + character.unicodeScalars.map { $0.escapingForASCII }.joined()
-                }
-
-                escaped = "&" + escapeSequence + ";"
-
-            } else {
-                escaped = character.unicodeScalars.map { $0.escapingIfNeeded }.joined()
-            }
-
+            let escaped = isEncodingUnicode ? character._performUnicodeEscaping() : character._performASCIIEscaping()
             return $0 + escaped
 
         }
+
     }
 
-    // MARK: - Unescaping
+    private func _performASCIIEscaping() -> String {
+
+        guard let escapeSequence = HTMLTables.escapingTable[self] else {
+            return unicodeScalars.reduce(String()) { $0 + $1.escapingForASCII }
+        }
+
+        return "&" + escapeSequence + ";"
+
+    }
+
+    private func _performUnicodeEscaping() -> String {
+        return unicodeScalars.reduce(String()) { $0 + $1.escapingIfNeeded }
+    }
+
+}
+
+// MARK: - Unescaping
+
+extension String {
 
     ///
     /// A string where internal characters that are escaped for HTML are unescaped.
