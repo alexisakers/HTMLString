@@ -39,11 +39,19 @@ import Foundation
 public extension String {
 
     ///
-    /// A string where internal characters that need escaping for HTML are escaped.
+    /// Returns a new string made from the `String` by replacing every character
+    /// incompatible with HTML Unicode encoding (UTF-16 or UTF-8) by a standard
+    /// HTML escape.
     ///
-    /// Only special Unicode characters will be escaped.
+    /// ### Examples
     ///
-    /// For example, `"&"` become `"\&amp;"`.
+    /// |--------|----------|---------------------------------------------------------|
+    /// | String | Result   | Format                                                  |
+    /// |--------|----------|---------------------------------------------------------|
+    /// | '&'    | `\&amp;` | Keyword escape (part of the Unicode special characters) |
+    /// | `Σ`    | `Σ`      | Not escaped (Unicode compliant)                         |
+    /// | `🇺🇸`   | `🇺🇸`     | Not escaped (Unicode compliant)                         |
+    /// | `a`    | `a`      | Not escaped (alphanumerical)                            |
     ///
 
     public var escapingForUnicodeHTML: String {
@@ -51,16 +59,24 @@ public extension String {
     }
 
     ///
-    /// A string where internal characters that need escaping for HTML are escaped.
+    /// Returns a new string made from the `String` by replacing every character
+    /// incompatible with HTML ASCII encoding by a standard HTML escape.
     ///
-    /// For instance, '&' becomes '\&amp;' and '🙃' becomes '\&#x1F643;'.
+    /// ### Examples
     ///
-    /// All non-mapped characters (unicode that don't have a `&keyword;` mapping) will be converted
-    /// to the appropriate &#xxx; value.
+    /// |--------|------------------------|------------------------------------------------------|
+    /// | String | Result                 | Format                                               |
+    /// |--------|------------------------|------------------------------------------------------|
+    /// | '&'    | `\&amp;`               | Keyword escape                                       |
+    /// | `Σ`    | `\&#931;`              | Decimal escape                                       |
+    /// | `🇺🇸`   | `\&#127482;\&#127480;` | Combined decimal escapes (extented grapheme cluster) |
+    /// | `a`    | `a`                    | Not escaped (alphanumerical)                         |
     ///
-    /// If your webpage is unicode encoded (UTF16 or UTF8) use `escapingForHTML` instead as it is
-    /// faster, and produces less bloated and more readable HTML (as long as you are using a unicode
-    /// compliant HTML reader).
+    /// ### Performance note
+    ///
+    /// If your webpage is unicode encoded (UTF-16 or UTF-8) use `escapingForUnicodeHTML` instead 
+    /// as it is faster, and produces less bloated and more readable HTML (as long as you are using 
+    /// a unicode compliant HTML reader).
     ///
 
     public var escapingForASCIIHTML: String {
@@ -73,7 +89,7 @@ public extension String {
 
             let character = String($1)
 
-            // Ignore alphanumerical characters to avoid unnecessary lookups.
+            // Ignore alphanumerical characters to avoid unnecessary lookups
             guard character < "\u{30}" || character > "\u{7a}" else {
                 return $0 + character
             }
@@ -106,9 +122,20 @@ public extension String {
 extension String {
 
     ///
-    /// A string where internal characters that are escaped for HTML are unescaped.
+    /// Returns a new string made from the `String` by replacing every HTML escape
+    /// sequence with the matching Unicode character.
     ///
-    /// For example, `&amp;` becomes `&`. Handles `&#32;` and `&#x32;` cases as well.
+    /// ### Examples
+    ///
+    /// |------------------------|------------------------|------------------------------------|
+    /// | String                 | Result                 | Format                             |
+    /// |------------------------|------------------------|------------------------------------|
+    /// | '\&amp;'               | `&`  | Keyword mapping                                      |
+    /// | `\&#931;`              | `Σ`  | Decimal escape                                       |
+    /// | `\&#x10d;`             | `č`  | Hexadecimal escape                                   |
+    /// | `\&#127482;\&#127480;` | `🇺🇸` | Combined decimal escapes (extented grapheme cluster) |
+    /// | `a`                    | `a`  | Not an escape                                        |
+    /// | `&`                    | `&`  | Not an escape                                        |
     ///
 
     public var unescapingFromHTML: String {
@@ -170,6 +197,7 @@ extension String {
         let secondCharacter = self[index(after: startIndex)]
         let isHexadecimal = (secondCharacter == "X" || secondCharacter == "x")
 
+        // Drop the leading '#' and hexadecimal token
         let numberStartIndexOffset = isHexadecimal ? 2 : 1
         let numberStartIndex = index(startIndex, offsetBy: numberStartIndexOffset)
 
@@ -193,19 +221,11 @@ extension String {
 
 extension UnicodeScalar {
 
-    ///
-    /// Escapes the scalar for ASCII web pages.
-    ///
-
-    internal var escapingForASCII: String {
+    fileprivate var escapingForASCII: String {
         return isASCII ? escapingIfNeeded : ("&#" + String(value) + ";")
     }
 
-    ///
-    /// Escapes the scalar if needed.
-    ///
-
-    internal var escapingIfNeeded: String {
+    fileprivate var escapingIfNeeded: String {
 
         // Avoid unnecessary lookups
         guard value > 0x22 && value < 0x20ac else {
