@@ -1,5 +1,5 @@
 MODULE=HTMLString
-VERSION=2.0.1
+VERSION=2.1
 SCHEME=HTMLString
 
 bundle exec jazzy \
@@ -12,4 +12,8 @@ bundle exec jazzy \
   --xcodebuild-arguments -scheme,$SCHEME \
   --module $MODULE \
   --root-url https://alexaubry.github.io/$MODULE \
-  --output docs/
+  --output docs/ \
+  --swift-version 3.0.2 \
+  --copyright "Copyright © 2016-2017 Alexis Aubry Radanovic. Licensed under the [MIT License](https://github.com/alexaubry/HTMLString/blob/master/LICENSE)" \
+  --podspec ./$MODULE.podspec \
+  --skip-undocumented
