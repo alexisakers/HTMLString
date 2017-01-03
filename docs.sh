@@ -4,7 +4,7 @@ SCHEME=HTMLString
 
 bundle exec jazzy \
   --clean \
-  --author Alexis Aubry Radanovic \
+  --author "Alexis Aubry Radanovic" \
   --author_url https://github.com/alexaubry \
   --github_url https://github.com/alexaubry/$MODULE \
   --github-file-prefix https://github.com/alexaubry/$MODULE/tree/master \
