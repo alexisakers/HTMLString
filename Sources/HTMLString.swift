@@ -73,7 +73,7 @@ public extension String {
 
             let character = String($1)
 
-            // Ignore alphanumerical characters to improve performance.
+            // Ignore alphanumerical characters to avoid unnecessary lookups.
             guard character < "\u{30}" || character > "\u{7a}" else {
                 return $0 + character
             }
@@ -122,7 +122,7 @@ extension String {
 
         while let delimiterRange = unescapedString.range(of: "&", range: searchRange) {
 
-            let semicolonSearchRange = delimiterRange.upperBound ..< unescapedString.endIndex
+            let semicolonSearchRange = delimiterRange.upperBound ..< searchRange.upperBound
 
             guard let semicolonRange = unescapedString.range(of: ";", range: semicolonSearchRange) else {
                 searchRange = delimiterRange.upperBound ..< unescapedString.endIndex
@@ -138,12 +138,12 @@ extension String {
 
             if escapableContent[escapableContent.startIndex] == "#" {
 
-                guard let unescapedNumericalSequence = unescaped(numericalSequence: escapableContent) else {
+                guard let unescapedNumber = escapableContent._unescapeAsNumber() else {
                     searchRange = escapeSequenceBounds.upperBound ..< unescapedString.endIndex
                     continue
                 }
 
-                replacementString = unescapedNumericalSequence
+                replacementString = unescapedNumber
 
             } else {
 
@@ -165,54 +165,54 @@ extension String {
 
     }
 
-    ///
-    /// Unescapes a numerical escape sequence.
-    ///
-    /// Numerical sequences can be either decimal (`&#45;`) or hexadecimal (`&#xc1`).
-    ///
-    /// - parameter numericalSequence: The sequence to escape. It must not contain the `&` prefix of the `;` suffix.
-    ///
-    /// - returns: The unescaped version of the sequence, or `nil` if unescaping failed.
-    ///
+    private func _unescapeAsNumber() -> String? {
 
-    fileprivate func unescaped(numericalSequence: String) -> String? {
-
-        let secondCharacter = numericalSequence[numericalSequence.index(after: numericalSequence.startIndex)]
+        let secondCharacter = self[index(after: startIndex)]
         let isHexadecimal = (secondCharacter == "X" || secondCharacter == "x")
 
         let numberStartIndexOffset = isHexadecimal ? 2 : 1
-        let numberStartIndex = numericalSequence.index(numericalSequence.startIndex, offsetBy: numberStartIndexOffset)
+        let numberStartIndex = index(startIndex, offsetBy: numberStartIndexOffset)
 
-        let numberStringRange = numberStartIndex ..< numericalSequence.endIndex
-        let numberString = numericalSequence.substring(with: numberStringRange)
+        let numberStringRange = numberStartIndex ..< endIndex
+        let numberString = substring(with: numberStringRange)
 
-        var codePoint = UInt32()
+        let radix = isHexadecimal ? 16 : 10
 
-        if isHexadecimal {
-
-            let scanner = Scanner(string: numberString)
-
-            guard let _codePoint = scanner.scanHexInt() else {
-                return nil
-            }
-
-            codePoint = _codePoint
-
-        } else {
-
-            guard let _codePoint = UInt32(numberString) else {
-                return nil
-            }
-
-            codePoint = _codePoint
-
-        }
-
-        guard let scalar = UnicodeScalar(codePoint) else {
+        guard let codePoint = UInt32(numberString, radix: radix),
+              let scalar = UnicodeScalar(codePoint) else {
             return nil
         }
 
-        return String(Character(scalar))
+        return String(scalar)
+
+    }
+
+}
+
+// MARK: - UnicodeScalar+Escape
+
+extension UnicodeScalar {
+
+    ///
+    /// Escapes the scalar for ASCII web pages.
+    ///
+
+    internal var escapingForASCII: String {
+        return isASCII ? escapingIfNeeded : ("&#" + String(value) + ";")
+    }
+
+    ///
+    /// Escapes the scalar if needed.
+    ///
+
+    internal var escapingIfNeeded: String {
+
+        // Avoid unnecessary lookups
+        guard value > 0x22 && value < 0x20ac else {
+            return String(self)
+        }
+
+        return HTMLTables.requiredEscapingsTable[value] ?? String(self)
 
     }
 
