@@ -47,8 +47,21 @@ let version = "2.1.0"
 
 let tasks = [
     1: "Unicode-escaping 2 emojis",
-    //2: 
+    2: "ASCII-escaping 2 emojis",
+    3: "Unescaping 2 emojis",
+    4: "Unescaping a tweet",
+    5: "Unicode-escaping a tweet",
+    6: "ASCII-escaping a tweet",
+    7: "Unicode-escaping 23,145 characters",
+    8: "ASCII-escaping 23,145 characters",
+    9: "Unescaping 3,026 words with 366 escapes"
 ]
+
+let history: Dictionary<String, [Int:TimeInterval]> = [
+    :
+]
+
+
 
 // MARK: - Utility
 
@@ -91,9 +104,9 @@ let escapedEGC = "I &#55357;&#56473; the &#127482;&#127480;"
 
 // MARK: - Functions
 
-func test() -> [String: TimeInterval] {
+func test() -> [Int: TimeInterval] {
 
-    var result = [String: TimeInterval]()
+    var result = [Int: TimeInterval]()
 
     /* --- */
 
@@ -103,7 +116,7 @@ func test() -> [String: TimeInterval] {
         _ = egc.escapingForUnicodeHTML
     }
 
-    result["Unicode-escaping 2 emojis"] = emojiUnicodeEscape
+    result[1] = emojiUnicodeEscape
 
     /* --- */
 
@@ -113,7 +126,7 @@ func test() -> [String: TimeInterval] {
         _ = egc.escapingForASCIIHTML
     }
 
-    result["ASCII-escaping 2 emojis"] = emojiASCIIEscape
+    result[2] = emojiASCIIEscape
 
     /* --- */
 
@@ -123,7 +136,7 @@ func test() -> [String: TimeInterval] {
         _ = escapedEGC.unescapingFromHTML
     }
 
-    result["Unescaping 2 emojis"] = emojiUnescape
+    result[3] = emojiUnescape
 
     /* --- */
 
@@ -133,7 +146,7 @@ func test() -> [String: TimeInterval] {
         _ = escapedTweet.unescapingFromHTML
     }
 
-    result["Unescaping a tweet"] = tweetUnescape
+    result[4] = tweetUnescape
 
     /* --- */
 
@@ -143,7 +156,7 @@ func test() -> [String: TimeInterval] {
         _ = escapableTweet.escapingForUnicodeHTML
     }
 
-    result["Unicode-escaping a tweet"] = tweetUnicodeEscape
+    result[5] = tweetUnicodeEscape
 
     /* --- */
 
@@ -153,27 +166,27 @@ func test() -> [String: TimeInterval] {
         _ = escapableTweet.escapingForASCIIHTML
     }
 
-    result["ASCII-escaping a tweet"] = tweetASCIIEscape
+    result[6] = tweetASCIIEscape
 
     /* --- */
 
-    print("👉  Unicode-escaping 3,568 words")
+    print("👉  Unicode-escaping 23,145 characters")
 
     let bigTextEscapeUnicode = measure {
         _ = bigEscapableText.escapingForUnicodeHTML
     }
 
-    result["Unicode-escaping 3,568 words"] = bigTextEscapeUnicode
+    result[7] = bigTextEscapeUnicode
 
     /* --- */
 
-    print("👉  ASCII-escaping 3,568 words")
+    print("👉  ASCII-escaping 23,145 characters")
 
     let bigTextEscapeASCII = measure {
         _ = bigEscapableText.escapingForASCIIHTML
     }
 
-    result["ASCII-escaping 3,568 words"] = bigTextEscapeASCII
+    result[8] = bigTextEscapeASCII
 
     /* --- */
 
@@ -183,7 +196,7 @@ func test() -> [String: TimeInterval] {
         _ = bigUnescapableText.unescapingFromHTML
     }
 
-    result["Unescaping 3,026 words with 366 escapes"] = bigTextUnescape
+    result[9] = bigTextUnescape
 
     /* --- */
 
@@ -191,31 +204,82 @@ func test() -> [String: TimeInterval] {
 
 }
 
-func table(from results: [String: TimeInterval]) -> String {
+func table(from results: [Int: TimeInterval]) -> String {
 
-    let header1 = "| Task | v\(version) |"
-    let header2 = "|:---|---|"
+    let v = history.map { "| v\($0.value)) " }.joined() + "| v\(version) |"
+    let s = history.map { _ in "|---" }.joined() + "|---|"
 
-    var lines = [header1, header2]
+    let header = "| Task " + v
+    let separator = "|:---" + s
 
-    for (task, result) in results {
-        let line = "| \(task) | \(result)s |"
+    var lines = [header, separator]
+
+    let sortedTasks = tasks.sorted { $0.key < $1.key }
+
+    for (taskNumber, taskName) in sortedTasks {
+
+        var _results: [String] = history.map {
+            if let num = $0.value[taskNumber] {
+                return String(format: "%.06f", num)
+            }
+            return "N/A"
+        }
+
+        let current: String
+
+        if let num = results[taskNumber] {
+            current = String(format: "%.06f", num)
+        } else {
+            current = "N/A"
+        }
+
+        _results.append(current)
+
+        let elements = _results.map {
+            "| \($0)s "
+        }.joined()
+
+        let line = "| \(taskName) " + elements + "|"
         lines.append(line)
+
     }
 
     return lines.joined(separator: "\n")
 
 }
 
+func versionAppendix(for results: [Int: TimeInterval]) -> String {
+
+    let sortedResults = results.sorted { $0.key < $1.key }
+
+    let minified = sortedResults.reduce(String()) {
+        let num = String(format: "%.06f", $1.value)
+        return $0 + "\($1.key):\(num),"
+    }
+
+    return "\"\(version)\":[\(minified)]"
+
+}
+
 // MARK: - Process
 
-print("📈  HTMLString Performance Benchmark")
+print("🔬  HTMLString Performance Benchmark")
 print()
 
 let results = test()
 let outputTable = table(from: results)
+let outputAppendix = versionAppendix(for: results)
 
 print()
 print("✅  Benchmark Complete")
+print("💡  TODO: Compute complexity")
 
+print()
+print("📈  Results")
+print()
 print(outputTable)
+
+print()
+print("Add this line to the `history` dictionary in order")
+print("to reuse the results from this test:")
+print(outputAppendix)
