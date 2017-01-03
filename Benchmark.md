@@ -6,8 +6,8 @@ A set of measures tracking the performance of the library.
 
 | Configuration | v2.0.1 | v2.1.0 |
 |:---|---|---|
-| Debug | 7,83s | 12.892s |
-| Release | 6,59s | 30.605s |
+| Debug | 7.15s | 6.40s |
+| Release | 32.83s | 27.21ss |
 
 ## 🤖 Common Tasks
 
