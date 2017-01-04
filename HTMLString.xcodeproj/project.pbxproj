@@ -21,7 +21,7 @@
          targets = (
             OBJ_22,
             OBJ_30,
-            OBJ_39,
+            OBJ_37,
          );
       };
       OBJ_10 = {
@@ -249,7 +249,6 @@
             OBJ_36,
          );
          dependencies = (
-            OBJ_38,
          );
          name = "Performance";
          productName = "Performance";
@@ -332,31 +331,56 @@
       OBJ_36 = {
          isa = "PBXFrameworksBuildPhase";
          files = (
-            OBJ_37,
          );
       };
       OBJ_37 = {
-         isa = "PBXBuildFile";
-         fileRef = OBJ_19;
-      };
-      OBJ_38 = {
-         isa = "PBXTargetDependency";
-         target = OBJ_22;
-      };
-      OBJ_39 = {
          isa = "PBXNativeTarget";
-         buildConfigurationList = OBJ_40;
+         buildConfigurationList = OBJ_38;
          buildPhases = (
+            OBJ_41,
             OBJ_43,
-            OBJ_45,
          );
          dependencies = (
-            OBJ_47,
+            OBJ_45,
          );
          name = "HTMLStringTests";
          productName = "HTMLStringTests";
          productReference = OBJ_21;
          productType = "com.apple.product-type.bundle.unit-test";
+      };
+      OBJ_38 = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            OBJ_39,
+            OBJ_40,
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Debug";
+      };
+      OBJ_39 = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            EMBEDDED_CONTENT_CONTAINS_SWIFT = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks",
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)",
+            );
+            INFOPLIST_FILE = "HTMLString.xcodeproj/HTMLStringTests_Info.plist";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "@loader_path/../Frameworks",
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)",
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)",
+            );
+            TARGET_NAME = "HTMLStringTests";
+         };
+         name = "Debug";
       };
       OBJ_4 = {
          isa = "XCBuildConfiguration";
@@ -389,40 +413,6 @@
          name = "Release";
       };
       OBJ_40 = {
-         isa = "XCConfigurationList";
-         buildConfigurations = (
-            OBJ_41,
-            OBJ_42,
-         );
-         defaultConfigurationIsVisible = "0";
-         defaultConfigurationName = "Debug";
-      };
-      OBJ_41 = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            EMBEDDED_CONTENT_CONTAINS_SWIFT = "YES";
-            FRAMEWORK_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(PLATFORM_DIR)/Developer/Library/Frameworks",
-            );
-            HEADER_SEARCH_PATHS = (
-               "$(inherited)",
-            );
-            INFOPLIST_FILE = "HTMLString.xcodeproj/HTMLStringTests_Info.plist";
-            LD_RUNPATH_SEARCH_PATHS = (
-               "@loader_path/../Frameworks",
-            );
-            OTHER_LDFLAGS = (
-               "$(inherited)",
-            );
-            OTHER_SWIFT_FLAGS = (
-               "$(inherited)",
-            );
-            TARGET_NAME = "HTMLStringTests";
-         };
-         name = "Debug";
-      };
-      OBJ_42 = {
          isa = "XCBuildConfiguration";
          buildSettings = {
             EMBEDDED_CONTENT_CONTAINS_SWIFT = "YES";
@@ -447,27 +437,27 @@
          };
          name = "Release";
       };
-      OBJ_43 = {
+      OBJ_41 = {
          isa = "PBXSourcesBuildPhase";
+         files = (
+            OBJ_42,
+         );
+      };
+      OBJ_42 = {
+         isa = "PBXBuildFile";
+         fileRef = OBJ_15;
+      };
+      OBJ_43 = {
+         isa = "PBXFrameworksBuildPhase";
          files = (
             OBJ_44,
          );
       };
       OBJ_44 = {
          isa = "PBXBuildFile";
-         fileRef = OBJ_15;
-      };
-      OBJ_45 = {
-         isa = "PBXFrameworksBuildPhase";
-         files = (
-            OBJ_46,
-         );
-      };
-      OBJ_46 = {
-         isa = "PBXBuildFile";
          fileRef = OBJ_19;
       };
-      OBJ_47 = {
+      OBJ_45 = {
          isa = "PBXTargetDependency";
          target = OBJ_22;
       };
