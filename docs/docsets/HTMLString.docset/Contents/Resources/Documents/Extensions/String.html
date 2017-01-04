@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>String Extension Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Extension/String" class="dashAnchor"></a>
+    <a title="String Extension Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">HTMLString Docs</a> (100% documented)</p>
+        <p class="header-right"><a href="https://github.com/alexaubry/HTMLString"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right"><a href="dash-feed://https%3A%2F%2Falexaubry%2Egithub%2Eio%2Fdocsets%2FHTMLString%2Exml"><img src="../img/dash.png"/>Install in Dash</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">HTMLString Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        String Extension Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html">String</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>String</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">String</span></code></pre>
+
+                </div>
+              </div>
+            
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vE10HTMLStringSS22escapingForUnicodeHTMLSS"></a>
+                    <a name="//apple_ref/swift/Property/escapingForUnicodeHTML" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vE10HTMLStringSS22escapingForUnicodeHTMLSS">escapingForUnicodeHTML</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a new string made from the <code>String</code> by replacing every character
+incompatible with HTML Unicode encoding (UTF-16 or UTF-8) by a standard
+HTML escape.</p>
+
+<p><a href='#examples' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='examples'>Examples</h3></p>
+
+<table><thead>
+<tr>
+<th>String</th>
+<th>Result</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&amp;</code></td>
+<td><code>&amp;amp;</code></td>
+<td>Keyword escape (part of the Unicode special characters)</td>
+</tr>
+<tr>
+<td><code>Σ</code></td>
+<td><code>Σ</code></td>
+<td>Not escaped (Unicode compliant)</td>
+</tr>
+<tr>
+<td><code>🇺🇸</code></td>
+<td><code>🇺🇸</code></td>
+<td>Not escaped (Unicode compliant)</td>
+</tr>
+<tr>
+<td><code>a</code></td>
+<td><code>a</code></td>
+<td>Not escaped (alphanumerical)</td>
+</tr>
+</tbody></table>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">escapingForUnicodeHTML</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/alexaubry/HTMLString/tree/2.1.0/Sources/HTMLString/HTMLString.swift#L56-L58">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vE10HTMLStringSS20escapingForASCIIHTMLSS"></a>
+                    <a name="//apple_ref/swift/Property/escapingForASCIIHTML" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vE10HTMLStringSS20escapingForASCIIHTMLSS">escapingForASCIIHTML</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a new string made from the <code>String</code> by replacing every character
+incompatible with HTML ASCII encoding by a standard HTML escape.</p>
+
+<p><a href='#examples' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='examples'>Examples</h3></p>
+
+<table><thead>
+<tr>
+<th>String</th>
+<th>Result</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&amp;</code></td>
+<td><code>&amp;amp;</code></td>
+<td>Keyword escape</td>
+</tr>
+<tr>
+<td><code>Σ</code></td>
+<td><code>&amp;#931;</code></td>
+<td>Decimal escape</td>
+</tr>
+<tr>
+<td><code>🇺🇸</code></td>
+<td><code>&amp;#127482;&amp;#127480;</code></td>
+<td>Combined decimal escapes (extented grapheme cluster)</td>
+</tr>
+<tr>
+<td><code>a</code></td>
+<td><code>a</code></td>
+<td>Not escaped (alphanumerical)</td>
+</tr>
+</tbody></table>
+
+<p><a href='#performance' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='performance'>Performance</h3></p>
+
+<p>If your webpage is unicode encoded (UTF-16 or UTF-8) use <code><a href="../Extensions/String.html#/s:vE10HTMLStringSS22escapingForUnicodeHTMLSS">escapingForUnicodeHTML</a></code> instead 
+as it is faster, and produces less bloated and more readable HTML (as long as you are using 
+a unicode compliant HTML reader).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">escapingForASCIIHTML</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/alexaubry/HTMLString/tree/2.1.0/Sources/HTMLString/HTMLString.swift#L80-L82">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vE10HTMLStringSS18unescapingFromHTMLSS"></a>
+                    <a name="//apple_ref/swift/Property/unescapingFromHTML" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vE10HTMLStringSS18unescapingFromHTMLSS">unescapingFromHTML</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a new string made from the <code>String</code> by replacing every HTML escape
+sequence with the matching Unicode character.</p>
+
+<p><a href='#examples' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='examples'>Examples</h3></p>
+
+<table><thead>
+<tr>
+<th>String</th>
+<th>Result</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&amp;amp;</code></td>
+<td><code>&amp;</code></td>
+<td>Keyword escape</td>
+</tr>
+<tr>
+<td><code>&amp;#931;</code></td>
+<td><code>Σ</code></td>
+<td>Decimal escape</td>
+</tr>
+<tr>
+<td><code>&amp;#x10d;</code></td>
+<td><code>č</code></td>
+<td>Hexadecimal escape</td>
+</tr>
+<tr>
+<td><code>&amp;#127482;&amp;#127480;</code></td>
+<td><code>🇺🇸</code></td>
+<td>Combined decimal escapes (extented grapheme cluster)</td>
+</tr>
+<tr>
+<td><code>a</code></td>
+<td><code>a</code></td>
+<td>Not an escape</td>
+</tr>
+<tr>
+<td><code>&amp;</code></td>
+<td><code>&amp;</code></td>
+<td>Not an escape</td>
+</tr>
+</tbody></table>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">unescapingFromHTML</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/alexaubry/HTMLString/tree/2.1.0/Sources/HTMLString/HTMLString.swift#L138-L197">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>Copyright © 2016-2017 Alexis Aubry Radanovic. Licensed under the <a class="link" href="https://github.com/alexaubry/HTMLString/blob/master/LICENSE" target="_blank" rel="external">MIT License</a></p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
