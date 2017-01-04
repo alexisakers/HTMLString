@@ -39,7 +39,12 @@ let targets = [
     // Target(name: "Performance", dependencies: [.Target(name: "HTMLString")])
 ]
 
+let excludes = [
+    "Sources/Performance"
+]
+
 let package = Package(
     name: "HTMLString",
-    targets: targets
+    targets: targets,
+    exclude: excludes
 )
