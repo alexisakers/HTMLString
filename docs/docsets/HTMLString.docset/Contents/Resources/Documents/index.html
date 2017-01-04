@@ -7,7 +7,7 @@
     <meta charset='utf-8'>
     <script src="js/jquery.min.js" defer></script>
     <script src="js/jazzy.js" defer></script>
-
+    
   </head>
   <body>
     <a title="HTMLString  Reference"></a>
@@ -32,13 +32,7 @@
             <a href="Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Extensions/Character.html">Character</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="Extensions/String.html">String</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Extensions/UnicodeScalar.html">UnicodeScalar</a>
               </li>
             </ul>
           </li>
@@ -47,27 +41,45 @@
       <article class="main-content">
         <section>
           <section class="section">
+            
+            <p align="center">
+    <img src="https://github.com/alexaubry/HTMLString/raw/master/logo.png" alt="HTMLString" />
+</p>
 
-            <a href='#htmlstring' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='htmlstring'>HTMLString</h1>
+<p align="center" style="margin:30px;">
+    <a href="https://alexaubry.github.io/HTMLString/">Documentation</a>
+</p>
 
-<p><img src="https://img.shields.io/badge/Swift-3.0.1-ee4f37.svg" alt="Swift 3.0.1">
-<img src="https://img.shields.io/badge/License-MIT-000000.svg" alt="License">
-<a href="https://cocoapods.org/pods/HTMLString"><img src="https://img.shields.io/cocoapods/v/HTMLString.svg" alt="CocoaPods"></a>
-<a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible"></a>
-<a href="https://travis-ci.org/alexaubry/HTMLString"><img src="https://travis-ci.org/alexaubry/HTMLString.svg?branch=master" alt="Build Status"></a>
-<a href="https://codecov.io/gh/alexaubry/HTMLString"><img src="https://codecov.io/gh/alexaubry/HTMLString/branch/master/graph/badge.svg" alt="codecov"></a>
-<a href="https://twitter.com/leksantoine"><img src="https://img.shields.io/badge/Twitter-%40leksantoine-6C7A89.svg" alt="Twitter : @leksantoine"></a></p>
+<p align="center">
+    <a>
+        <img src="https://img.shields.io/badge/Swift-3.0.2-ee4f37.svg" alt="Swift 3.0.2" />
+    </a>
+    <a href="https://travis-ci.org/alexaubry/HTMLString">
+        <img src="https://travis-ci.org/alexaubry/HTMLString.svg?branch=master" alt="Build Status" />
+    </a>
+    <a href="https://cocoapods.org/pods/HTMLString">
+        <img src="https://img.shields.io/cocoapods/v/HTMLString.svg" alt="CocoaPods" />
+    </a>
+    <a href="https://github.com/Carthage/Carthage">
+        <img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible" />
+    </a>
+    <a href="https://codecov.io/gh/alexaubry/HTMLString">
+        <img src="https://codecov.io/gh/alexaubry/HTMLString/branch/master/graph/badge.svg" alt="Code coverage" />
+    </a>
+    <a href="https://twitter.com/leksantoine">
+        <img src="https://img.shields.io/badge/Twitter-%40leksantoine-6C7A89.svg" alt="Twitter : @leksantoine" />
+    </a>
+</p>
 
-<p><code>HTMLString</code> is a micro-library written in Swift that enables your app to encode and decode Strings that contain HTML escapes.</p>
-
-<p>📚  <a href="https://alexaubry.github.io/HTMLString">Documentation</a></p>
+<p><code>HTMLString</code> is a micro-library written in Swift that enables your app to encode and decode HTML <code>String</code>s.</p>
 <a href='#features' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='features'>Features</h2>
 
 <ul>
-<li>ASCII and Unicode Escaping</li>
+<li>ASCII and Unicode-compatible Escaping</li>
 <li>Unescaping</li>
 <li>Full support of Swift extended grapheme clusters</li>
-<li>Support of 2125 named escape sequences (<code>&amp;amp;</code>) as well as decimal (<code>&amp;#128;</code>) and hexadecimal (<code>&amp;#x1F643;</code>) sequences</li>
+<li><a href="https://github.com/alexaubry/HTMLString/tree/master/Benchmark.md">Fast</a></li>
+<li>Unit tested</li>
 </ul>
 <a href='#platforms' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='platforms'>Platforms</h2>
 
@@ -82,7 +94,7 @@
 <a href='#swift-package-manager' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='swift-package-manager'>Swift Package Manager</h3>
 
 <p>Add this line to your <code>Package.swift</code> :</p>
-<pre class="highlight swift"><code><span class="o">.</span><span class="kt">Package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/alexaubry/HTMLString"</span><span class="p">,</span> <span class="nv">majorVersion</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="nv">minor</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
+<pre class="highlight swift"><code><span class="o">.</span><span class="kt">Package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/alexaubry/HTMLString"</span><span class="p">,</span> <span class="nv">majorVersion</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="nv">minor</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span>
 </code></pre>
 <a href='#cocoapods' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='cocoapods'>CocoaPods</h3>
 
@@ -96,22 +108,15 @@
 </code></pre>
 <a href='#manual' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='manual'>Manual</h3>
 
-<p>Add the contents of <code>Sources</code> directory to your project.</p>
+<p>Add the <code>Sources/HTMLString/HTMLString.swift</code> and <code>Sources/HTMLString/Mappings.swift</code> files to your project.</p>
 <a href='#usage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='usage'>Usage</h2>
 
-<p>This library adds three properties to String instances:</p>
+<p>You interact with HTML strings with these extensions on the <code>String</code> type:</p>
 
 <ul>
-<li><code>escapingForUnicodeHTML</code>: Escapes the characters in the String for display in Unicode-encoded HTML pages.</li>
-<li><code>escapingForASCIIHTML</code> : Escapes the characters in the String for display in ASCII-encoded HTML pages</li>
-<li><code>unescapingFromHTML</code> : Replaces all escape sequences in the String by their corresponding Unicode Scalar.</li>
-</ul>
-
-<p>You can also escape individual characters using these <code>Character</code> extensions:</p>
-
-<ul>
-<li><code>escapingForASCII</code></li>
-<li><code>escapingForUnicode</code></li>
+<li><code>escapingForUnicodeHTML</code>: Replaces every character incompatible with HTML Unicode encoding HTML escape.</li>
+<li><code>escapingForASCIIHTML</code> : Replaces every character incompatible with HTML ASCII encoding by a standard HTML escape.</li>
+<li><code>unescapingFromHTML</code> : Replaces every HTML escape sequence with the matching Unicode character.</li>
 </ul>
 <a href='#escaping' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='escaping'>Escaping</h3>
 <pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">HTMLString</span>
@@ -138,7 +143,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="https://github.com/alexaubry" target="_blank" rel="external">Alexis</a>. All rights reserved. (Last updated: 2016-12-06)</p>
+          <p>Copyright © 2016-2017 Alexis Aubry Radanovic. Licensed under the <a class="link" href="https://github.com/alexaubry/HTMLString/blob/master/LICENSE" target="_blank" rel="external">MIT License</a></p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

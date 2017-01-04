@@ -1,23 +1,41 @@
-# HTMLString
+<p align="center">
+    <img src="https://github.com/alexaubry/HTMLString/raw/master/logo.png" alt="HTMLString" />
+</p>
 
-![Swift 3.0.1](https://img.shields.io/badge/Swift-3.0.1-ee4f37.svg)
-![License](https://img.shields.io/badge/License-MIT-000000.svg)
-[![CocoaPods](https://img.shields.io/cocoapods/v/HTMLString.svg)](https://cocoapods.org/pods/HTMLString)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![Build Status](https://travis-ci.org/alexaubry/HTMLString.svg?branch=master)](https://travis-ci.org/alexaubry/HTMLString)
-[![codecov](https://codecov.io/gh/alexaubry/HTMLString/branch/master/graph/badge.svg)](https://codecov.io/gh/alexaubry/HTMLString)
-[![Twitter : @leksantoine](https://img.shields.io/badge/Twitter-%40leksantoine-6C7A89.svg)](https://twitter.com/leksantoine)
+<p align="center" style="margin:30px;">
+    <a href="https://alexaubry.github.io/HTMLString/">Documentation</a>
+</p>
 
-`HTMLString` is a micro-library written in Swift that enables your app to encode and decode Strings that contain HTML escapes.
+<p align="center">
+    <a>
+        <img src="https://img.shields.io/badge/Swift-3.0.2-ee4f37.svg" alt="Swift 3.0.2" />
+    </a>
+    <a href="https://travis-ci.org/alexaubry/HTMLString">
+        <img src="https://travis-ci.org/alexaubry/HTMLString.svg?branch=master" alt="Build Status" />
+    </a>
+    <a href="https://cocoapods.org/pods/HTMLString">
+        <img src="https://img.shields.io/cocoapods/v/HTMLString.svg" alt="CocoaPods" />
+    </a>
+    <a href="https://github.com/Carthage/Carthage">
+        <img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible" />
+    </a>
+    <a href="https://codecov.io/gh/alexaubry/HTMLString">
+        <img src="https://codecov.io/gh/alexaubry/HTMLString/branch/master/graph/badge.svg" alt="Code coverage" />
+    </a>
+    <a href="https://twitter.com/leksantoine">
+        <img src="https://img.shields.io/badge/Twitter-%40leksantoine-6C7A89.svg" alt="Twitter : @leksantoine" />
+    </a>
+</p>
 
-📚  [Documentation](https://alexaubry.github.io/HTMLString/)
+`HTMLString` is a micro-library written in Swift that enables your app to encode and decode HTML `String`s.
 
 ## Features
 
-- ASCII and Unicode Escaping
+- ASCII and Unicode-compatible Escaping
 - Unescaping
 - Full support of Swift extended grapheme clusters
-- Support of 2125 named escape sequences (`&amp;`) as well as decimal (`&#128;`) and hexadecimal (`&#x1F643;`) sequences
+- [Fast](https://github.com/alexaubry/HTMLString/tree/master/Benchmark.md)
+- Unit tested
 
 ## Platforms
 
@@ -34,7 +52,7 @@
 Add this line to your `Package.swift` :
 
 ~~~swift
-.Package(url: "https://github.com/alexaubry/HTMLString", majorVersion: 2, minor: 0)
+.Package(url: "https://github.com/alexaubry/HTMLString", majorVersion: 2, minor: 1)
 ~~~
 
 ### CocoaPods
@@ -55,20 +73,15 @@ github "alexaurby/HTMLString"
 
 ### Manual
 
-Add the contents of `Sources` directory to your project.
+Add the `Sources/HTMLString/HTMLString.swift` and `Sources/HTMLString/Mappings.swift` files to your project.
 
 ## Usage
 
-This library adds three properties to String instances:
+You interact with HTML strings with these extensions on the `String` type:
 
-- `escapingForUnicodeHTML`: Escapes the characters in the String for display in Unicode-encoded HTML pages.
-- `escapingForASCIIHTML` : Escapes the characters in the String for display in ASCII-encoded HTML pages
-- `unescapingFromHTML` : Replaces all escape sequences in the String by their corresponding Unicode Scalar.
-
-You can also escape individual characters using these `Character` extensions:
-
-- `escapingForASCII`
-- `escapingForUnicode`
+- `escapingForUnicodeHTML`: Replaces every character incompatible with HTML Unicode encoding HTML escape.
+- `escapingForASCIIHTML` : Replaces every character incompatible with HTML ASCII encoding by a standard HTML escape.
+- `unescapingFromHTML` : Replaces every HTML escape sequence with the matching Unicode character.
 
 ### Escaping
 
