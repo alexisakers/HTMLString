@@ -31,20 +31,19 @@
 
 ## Features
 
-🤖    ASCII and Unicode Escaping
-🔠    Unescaping
-🇺🇸    Full support of Swift extended grapheme cluster
-🔣    Support of 2125 named escape sequences (`&amp;`) and all decimal (`&#128;`) and hexadecimal (`&#x1F643;`) entities
-⚡     [Fast](https://github.com/alexaubry/HTMLString/tree/master/Benchmark.md)
-✅    Unit tested
+- ASCII and Unicode-compatible Escaping
+- Unescaping
+- Full support of Swift extended grapheme clusters
+- [Fast](https://github.com/alexaubry/HTMLString/tree/master/Benchmark.md)
+- Unit tested
 
 ## Platforms
 
-📱    iOS 8.0+
-💻    macOS 10.10+
-📺    tvOS 9.0+
-⌚    watchOS 2.0+
-🐧    Linux
+- iOS 8.0+
+- macOS 10.10+
+- tvOS 9.0+
+- watchOS 2.0+
+- Linux
 
 ## Installation
 

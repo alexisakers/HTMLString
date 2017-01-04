@@ -45,12 +45,12 @@ public extension String {
     ///
     /// ### Examples
     ///
-    /// | String | Result   | Format                                                  |
-    /// |:-------|:---------|:--------------------------------------------------------|
-    /// | '&'    | `\&amp;` | Keyword escape (part of the Unicode special characters) |
-    /// | `Σ`    | `Σ`      | Not escaped (Unicode compliant)                         |
+    /// | String | Result  | Format                                                  |
+    /// |--------|---------|---------------------------------------------------------|
+    /// | `&`    | `&amp;` | Keyword escape (part of the Unicode special characters) |
+    /// | `Σ`    | `Σ`     | Not escaped (Unicode compliant)                         |
     /// | `🇺🇸`   | `🇺🇸`     | Not escaped (Unicode compliant)                         |
-    /// | `a`    | `a`      | Not escaped (alphanumerical)                            |
+    /// | `a`    | `a`     | Not escaped (alphanumerical)                            |
     ///
 
     public var escapingForUnicodeHTML: String {
@@ -63,14 +63,14 @@ public extension String {
     ///
     /// ### Examples
     ///
-    /// | String | Result                 | Format                                               |
-    /// |:-------|:-----------------------|:-----------------------------------------------------|
-    /// | '&'    | `\&amp;`               | Keyword escape                                       |
-    /// | `Σ`    | `\&#931;`              | Decimal escape                                       |
-    /// | `🇺🇸`   | `\&#127482;\&#127480;` | Combined decimal escapes (extented grapheme cluster) |
-    /// | `a`    | `a`                    | Not escaped (alphanumerical)                         |
+    /// | String | Result               | Format                                               |
+    /// |--------|----------------------|------------------------------------------------------|
+    /// | `&`    | `&amp;`              | Keyword escape                                       |
+    /// | `Σ`    | `&#931;`             | Decimal escape                                       |
+    /// | `🇺🇸`   | `&#127482;&#127480;` | Combined decimal escapes (extented grapheme cluster) |
+    /// | `a`    | `a`                  | Not escaped (alphanumerical)                         |
     ///
-    /// ### Performance note
+    /// ### Performance
     ///
     /// If your webpage is unicode encoded (UTF-16 or UTF-8) use `escapingForUnicodeHTML` instead 
     /// as it is faster, and produces less bloated and more readable HTML (as long as you are using 
@@ -125,14 +125,14 @@ extension String {
     ///
     /// ### Examples
     ///
-    /// | String                 | Result                 | Format                             |
-    /// |:-----------------------|:-----------------------|:-----------------------------------|
-    /// | '\&amp;'               | `&`  | Keyword mapping                                      |
-    /// | `\&#931;`              | `Σ`  | Decimal escape                                       |
-    /// | `\&#x10d;`             | `č`  | Hexadecimal escape                                   |
-    /// | `\&#127482;\&#127480;` | `🇺🇸` | Combined decimal escapes (extented grapheme cluster) |
-    /// | `a`                    | `a`  | Not an escape                                        |
-    /// | `&`                    | `&`  | Not an escape                                        |
+    /// | String               | Result                 | Format                             |
+    /// |----------------------|------------------------|------------------------------------|
+    /// | `&amp;`              | `&`  | Keyword escape                                       |
+    /// | `&#931;`             | `Σ`  | Decimal escape                                       |
+    /// | `&#x10d;`            | `č`  | Hexadecimal escape                                   |
+    /// | `&#127482;&#127480;` | `🇺🇸` | Combined decimal escapes (extented grapheme cluster) |
+    /// | `a`                  | `a`  | Not an escape                                        |
+    /// | `&`                  | `&`  | Not an escape                                        |
     ///
 
     public var unescapingFromHTML: String {

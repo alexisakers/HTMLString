@@ -1,0 +1,15 @@
+clean: true
+author: "Alexis Aubry Radanovic"
+author_url: https://github.com/alexaubry
+github_url: https://github.com/alexaubry/HTMLString
+github_file_prefix: https://github.com/alexaubry/HTMLString/tree/2.1.0
+module_version: 2.1.0
+xcodebuild_arguments: -scheme,HTMLString
+module: HTMLString
+root_url: https://alexaubry.github.io/HTMLString
+output: docs/
+swift_version: 3.0.2
+copyright: "Copyright © 2016-2017 Alexis Aubry Radanovic. Licensed under the [MIT License](https://github.com/alexaubry/HTMLString/blob/master/LICENSE)"
+podspec: ./HTMLString.podspec
+skip-undocumented: true
+theme: apple
