@@ -16,12 +16,11 @@
             "en",
          );
          mainGroup = OBJ_5;
-         productRefGroup = OBJ_18;
+         productRefGroup = OBJ_16;
          projectDirPath = ".";
          targets = (
-            OBJ_22,
-            OBJ_30,
-            OBJ_37,
+            OBJ_19,
+            OBJ_27,
          );
       };
       OBJ_10 = {
@@ -34,62 +33,66 @@
          children = (
             OBJ_12,
          );
-         name = "Performance";
-         path = "Sources/Performance";
-         sourceTree = "SOURCE_ROOT";
-      };
-      OBJ_12 = {
-         isa = "PBXFileReference";
-         path = "main.swift";
-         sourceTree = "<group>";
-      };
-      OBJ_13 = {
-         isa = "PBXGroup";
-         children = (
-            OBJ_14,
-         );
          path = "Tests";
          sourceTree = "<group>";
       };
-      OBJ_14 = {
+      OBJ_12 = {
          isa = "PBXGroup";
          children = (
-            OBJ_15,
+            OBJ_13,
          );
          name = "HTMLStringTests";
          path = "Tests/HTMLStringTests";
          sourceTree = "SOURCE_ROOT";
       };
-      OBJ_15 = {
+      OBJ_13 = {
          isa = "PBXFileReference";
          path = "HTMLStringTests.swift";
          sourceTree = "<group>";
       };
-      OBJ_16 = {
+      OBJ_14 = {
          isa = "PBXFileReference";
          path = "Carthage";
          sourceTree = "SOURCE_ROOT";
       };
-      OBJ_17 = {
+      OBJ_15 = {
          isa = "PBXFileReference";
          path = "docs";
          sourceTree = "SOURCE_ROOT";
       };
-      OBJ_18 = {
+      OBJ_16 = {
          isa = "PBXGroup";
          children = (
-            OBJ_19,
-            OBJ_20,
-            OBJ_21,
+            OBJ_17,
+            OBJ_18,
          );
          name = "Products";
          path = "";
          sourceTree = "BUILT_PRODUCTS_DIR";
       };
-      OBJ_19 = {
+      OBJ_17 = {
          isa = "PBXFileReference";
          path = "HTMLString.framework";
          sourceTree = "BUILT_PRODUCTS_DIR";
+      };
+      OBJ_18 = {
+         isa = "PBXFileReference";
+         path = "HTMLStringTests.xctest";
+         sourceTree = "BUILT_PRODUCTS_DIR";
+      };
+      OBJ_19 = {
+         isa = "PBXNativeTarget";
+         buildConfigurationList = OBJ_20;
+         buildPhases = (
+            OBJ_23,
+            OBJ_26,
+         );
+         dependencies = (
+         );
+         name = "HTMLString";
+         productName = "HTMLString";
+         productReference = OBJ_17;
+         productType = "com.apple.product-type.framework";
       };
       OBJ_2 = {
          isa = "XCConfigurationList";
@@ -101,39 +104,15 @@
          defaultConfigurationName = "Debug";
       };
       OBJ_20 = {
-         isa = "PBXFileReference";
-         path = "Performance";
-         sourceTree = "BUILT_PRODUCTS_DIR";
-      };
-      OBJ_21 = {
-         isa = "PBXFileReference";
-         path = "HTMLStringTests.xctest";
-         sourceTree = "BUILT_PRODUCTS_DIR";
-      };
-      OBJ_22 = {
-         isa = "PBXNativeTarget";
-         buildConfigurationList = OBJ_23;
-         buildPhases = (
-            OBJ_26,
-            OBJ_29,
-         );
-         dependencies = (
-         );
-         name = "HTMLString";
-         productName = "HTMLString";
-         productReference = OBJ_19;
-         productType = "com.apple.product-type.framework";
-      };
-      OBJ_23 = {
          isa = "XCConfigurationList";
          buildConfigurations = (
-            OBJ_24,
-            OBJ_25,
+            OBJ_21,
+            OBJ_22,
          );
          defaultConfigurationIsVisible = "0";
          defaultConfigurationName = "Debug";
       };
-      OBJ_24 = {
+      OBJ_21 = {
          isa = "XCBuildConfiguration";
          buildSettings = {
             ENABLE_TESTABILITY = "YES";
@@ -161,7 +140,7 @@
          };
          name = "Debug";
       };
-      OBJ_25 = {
+      OBJ_22 = {
          isa = "XCBuildConfiguration";
          buildSettings = {
             ENABLE_TESTABILITY = "YES";
@@ -189,25 +168,74 @@
          };
          name = "Release";
       };
-      OBJ_26 = {
+      OBJ_23 = {
          isa = "PBXSourcesBuildPhase";
          files = (
-            OBJ_27,
-            OBJ_28,
+            OBJ_24,
+            OBJ_25,
          );
       };
-      OBJ_27 = {
+      OBJ_24 = {
          isa = "PBXBuildFile";
          fileRef = OBJ_9;
       };
-      OBJ_28 = {
+      OBJ_25 = {
          isa = "PBXBuildFile";
          fileRef = OBJ_10;
       };
-      OBJ_29 = {
+      OBJ_26 = {
          isa = "PBXFrameworksBuildPhase";
          files = (
          );
+      };
+      OBJ_27 = {
+         isa = "PBXNativeTarget";
+         buildConfigurationList = OBJ_28;
+         buildPhases = (
+            OBJ_31,
+            OBJ_33,
+         );
+         dependencies = (
+            OBJ_35,
+         );
+         name = "HTMLStringTests";
+         productName = "HTMLStringTests";
+         productReference = OBJ_18;
+         productType = "com.apple.product-type.bundle.unit-test";
+      };
+      OBJ_28 = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            OBJ_29,
+            OBJ_30,
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Debug";
+      };
+      OBJ_29 = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            EMBEDDED_CONTENT_CONTAINS_SWIFT = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks",
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)",
+            );
+            INFOPLIST_FILE = "HTMLString.xcodeproj/HTMLStringTests_Info.plist";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "@loader_path/../Frameworks",
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)",
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)",
+            );
+            TARGET_NAME = "HTMLStringTests";
+         };
+         name = "Debug";
       };
       OBJ_3 = {
          isa = "XCBuildConfiguration";
@@ -242,122 +270,6 @@
          name = "Debug";
       };
       OBJ_30 = {
-         isa = "PBXNativeTarget";
-         buildConfigurationList = OBJ_31;
-         buildPhases = (
-            OBJ_34,
-            OBJ_36,
-         );
-         dependencies = (
-         );
-         name = "Performance";
-         productName = "Performance";
-         productReference = OBJ_20;
-         productType = "com.apple.product-type.tool";
-      };
-      OBJ_31 = {
-         isa = "XCConfigurationList";
-         buildConfigurations = (
-            OBJ_32,
-            OBJ_33,
-         );
-         defaultConfigurationIsVisible = "0";
-         defaultConfigurationName = "Debug";
-      };
-      OBJ_32 = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            FRAMEWORK_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(PLATFORM_DIR)/Developer/Library/Frameworks",
-            );
-            HEADER_SEARCH_PATHS = (
-               "$(inherited)",
-            );
-            INFOPLIST_FILE = "HTMLString.xcodeproj/Performance_Info.plist";
-            LD_RUNPATH_SEARCH_PATHS = (
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx",
-               "@executable_path",
-            );
-            OTHER_LDFLAGS = (
-               "$(inherited)",
-            );
-            OTHER_SWIFT_FLAGS = (
-               "$(inherited)",
-            );
-            SWIFT_FORCE_DYNAMIC_LINK_STDLIB = "YES";
-            SWIFT_FORCE_STATIC_LINK_STDLIB = "NO";
-            TARGET_NAME = "Performance";
-         };
-         name = "Debug";
-      };
-      OBJ_33 = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            FRAMEWORK_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(PLATFORM_DIR)/Developer/Library/Frameworks",
-            );
-            HEADER_SEARCH_PATHS = (
-               "$(inherited)",
-            );
-            INFOPLIST_FILE = "HTMLString.xcodeproj/Performance_Info.plist";
-            LD_RUNPATH_SEARCH_PATHS = (
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx",
-               "@executable_path",
-            );
-            OTHER_LDFLAGS = (
-               "$(inherited)",
-            );
-            OTHER_SWIFT_FLAGS = (
-               "$(inherited)",
-            );
-            SWIFT_FORCE_DYNAMIC_LINK_STDLIB = "YES";
-            SWIFT_FORCE_STATIC_LINK_STDLIB = "NO";
-            TARGET_NAME = "Performance";
-         };
-         name = "Release";
-      };
-      OBJ_34 = {
-         isa = "PBXSourcesBuildPhase";
-         files = (
-            OBJ_35,
-         );
-      };
-      OBJ_35 = {
-         isa = "PBXBuildFile";
-         fileRef = OBJ_12;
-      };
-      OBJ_36 = {
-         isa = "PBXFrameworksBuildPhase";
-         files = (
-         );
-      };
-      OBJ_37 = {
-         isa = "PBXNativeTarget";
-         buildConfigurationList = OBJ_38;
-         buildPhases = (
-            OBJ_41,
-            OBJ_43,
-         );
-         dependencies = (
-            OBJ_45,
-         );
-         name = "HTMLStringTests";
-         productName = "HTMLStringTests";
-         productReference = OBJ_21;
-         productType = "com.apple.product-type.bundle.unit-test";
-      };
-      OBJ_38 = {
-         isa = "XCConfigurationList";
-         buildConfigurations = (
-            OBJ_39,
-            OBJ_40,
-         );
-         defaultConfigurationIsVisible = "0";
-         defaultConfigurationName = "Debug";
-      };
-      OBJ_39 = {
          isa = "XCBuildConfiguration";
          buildSettings = {
             EMBEDDED_CONTENT_CONTAINS_SWIFT = "YES";
@@ -380,7 +292,31 @@
             );
             TARGET_NAME = "HTMLStringTests";
          };
-         name = "Debug";
+         name = "Release";
+      };
+      OBJ_31 = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            OBJ_32,
+         );
+      };
+      OBJ_32 = {
+         isa = "PBXBuildFile";
+         fileRef = OBJ_13;
+      };
+      OBJ_33 = {
+         isa = "PBXFrameworksBuildPhase";
+         files = (
+            OBJ_34,
+         );
+      };
+      OBJ_34 = {
+         isa = "PBXBuildFile";
+         fileRef = OBJ_17;
+      };
+      OBJ_35 = {
+         isa = "PBXTargetDependency";
+         target = OBJ_19;
       };
       OBJ_4 = {
          isa = "XCBuildConfiguration";
@@ -412,64 +348,15 @@
          };
          name = "Release";
       };
-      OBJ_40 = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            EMBEDDED_CONTENT_CONTAINS_SWIFT = "YES";
-            FRAMEWORK_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(PLATFORM_DIR)/Developer/Library/Frameworks",
-            );
-            HEADER_SEARCH_PATHS = (
-               "$(inherited)",
-            );
-            INFOPLIST_FILE = "HTMLString.xcodeproj/HTMLStringTests_Info.plist";
-            LD_RUNPATH_SEARCH_PATHS = (
-               "@loader_path/../Frameworks",
-            );
-            OTHER_LDFLAGS = (
-               "$(inherited)",
-            );
-            OTHER_SWIFT_FLAGS = (
-               "$(inherited)",
-            );
-            TARGET_NAME = "HTMLStringTests";
-         };
-         name = "Release";
-      };
-      OBJ_41 = {
-         isa = "PBXSourcesBuildPhase";
-         files = (
-            OBJ_42,
-         );
-      };
-      OBJ_42 = {
-         isa = "PBXBuildFile";
-         fileRef = OBJ_15;
-      };
-      OBJ_43 = {
-         isa = "PBXFrameworksBuildPhase";
-         files = (
-            OBJ_44,
-         );
-      };
-      OBJ_44 = {
-         isa = "PBXBuildFile";
-         fileRef = OBJ_19;
-      };
-      OBJ_45 = {
-         isa = "PBXTargetDependency";
-         target = OBJ_22;
-      };
       OBJ_5 = {
          isa = "PBXGroup";
          children = (
             OBJ_6,
             OBJ_7,
-            OBJ_13,
+            OBJ_11,
+            OBJ_14,
+            OBJ_15,
             OBJ_16,
-            OBJ_17,
-            OBJ_18,
          );
          path = "";
          sourceTree = "<group>";
@@ -484,7 +371,6 @@
          isa = "PBXGroup";
          children = (
             OBJ_8,
-            OBJ_11,
          );
          path = "Sources";
          sourceTree = "<group>";
