@@ -1,5 +1,17 @@
 # HTMLString Change Log
 
+## 2017-01-04 — Version 2.1.0
+
+- Change the escaping algorithm (`reduce` instead of `map`)
+- Reduced the size of the escaping mappings
+- Performance improvements: escaping is up to **6.5 times** faster and unescaping is up to **98 times** faster
+- Improved documentation
+- New benchmark tool and reports
+
+#### Source breaking changes
+
+- The `Character` (un)escaping extensions have been removed. 
+
 ## 2016-12-06 — Version 2.0.1
 
 - Performance improvements : escaping is **99.37%** faster and unescaping is **10,38%** faster (in average)

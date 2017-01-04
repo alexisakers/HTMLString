@@ -1,11 +1,11 @@
 Pod::Spec.new do |s|
 
   s.name         = "HTMLString"
-  s.version      = "2.0.1"
-  s.summary      = "Convert Strings that contains HTML in Swift"
+  s.version      = "2.1.0"
+  s.summary      = "Escape and unescape HTML Strings in Swift"
 
   s.description  = <<-DESC
-HTMLString is a micro-library written in Swift that enables your app to convert Strings that contain HTML. It supports ASCII and Unicode escaping, as well as unescaping. You can use it with 2125 named escape sequences (`&amp;`) as well as with decimal (`&#128;`) and hexadecimal (`&#x1F643;`) sequences.
+HTMLString is a fast micro-library written in Swift that enables your app to encode and decode HTML Strings. It supports ASCII and Unicode escaping, as well as unescaping. You can use it with 2125 named escape sequences (`&amp;`) and with all decimal (`&#128;`) and hexadecimal (`&#x1F643;`) sequences.
 DESC
 
   s.homepage     = "https://github.com/alexaubry/HTMLString"
@@ -21,6 +21,6 @@ DESC
   s.tvos.deployment_target = "9.0"
 
   s.source       = { :git => "https://github.com/alexaubry/HTMLString.git", :tag => "#{s.version}" }
-  s.source_files  = "Sources"
+  s.source_files  = "Sources/HTMLString/*"
 
 end

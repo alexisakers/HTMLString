@@ -7,7 +7,7 @@
     <meta charset='utf-8'>
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
-
+    
   </head>
   <body>
     <a name="//apple_ref/swift/Extension/String" class="dashAnchor"></a>
@@ -33,13 +33,7 @@
             <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Extensions/Character.html">Character</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Extensions/String.html">String</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/UnicodeScalar.html">UnicodeScalar</a>
               </li>
             </ul>
           </li>
@@ -55,17 +49,10 @@
 
                 </div>
               </div>
-
+            
           </section>
           <section class="section task-group-section">
             <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Escaping"></a>
-                <a name="//apple_ref/swift/Section/Escaping" class="dashAnchor"></a>
-                <a href="#/Escaping">
-                  <h3 class="section-name">Escaping</h3>
-                </a>
-              </div>
               <ul>
                 <li class="item">
                   <div>
@@ -80,11 +67,40 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A string where internal characters that need escaping for HTML are escaped.</p>
+                        <p>Returns a new string made from the <code>String</code> by replacing every character
+incompatible with HTML Unicode encoding (UTF-16 or UTF-8) by a standard
+HTML escape.</p>
 
-<p>Only special Unicode characters will be escaped.</p>
+<p><a href='#examples' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='examples'>Examples</h3></p>
 
-<p>For example, <code>&quot;&amp;&quot;</code> become <code>&quot;\&amp;amp;&quot;</code>.</p>
+<table><thead>
+<tr>
+<th>String</th>
+<th>Result</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&amp;</code></td>
+<td><code>&amp;amp;</code></td>
+<td>Keyword escape (part of the Unicode special characters)</td>
+</tr>
+<tr>
+<td><code>Σ</code></td>
+<td><code>Σ</code></td>
+<td>Not escaped (Unicode compliant)</td>
+</tr>
+<tr>
+<td><code>🇺🇸</code></td>
+<td><code>🇺🇸</code></td>
+<td>Not escaped (Unicode compliant)</td>
+</tr>
+<tr>
+<td><code>a</code></td>
+<td><code>a</code></td>
+<td>Not escaped (alphanumerical)</td>
+</tr>
+</tbody></table>
 
                       </div>
                       <div class="declaration">
@@ -96,7 +112,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/alexaubry/HTMLString/tree/master/Sources/HTMLString.swift#L49-L51">Show on GitHub</a>
+                        <a href="https://github.com/alexaubry/HTMLString/tree/2.1.0/Sources/HTMLString/HTMLString.swift#L56-L58">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -114,14 +130,45 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A string where internal characters that need escaping for HTML are escaped.</p>
+                        <p>Returns a new string made from the <code>String</code> by replacing every character
+incompatible with HTML ASCII encoding by a standard HTML escape.</p>
 
-<p>For instance, &rsquo;&amp;&rsquo; becomes &rsquo;&amp;amp;&rsquo; and &lsquo;🙃&rsquo; becomes &rsquo;&amp;#x1F643;&rsquo;.</p>
+<p><a href='#examples' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='examples'>Examples</h3></p>
 
-<p>All non-mapped characters (unicode that don&rsquo;t have a <code>&amp;keyword;</code> mapping) will be converted to the appropriate &#xxx; value.</p>
+<table><thead>
+<tr>
+<th>String</th>
+<th>Result</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&amp;</code></td>
+<td><code>&amp;amp;</code></td>
+<td>Keyword escape</td>
+</tr>
+<tr>
+<td><code>Σ</code></td>
+<td><code>&amp;#931;</code></td>
+<td>Decimal escape</td>
+</tr>
+<tr>
+<td><code>🇺🇸</code></td>
+<td><code>&amp;#127482;&amp;#127480;</code></td>
+<td>Combined decimal escapes (extented grapheme cluster)</td>
+</tr>
+<tr>
+<td><code>a</code></td>
+<td><code>a</code></td>
+<td>Not escaped (alphanumerical)</td>
+</tr>
+</tbody></table>
 
-<p>If your webpage is unicode encoded (UTF16 or UTF8) use <code>escapingForHTML</code> instead as it is faster,
-and produces less bloated and more readable HTML (as long as you are using a unicode compliant HTML reader).</p>
+<p><a href='#performance' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='performance'>Performance</h3></p>
+
+<p>If your webpage is unicode encoded (UTF-16 or UTF-8) use <code><a href="../Extensions/String.html#/s:vE10HTMLStringSS22escapingForUnicodeHTMLSS">escapingForUnicodeHTML</a></code> instead 
+as it is faster, and produces less bloated and more readable HTML (as long as you are using 
+a unicode compliant HTML reader).</p>
 
                       </div>
                       <div class="declaration">
@@ -133,7 +180,7 @@ and produces less bloated and more readable HTML (as long as you are using a uni
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/alexaubry/HTMLString/tree/master/Sources/HTMLString.swift#L64-L66">Show on GitHub</a>
+                        <a href="https://github.com/alexaubry/HTMLString/tree/2.1.0/Sources/HTMLString/HTMLString.swift#L80-L82">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -141,13 +188,6 @@ and produces less bloated and more readable HTML (as long as you are using a uni
               </ul>
             </div>
             <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Unescaping"></a>
-                <a name="//apple_ref/swift/Section/Unescaping" class="dashAnchor"></a>
-                <a href="#/Unescaping">
-                  <h3 class="section-name">Unescaping</h3>
-                </a>
-              </div>
               <ul>
                 <li class="item">
                   <div>
@@ -162,9 +202,49 @@ and produces less bloated and more readable HTML (as long as you are using a uni
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A string where internal characters that are escaped for HTML are unescaped.</p>
+                        <p>Returns a new string made from the <code>String</code> by replacing every HTML escape
+sequence with the matching Unicode character.</p>
 
-<p>For example, <code>&amp;amp;</code> becomes <code>&amp;</code>. Handles <code>&amp;#32;</code> and <code>&amp;#x32;</code> cases as well.</p>
+<p><a href='#examples' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='examples'>Examples</h3></p>
+
+<table><thead>
+<tr>
+<th>String</th>
+<th>Result</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&amp;amp;</code></td>
+<td><code>&amp;</code></td>
+<td>Keyword escape</td>
+</tr>
+<tr>
+<td><code>&amp;#931;</code></td>
+<td><code>Σ</code></td>
+<td>Decimal escape</td>
+</tr>
+<tr>
+<td><code>&amp;#x10d;</code></td>
+<td><code>č</code></td>
+<td>Hexadecimal escape</td>
+</tr>
+<tr>
+<td><code>&amp;#127482;&amp;#127480;</code></td>
+<td><code>🇺🇸</code></td>
+<td>Combined decimal escapes (extented grapheme cluster)</td>
+</tr>
+<tr>
+<td><code>a</code></td>
+<td><code>a</code></td>
+<td>Not an escape</td>
+</tr>
+<tr>
+<td><code>&amp;</code></td>
+<td><code>&amp;</code></td>
+<td>Not an escape</td>
+</tr>
+</tbody></table>
 
                       </div>
                       <div class="declaration">
@@ -176,7 +256,7 @@ and produces less bloated and more readable HTML (as long as you are using a uni
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/alexaubry/HTMLString/tree/master/Sources/HTMLString.swift#L93-L145">Show on GitHub</a>
+                        <a href="https://github.com/alexaubry/HTMLString/tree/2.1.0/Sources/HTMLString/HTMLString.swift#L138-L197">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -186,7 +266,7 @@ and produces less bloated and more readable HTML (as long as you are using a uni
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="https://github.com/alexaubry" target="_blank" rel="external">Alexis</a>. All rights reserved. (Last updated: 2016-12-06)</p>
+          <p>Copyright © 2016-2017 Alexis Aubry Radanovic. Licensed under the <a class="link" href="https://github.com/alexaubry/HTMLString/blob/master/LICENSE" target="_blank" rel="external">MIT License</a></p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
