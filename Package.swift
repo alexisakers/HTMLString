@@ -36,7 +36,7 @@ import PackageDescription
 
 let targets = [
     Target(name: "HTMLString"),
-    Target(name: "Performance", dependencies: [.Target(name: "HTMLString")])
+    // Target(name: "Performance", dependencies: [.Target(name: "HTMLString")])
 ]
 
 let package = Package(
