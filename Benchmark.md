@@ -7,7 +7,7 @@ A set of measures tracking the performance of the library.
 | Configuration | v2.0.1 | v2.1.0 |
 |:---|---|---|
 | Debug | 7.15s | 6.40s |
-| Release | 32.83s | 27.21ss |
+| Release | 32.83s | 27.21s |
 
 ## 🤖 Common Tasks
 
@@ -39,12 +39,10 @@ A set of measures tracking the performance of the library.
 | ASCII-escaping 23,145 characters | 0.052937s | 0.014950s |
 | Unescaping 3,026 words with 366 escapes | 0.014192s | 0.001162s |
 
-## ❓ Complexity
-
-TODO
+## ❓ Estimated Asymptotic Complexity
 
 | Algorithm | v2.0.1 | v2.1.0 |
 |:---|---|---|
-| ASCII escaping | N/A | N/A |
-| Unicode escaping | N/A | N/A |
-| Unescaping | N/A | N/A |
+| ASCII escaping | O(NlgN) | O(NlgN) |
+| Unicode escaping | O(NlgN) | O(NlgN) |
+| Unescaping | O(N^2) | O(N) |

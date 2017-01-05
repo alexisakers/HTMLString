@@ -36,11 +36,11 @@ import PackageDescription
 
 let targets = [
     Target(name: "HTMLString"),
-    // Target(name: "Performance", dependencies: [.Target(name: "HTMLString")])
+    Target(name: "Performance", dependencies: [.Target(name: "HTMLString")])
 ]
 
-let excludes = [
-    "Sources/Performance"
+let excludes: [String] = [
+    // "Sources/Performance"
 ]
 
 let package = Package(
