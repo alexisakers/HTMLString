@@ -4,10 +4,10 @@ A set of measures tracking the performance of the library.
 
 ## ⏱ Compile times
 
-| Configuration | v2.0.1 | v2.1.0 |
-|:---|---|---|
-| Debug | 7.15s | 6.40s |
-| Release | 32.83s | 27.21s |
+| Configuration | v2.0.1 | v2.1.0 | v2.1.1 |
+|:---|---|---|---|
+| Debug | 7.15s | 6.40s | 5,64s |
+| Release | 32.83s | 27.21s | 23,07s |
 
 ## 🤖 Common Tasks
 
@@ -43,7 +43,7 @@ A set of measures tracking the performance of the library.
 
 Where `N` is the number of characters in the string.
 
-| Algorithm | v2.0.1 | v2.1.0 | v2.1.1
+| Algorithm | v2.0.1 | v2.1.0 | v2.1.1 |
 |:---|---|---|---|
 | ASCII escaping | N/A | N/A | O(N) |
 | Unicode escaping | N/A | N/A | O(N) |

@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "HTMLString"
-  s.version      = "2.1.0"
+  s.version      = "2.1.1"
   s.summary      = "Escape and unescape HTML Strings in Swift"
 
   s.description  = <<-DESC
