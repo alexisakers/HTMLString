@@ -10,6 +10,7 @@
 
 - Further improved the escaping algorithm, which is now up to 6 times faster.
 - Changed the escaping strategy: special characters are now escaped with decimal sequences. This allows for better compatibility with browsers (HTML 4.0 compatible) and better speed
+- Changed the Unicode escaping strategy: only escape characters that could cause an XSS injection
 - Added an asymptotic complexity approximation calculator (every algorithm is now O(N))
 
 ### Fixed
