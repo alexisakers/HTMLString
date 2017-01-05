@@ -41,8 +41,10 @@ A set of measures tracking the performance of the library.
 
 ## ❓ Estimated Asymptotic Complexity
 
-| Algorithm | v2.0.1 | v2.1.0 |
-|:---|---|---|
-| ASCII escaping | O(NlgN) | O(NlgN) |
-| Unicode escaping | O(NlgN) | O(NlgN) |
-| Unescaping | O(N^2) | O(N) |
+Where `N` is the number of characters in the string.
+
+| Algorithm | v2.0.1 | v2.1.0 | v2.1.1
+|:---|---|---|---|
+| ASCII escaping | N/A | N/A | O(N) |
+| Unicode escaping | N/A | N/A | O(N) |
+| Unescaping | N/A | N/A | O(N) |
