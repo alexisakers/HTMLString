@@ -56,15 +56,15 @@ let tasks = [
 
 /// The number of elements in each task (for BigO notations)
 let test_n = [
-    1: 4,
-    2: 4,
-    3: 4,
-    4: 6,
-    5: 6,
-    6: 6,
-    7: 659,
-    8: 659,
-    9: 366
+    1: 13,
+    2: 13,
+    3: 41,
+    4: 156,
+    5: 121,
+    6: 121,
+    7: 23145,
+    8: 23145,
+    9: 20713
 ]
 
 let unicodeEscapingTasks = [1, 5, 7]
