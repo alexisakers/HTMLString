@@ -1,8 +1,24 @@
 # HTMLString Change Log
 
+## 2017-01-05 — Version 2.1.1
+
+### API
+
+- You can now perform custom escaping by escaping Unicode scalars individually. 
+
+### Improvements
+
+- Further improved the escaping algorithm, which is now up to 6 times faster.
+- Changed the escaping strategy: special characters are now escaped with decimal sequences. This allows for better compatibility with browsers (HTML 4.0 compatible) and better speed
+- Added an asymptotic complexity approximation calculator (every algorithm is now O(N))
+
+### Fixed
+
+- Removed .DS_Store
+
 ## 2017-01-04 — Version 2.1.0
 
-- Change the escaping algorithm (`reduce` instead of `map`)
+- Changed the escaping algorithm (`reduce` instead of `map`)
 - Reduced the size of the escaping mappings
 - Performance improvements: escaping is up to **6.5 times** faster and unescaping is up to **98 times** faster
 - Improved documentation
