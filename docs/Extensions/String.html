@@ -35,6 +35,9 @@
               <li class="nav-group-task">
                 <a href="../Extensions/String.html">String</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UnicodeScalar.html">UnicodeScalar</a>
+              </li>
             </ul>
           </li>
         </ul>
@@ -82,8 +85,8 @@ HTML escape.</p>
 </thead><tbody>
 <tr>
 <td><code>&amp;</code></td>
-<td><code>&amp;amp;</code></td>
-<td>Keyword escape (part of the Unicode special characters)</td>
+<td><code>&amp;#38;</code></td>
+<td>Decimal escape (part of the Unicode special characters)</td>
 </tr>
 <tr>
 <td><code>Σ</code></td>
@@ -102,6 +105,8 @@ HTML escape.</p>
 </tr>
 </tbody></table>
 
+<p><strong>Complexity</strong>: <code>O(N)</code> where <code>N</code> is the number of characters in the string.</p>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -112,7 +117,7 @@ HTML escape.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/alexaubry/HTMLString/tree/2.1.0/Sources/HTMLString/HTMLString.swift#L56-L58">Show on GitHub</a>
+                        <a href="https://github.com/alexaubry/HTMLString/tree/2.1.0/Sources/HTMLString/HTMLString.swift#L58-L60">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -144,7 +149,7 @@ incompatible with HTML ASCII encoding by a standard HTML escape.</p>
 </thead><tbody>
 <tr>
 <td><code>&amp;</code></td>
-<td><code>&amp;amp;</code></td>
+<td><code>&amp;#38;</code></td>
 <td>Keyword escape</td>
 </tr>
 <tr>
@@ -170,6 +175,8 @@ incompatible with HTML ASCII encoding by a standard HTML escape.</p>
 as it is faster, and produces less bloated and more readable HTML (as long as you are using 
 a unicode compliant HTML reader).</p>
 
+<p><strong>Complexity</strong>: <code>O(N)</code> where <code>N</code> is the number of characters in the string.</p>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -180,7 +187,7 @@ a unicode compliant HTML reader).</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/alexaubry/HTMLString/tree/2.1.0/Sources/HTMLString/HTMLString.swift#L80-L82">Show on GitHub</a>
+                        <a href="https://github.com/alexaubry/HTMLString/tree/2.1.0/Sources/HTMLString/HTMLString.swift#L84-L86">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -246,6 +253,8 @@ sequence with the matching Unicode character.</p>
 </tr>
 </tbody></table>
 
+<p><strong>Complexity</strong>: <code>O(N)</code> where <code>N</code> is the number of characters in the string.</p>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -256,7 +265,7 @@ sequence with the matching Unicode character.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/alexaubry/HTMLString/tree/2.1.0/Sources/HTMLString/HTMLString.swift#L138-L197">Show on GitHub</a>
+                        <a href="https://github.com/alexaubry/HTMLString/tree/2.1.0/Sources/HTMLString/HTMLString.swift#L112-L171">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

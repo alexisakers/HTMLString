@@ -47,14 +47,16 @@ public extension String {
     ///
     /// | String | Result  | Format                                                  |
     /// |--------|---------|---------------------------------------------------------|
-    /// | `&`    | `&amp;` | Keyword escape (part of the Unicode special characters) |
+    /// | `&`    | `&#38;` | Decimal escape (part of the Unicode special characters) |
     /// | `Σ`    | `Σ`     | Not escaped (Unicode compliant)                         |
     /// | `🇺🇸`   | `🇺🇸`     | Not escaped (Unicode compliant)                         |
     /// | `a`    | `a`     | Not escaped (alphanumerical)                            |
     ///
+    /// **Complexity**: `O(N)` where `N` is the number of characters in the string.
+    ///
 
     public var escapingForUnicodeHTML: String {
-        return escapeHTML(isEncodingUnicode: true)
+        return unicodeScalars.reduce(String()) { $0 + $1.escapingIfNeeded }
     }
 
     ///
@@ -65,7 +67,7 @@ public extension String {
     ///
     /// | String | Result               | Format                                               |
     /// |--------|----------------------|------------------------------------------------------|
-    /// | `&`    | `&amp;`              | Keyword escape                                       |
+    /// | `&`    | `&#38;`              | Keyword escape                                       |
     /// | `Σ`    | `&#931;`             | Decimal escape                                       |
     /// | `🇺🇸`   | `&#127482;&#127480;` | Combined decimal escapes (extented grapheme cluster) |
     /// | `a`    | `a`                  | Not escaped (alphanumerical)                         |
@@ -76,41 +78,11 @@ public extension String {
     /// as it is faster, and produces less bloated and more readable HTML (as long as you are using 
     /// a unicode compliant HTML reader).
     ///
+    /// **Complexity**: `O(N)` where `N` is the number of characters in the string.
+    ///
 
     public var escapingForASCIIHTML: String {
-        return escapeHTML(isEncodingUnicode: false)
-    }
-
-    private func escapeHTML(isEncodingUnicode: Bool) -> String {
-
-        return self.characters.reduce(String()) {
-
-            let character = String($1)
-
-            // Ignore alphanumerical characters to avoid unnecessary lookups
-            guard character < "\u{30}" || character > "\u{7a}" else {
-                return $0 + character
-            }
-
-            let escaped = isEncodingUnicode ? character.performUnicodeEscaping() : character.performASCIIEscaping()
-            return $0 + escaped
-
-        }
-
-    }
-
-    private func performASCIIEscaping() -> String {
-
-        guard let escapeSequence = HTMLTables.escapingTable[self] else {
-            return unicodeScalars.reduce(String()) { $0 + $1.escapingForASCII }
-        }
-
-        return escapeSequence
-
-    }
-
-    private func performUnicodeEscaping() -> String {
-        return unicodeScalars.reduce(String()) { $0 + $1.escapingIfNeeded }
+        return unicodeScalars.reduce(String()) { $0 + $1.escapingForASCII }
     }
 
 }
@@ -133,6 +105,8 @@ extension String {
     /// | `&#127482;&#127480;` | `🇺🇸` | Combined decimal escapes (extented grapheme cluster) |
     /// | `a`                  | `a`  | Not an escape                                        |
     /// | `&`                  | `&`  | Not an escape                                        |
+    ///
+    /// **Complexity**: `O(N)` where `N` is the number of characters in the string.
     ///
 
     public var unescapingFromHTML: String {
@@ -220,18 +194,36 @@ extension String {
 
 extension UnicodeScalar {
 
-    fileprivate var escapingForASCII: String {
-        return isASCII ? escapingIfNeeded : ("&#" + String(value) + ";")
+    ///
+    /// Returns the decimal HTML escape of the Unicode scalar.
+    ///
+    /// This allows you to perform custom escaping.
+    ///
+
+    public var htmlEscaped: String {
+        return "&#" + String(value) + ";"
     }
+
+    ///
+    /// The scalar escaped for ASCII encoding.
+    ///
+
+    fileprivate var escapingForASCII: String {
+        return isASCII ? escapingIfNeeded : htmlEscaped
+    }
+
+    ///
+    /// Escapes the scalar only if it needs to be escaped for Unicode pages.
+    ///
+    /// [Reference](http://wonko.com/post/html-escaping)
+    /// 
 
     fileprivate var escapingIfNeeded: String {
 
-        // Avoid unnecessary lookups
-        guard value > 0x22 && value < 0x20ac else {
-            return String(self)
+        switch value {
+        case 33, 34, 36, 37, 38, 39, 43, 44, 60, 61, 62, 64, 91, 93, 96, 123, 125: return htmlEscaped
+        default: return String(self)
         }
-
-        return HTMLTables.requiredEscapingsTable[value] ?? String(self)
 
     }
 
