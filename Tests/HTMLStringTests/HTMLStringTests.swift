@@ -50,7 +50,7 @@ class HTMLStringTests: XCTestCase {
     func testStringASCIIEscaping() {
 
         let namedEscape = ("Fish & Chips").escapingForASCIIHTML
-        XCTAssertEqual(namedEscape, "Fish &amp; Chips")
+        XCTAssertEqual(namedEscape, "Fish &#38; Chips")
 
         let namedDualEscape = ("a ⪰̸ b").escapingForASCIIHTML
         XCTAssertEqual(namedDualEscape, "a &#10928;&#824; b")
@@ -70,13 +70,13 @@ class HTMLStringTests: XCTestCase {
     func testStringUnicodeEscaping() {
 
         let requiredEscape = ("Fish & Chips").escapingForUnicodeHTML
-        XCTAssertEqual(requiredEscape, "Fish &amp; Chips")
+        XCTAssertEqual(requiredEscape, "Fish &#38; Chips")
 
         let namedDualEscape = ("a ⪰̸ b").escapingForUnicodeHTML
         XCTAssertEqual(namedDualEscape, "a ⪰̸ b")
 
         let emojiEscape = ("Hey 🙃!").escapingForUnicodeHTML
-        XCTAssertEqual(emojiEscape, "Hey 🙃!")
+        XCTAssertEqual(emojiEscape, "Hey 🙃&#33;")
 
         let doubleEmojiEscape = ("Going to the 🇺🇸 next June").escapingForUnicodeHTML
         XCTAssertEqual(doubleEmojiEscape, "Going to the 🇺🇸 next June")
