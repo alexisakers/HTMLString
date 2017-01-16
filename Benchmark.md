@@ -11,6 +11,8 @@ A set of measures tracking the performance of the library.
 
 ## 🤖 Common Tasks
 
+*Average time over 1000 iterations*
+
 ### Debug
 
 | Task | v2.0.1 | v2.1.0 | v2.1.1 |
