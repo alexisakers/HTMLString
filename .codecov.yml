@@ -1,3 +1,4 @@
 ignore:
     - "Tests"
     - "Sources/Performance"
+    - "Sources/HTMLString/ObjC.swift"

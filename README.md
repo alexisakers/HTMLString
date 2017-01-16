@@ -36,6 +36,7 @@
 - Full support of Swift extended grapheme clusters
 - [Fast](https://github.com/alexaubry/HTMLString/tree/master/Benchmark.md)
 - Unit tested
+- [Compatible with Objective-C](https://github.com/alexaubry/HTMLString/tree/master/README.md#objective%2Dc-api)
 
 ## Platforms
 
@@ -105,6 +106,40 @@ let emoji = escapedEmoji.unescapingFromHTML // "My favorite emoji is 🙃"
 
 let escapedSnack = "Fish &amp; Chips"
 let snack = escapedSnack.unescapingFromHTML // "Fish & Chips"
+~~~
+
+## Objective-C API
+
+Using mix and match, you can import and use `HTMLString` from Objective-C code.
+
+You interact with HTML strings with these categories on the `NSString` type:
+
+- `[aString stringByEscapingForUnicodeHTML];`: Replaces every character incompatible with HTML Unicode encoding HTML escape.
+- `[aString stringByEscapingForASCIIHTML];` : Replaces every character incompatible with HTML ASCII encoding by a standard HTML escape.
+- `[aString stringByUnescapingFromHTML];` : Replaces every HTML escape sequence with the matching Unicode character.
+
+### Escaping
+
+~~~objc
+@import HTMLString;
+
+NSString *emoji = @"My favorite emoji is 🙃";
+NSString *escapedEmoji = [emoji stringByEscapingForASCIIHTML]; // "My favorite emoji is &#128579;"
+
+NSString *snack = @"Fish & Chips";
+NSString *escapedSnack = [snack stringByEscapingForUnicodeHTML]; // "Fish &amp; Chips"
+~~~
+
+### Unescaping
+
+~~~objc
+@import HTMLString;
+
+NSString *escapedEmoji = @"My favorite emoji is &#x1F643;";
+NSString *emoji = [escapedEmoji stringByUnescapingFromHTML]; // "My favorite emoji is 🙃"
+
+NSString *escapedSnack = @"Fish &amp; Chips";
+NSString *snack = [escapedSnack stringByUnescapingFromHTML]; // "Fish & Chips"
 ~~~
 
 ## Acknowledgements
