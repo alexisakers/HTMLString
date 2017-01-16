@@ -110,7 +110,7 @@ let snack = escapedSnack.unescapingFromHTML // "Fish & Chips"
 
 ## Objective-C API
 
-Using mix and match, you can import and use `HTMLString` from Objective-C code.
+Using mix and match, you can import and use `HTMLString` in Objective-C code.
 
 You interact with HTML strings with these categories on the `NSString` type:
 

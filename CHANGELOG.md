@@ -1,5 +1,10 @@
 # HTMLString Change Log
 
+## 2017-01-16 — Version 2.1.2
+
+- Added an Objective-C Mix & Match API
+- Codebase improvements
+
 ## 2017-01-05 — Version 2.1.1
 
 ### API
