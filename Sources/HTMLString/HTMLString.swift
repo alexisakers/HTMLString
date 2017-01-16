@@ -56,7 +56,7 @@ public extension String {
     ///
 
     public var escapingForUnicodeHTML: String {
-        return unicodeScalars.reduce(String()) { $0 + $1.escapingIfNeeded }
+        return unicodeScalars.reduce("") { $0 + $1.escapingIfNeeded }
     }
 
     ///
@@ -82,7 +82,7 @@ public extension String {
     ///
 
     public var escapingForASCIIHTML: String {
-        return unicodeScalars.reduce(String()) { $0 + $1.escapingForASCII }
+        return unicodeScalars.reduce("") { $0 + $1.escapingForASCII }
     }
 
 }
@@ -124,9 +124,7 @@ extension String {
             let head = self[idx ..< delimiterRange.lowerBound]
             result += head
 
-            let semicolonSearchRange = delimiterRange.upperBound ..< endIndex
-
-            guard let semicolonRange = range(of: ";", range: semicolonSearchRange) else {
+            guard let semicolonRange = range(of: ";", range: delimiterRange.upperBound ..< endIndex) else {
                 result += "&"
                 idx = delimiterRange.upperBound
                 break
