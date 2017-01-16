@@ -40,7 +40,8 @@ let targets = [
 ]
 
 let excludes: [String] = [
-    "Sources/Performance"
+    "Sources/Performance",
+    "HTMLStringObjC"
 ]
 
 let package = Package(

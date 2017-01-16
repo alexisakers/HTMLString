@@ -1,7 +1,7 @@
 /**
  * ==---------------------------------------------------------------------------------==
  *
- *  File            :   HTMLString.swift
+ *  File            :   ObjC.swift
  *  Project         :   HTMLString
  *  Author          :   Alexis Aubry Radanovic
  *
@@ -34,14 +34,16 @@
 
 import Foundation
 
-// MARK: Escaping
+#if os(iOS) || os(macOS) || os(tvOS) || os(watchOS)
 
-public extension String {
+extension NSString {
 
     ///
-    /// Returns a new string made from the `String` by replacing every character
+    /// Returns a new string made from the `NSString` by replacing every character
     /// incompatible with HTML Unicode encoding (UTF-16 or UTF-8) by a standard
     /// HTML escape.
+    ///
+    /// - returns: The escaped `NSString`.
     ///
     /// ### Examples
     ///
@@ -55,13 +57,16 @@ public extension String {
     /// **Complexity**: `O(N)` where `N` is the number of characters in the string.
     ///
 
-    public var escapingForUnicodeHTML: String {
-        return unicodeScalars.reduce("") { $0 + $1.escapingIfNeeded }
+    @objc public func stringByEscapingForASCIIHTML() -> NSString {
+        let escaped = (self as String).escapingForASCIIHTML
+        return escaped as NSString
     }
 
     ///
     /// Returns a new string made from the `String` by replacing every character
     /// incompatible with HTML ASCII encoding by a standard HTML escape.
+    ///
+    /// - returns: The escaped `NSString`.
     ///
     /// ### Examples
     ///
@@ -81,19 +86,16 @@ public extension String {
     /// **Complexity**: `O(N)` where `N` is the number of characters in the string.
     ///
 
-    public var escapingForASCIIHTML: String {
-        return unicodeScalars.reduce("") { $0 + $1.escapingForASCII }
+    @objc public func stringByEscapingForUnicodeHTML() -> NSString {
+        let escaped = (self as String).escapingForUnicodeHTML
+        return escaped as NSString
     }
-
-}
-
-// MARK: - Unescaping
-
-extension String {
 
     ///
     /// Returns a new string made from the `String` by replacing every HTML escape
     /// sequence with the matching Unicode character.
+    ///
+    /// - returns: The unescaped `NSString`.
     ///
     /// ### Examples
     ///
@@ -109,120 +111,11 @@ extension String {
     /// **Complexity**: `O(N)` where `N` is the number of characters in the string.
     ///
 
-    public var unescapingFromHTML: String {
-
-        guard self.contains("&") else {
-            return self
-        }
-
-        var result = String()
-        var idx = startIndex
-
-        while let delimiterRange = range(of: "&", range: idx ..< endIndex) {
-
-            // Avoid unnecessary operations
-            let head = self[idx ..< delimiterRange.lowerBound]
-            result += head
-
-            guard let semicolonRange = range(of: ";", range: delimiterRange.upperBound ..< endIndex) else {
-                result += "&"
-                idx = delimiterRange.upperBound
-                break
-            }
-
-            let escapableContent = self[delimiterRange.upperBound ..< semicolonRange.lowerBound]
-            let replacementString: String
-
-            if escapableContent.hasPrefix("#") {
-
-                guard let unescapedNumber = escapableContent.unescapeAsNumber() else {
-                    result += self[delimiterRange.lowerBound ..< semicolonRange.upperBound]
-                    idx = semicolonRange.upperBound
-                    continue
-                }
-
-                replacementString = unescapedNumber
-
-            } else {
-
-                guard let unescapedCharacter = HTMLTables.unescapingTable[escapableContent] else {
-                    result += self[delimiterRange.lowerBound ..< semicolonRange.upperBound]
-                    idx = semicolonRange.upperBound
-                    continue
-                }
-
-                replacementString = unescapedCharacter
-
-            }
-
-            result += replacementString
-            idx = semicolonRange.upperBound
-
-        }
-
-        // Append unprocessed data, if unprocessed data there is
-        let tail = self[idx ..< endIndex]
-        result += tail
-
-        return result
-
-    }
-
-    private func unescapeAsNumber() -> String? {
-
-        let isHexadecimal = self.hasPrefix("#X") || self.hasPrefix("#x")
-
-        let numberStartIndexOffset = isHexadecimal ? 2 : 1
-        let numberString = self [ index(startIndex, offsetBy: numberStartIndexOffset) ..< endIndex ]
-
-        let radix = isHexadecimal ? 16 : 10
-
-        guard let codePoint = UInt32(numberString, radix: radix),
-              let scalar = UnicodeScalar(codePoint) else {
-            return nil
-        }
-
-        return String(scalar)
-
+    @objc public func stringByUnescapingFromHTML() -> NSString {
+        let escaped = (self as String).unescapingFromHTML
+        return escaped as NSString
     }
 
 }
 
-// MARK: - UnicodeScalar+Escape
-
-extension UnicodeScalar {
-
-    ///
-    /// Returns the decimal HTML escape of the Unicode scalar.
-    ///
-    /// This allows you to perform custom escaping.
-    ///
-
-    public var htmlEscaped: String {
-        return "&#" + String(value) + ";"
-    }
-
-    ///
-    /// The scalar escaped for ASCII encoding.
-    ///
-
-    fileprivate var escapingForASCII: String {
-        return isASCII ? escapingIfNeeded : htmlEscaped
-    }
-
-    ///
-    /// Escapes the scalar only if it needs to be escaped for Unicode pages.
-    ///
-    /// [Reference](http://wonko.com/post/html-escaping)
-    /// 
-
-    fileprivate var escapingIfNeeded: String {
-
-        switch value {
-        case 33, 34, 36, 37, 38, 39, 43, 44, 60, 61, 62, 64, 91, 93, 96, 123, 125: return htmlEscaped
-        default: return String(self)
-        }
-
-    }
-
-}
+#endif

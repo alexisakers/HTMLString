@@ -27,15 +27,17 @@
     </a>
 </p>
 
-`HTMLString` is a micro-library written in Swift that enables your app to encode and decode HTML `String`s.
+`HTMLString` is a micro-library written in Swift that enables your app to escape and unescape HTML Strings.
 
-## Features
-
-- ASCII and Unicode-compatible Escaping
-- Unescaping
-- Full support of Swift extended grapheme clusters
-- [Fast](https://github.com/alexaubry/HTMLString/tree/master/Benchmark.md)
-- Unit tested
+|         | Main features |
+----------|----------------
+&#128271; | Escapes for ASCII and UTF-8/UTF-16 encodings
+&#128221; | Unescapes more than 2100 entities
+&#128290; | Supports decimal and hexadecimal entities
+&#128035; | Designed for Swift Extended Grapheme Clusters
+&#009989; | Fully unit tested
+&#129302; | [Compatible with Objective-C](https://github.com/alexaubry/HTMLString/tree/master/README.md#objective%2Dc-api)
+&#009889; | [Fast](https://github.com/alexaubry/HTMLString/tree/master/Benchmark.md)
 
 ## Platforms
 
@@ -73,17 +75,17 @@ github "alexaurby/HTMLString"
 
 ### Manual
 
-Add the `Sources/HTMLString/HTMLString.swift` and `Sources/HTMLString/Mappings.swift` files to your project.
+Drop the files in the `Sources/HTMLString/` directory into your project.
 
 ## Usage
 
 You interact with HTML strings with these extensions on the `String` type:
 
-- `escapingForUnicodeHTML`: Replaces every character incompatible with HTML Unicode encoding HTML escape.
-- `escapingForASCIIHTML` : Replaces every character incompatible with HTML ASCII encoding by a standard HTML escape.
-- `unescapingFromHTML` : Replaces every HTML escape sequence with the matching Unicode character.
+- [`escapingForUnicodeHTML`](https://alexaubry.github.io/HTMLString/Extensions/String.html#/s:vE10HTMLStringSS22escapingForUnicodeHTMLSS): Replaces every character incompatible with Unicode encoding by an HTML escape.
+- [`escapingForASCIIHTML`](https://alexaubry.github.io/HTMLString/Extensions/String.html#/s:vE10HTMLStringSS20escapingForASCIIHTMLSS) : Replaces every character incompatible with ASCII encoding by an HTML escape.
+- [`unescapingFromHTML`](https://alexaubry.github.io/HTMLString/Extensions/String.html#/s:vE10HTMLStringSS18unescapingFromHTMLSS) : Replaces every HTML entity with its matching Unicode character.
 
-### Escaping
+### Escaping Examples
 
 ~~~swift
 import HTMLString
@@ -95,7 +97,7 @@ let snack = "Fish & Chips"
 let escapedSnack = snack.escapingForUnicodeHTML // "Fish &amp; Chips"
 ~~~
 
-### Unescaping
+### Unescaping Examples
 
 ~~~swift
 import HTMLString
@@ -105,6 +107,40 @@ let emoji = escapedEmoji.unescapingFromHTML // "My favorite emoji is 🙃"
 
 let escapedSnack = "Fish &amp; Chips"
 let snack = escapedSnack.unescapingFromHTML // "Fish & Chips"
+~~~
+
+## Objective-C API
+
+With Obj-C Mix and Match, you can import and use `HTMLString` in Objective-C code.
+
+You interact with HTML strings with these categories on the `NSString` type:
+
+- `[aString stringByEscapingForUnicodeHTML];` : Replaces every character incompatible with HTML Unicode encoding HTML escape.
+- `[aString stringByEscapingForASCIIHTML];` : Replaces every character incompatible with HTML ASCII encoding by a standard HTML escape.
+- `[aString stringByUnescapingFromHTML];` : Replaces every HTML escape sequence with the matching Unicode character.
+
+### Escaping Examples
+
+~~~objc
+@import HTMLString;
+
+NSString *emoji = @"My favorite emoji is 🙃";
+NSString *escapedEmoji = [emoji stringByEscapingForASCIIHTML]; // "My favorite emoji is &#128579;"
+
+NSString *snack = @"Fish & Chips";
+NSString *escapedSnack = [snack stringByEscapingForUnicodeHTML]; // "Fish &amp; Chips"
+~~~
+
+### Unescaping Examples
+
+~~~objc
+@import HTMLString;
+
+NSString *escapedEmoji = @"My favorite emoji is &#x1F643;";
+NSString *emoji = [escapedEmoji stringByUnescapingFromHTML]; // "My favorite emoji is 🙃"
+
+NSString *escapedSnack = @"Fish &amp; Chips";
+NSString *snack = [escapedSnack stringByUnescapingFromHTML]; // "Fish & Chips"
 ~~~
 
 ## Acknowledgements
