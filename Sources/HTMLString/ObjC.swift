@@ -34,6 +34,8 @@
 
 import Foundation
 
+#if os(iOS) || os(macOS) || os(tvOS) || os(watchOS)
+
 extension NSString {
 
     ///
@@ -115,3 +117,5 @@ extension NSString {
     }
 
 }
+
+#endif
