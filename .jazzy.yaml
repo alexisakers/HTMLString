@@ -6,9 +6,9 @@ github_file_prefix: https://github.com/alexaubry/HTMLString/tree/3.0.0
 module_version: 3.0.0
 xcodebuild_arguments: 
 - -scheme
-- HTMLString
+- HTMLString-macOS
 - -destination
-- 'platform=OS X,arch=x86_64'
+- 'platform=macOS'
 module: HTMLString
 root_url: https://alexaubry.github.io/HTMLString
 output: docs/
