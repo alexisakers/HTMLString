@@ -6,3 +6,5 @@ Packages/
 .build/
 Carthage/Build
 docs/undocumented.json
+Gemfile
+Gemfile.lock
