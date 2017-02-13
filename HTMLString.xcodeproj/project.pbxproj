@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5E0477931E2CEA8A0052B9DA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0477921E2CEA8A0052B9DA /* main.m */; };
-		5E0477971E2CED050052B9DA /* HTMLString.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* HTMLString.framework */; };
 		OBJ_25 /* HTMLString.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* HTMLString.swift */; };
 		OBJ_26 /* Mappings.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Mappings.swift */; };
 		OBJ_27 /* ObjC.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* ObjC.swift */; };
@@ -26,26 +24,10 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		5E04778E1E2CEA8A0052B9DA /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		5E0477901E2CEA8A0052B9DA /* HTMLStringObjC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HTMLStringObjC; sourceTree = BUILT_PRODUCTS_DIR; };
-		5E0477921E2CEA8A0052B9DA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		OBJ_10 /* Mappings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mappings.swift; sourceTree = "<group>"; };
 		OBJ_11 /* ObjC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjC.swift; sourceTree = "<group>"; };
 		OBJ_14 /* HTMLStringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLStringTests.swift; sourceTree = "<group>"; };
-		OBJ_15 /* Carthage */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Carthage; sourceTree = SOURCE_ROOT; };
-		OBJ_16 /* docs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = docs; sourceTree = SOURCE_ROOT; };
 		OBJ_18 /* HTMLString.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = HTMLString.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_19 /* HTMLStringTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = HTMLStringTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
@@ -53,14 +35,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		5E04778D1E2CEA8A0052B9DA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5E0477971E2CED050052B9DA /* HTMLString.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		OBJ_28 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
@@ -79,14 +53,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5E0477911E2CEA8A0052B9DA /* HTMLStringObjC */ = {
-			isa = PBXGroup;
-			children = (
-				5E0477921E2CEA8A0052B9DA /* main.m */,
-			);
-			path = HTMLStringObjC;
-			sourceTree = "<group>";
-		};
 		OBJ_12 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -109,23 +75,18 @@
 			children = (
 				OBJ_18 /* HTMLString.framework */,
 				OBJ_19 /* HTMLStringTests.xctest */,
-				5E0477901E2CEA8A0052B9DA /* HTMLStringObjC */,
 			);
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
 				OBJ_7 /* Sources */,
 				OBJ_12 /* Tests */,
-				5E0477911E2CEA8A0052B9DA /* HTMLStringObjC */,
-				OBJ_15 /* Carthage */,
-				OBJ_16 /* docs */,
 				OBJ_17 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -150,23 +111,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5E04778F1E2CEA8A0052B9DA /* HTMLStringObjC */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5E0477941E2CEA8A0052B9DA /* Build configuration list for PBXNativeTarget "HTMLStringObjC" */;
-			buildPhases = (
-				5E04778C1E2CEA8A0052B9DA /* Sources */,
-				5E04778D1E2CEA8A0052B9DA /* Frameworks */,
-				5E04778E1E2CEA8A0052B9DA /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = HTMLStringObjC;
-			productName = HTMLStringObjC;
-			productReference = 5E0477901E2CEA8A0052B9DA /* HTMLStringObjC */;
-			productType = "com.apple.product-type.tool";
-		};
 		OBJ_20 /* HTMLString */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = OBJ_21 /* Build configuration list for PBXNativeTarget "HTMLString" */;
@@ -207,13 +151,6 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 9999;
-				TargetAttributes = {
-					5E04778F1E2CEA8A0052B9DA = {
-						CreatedOnToolsVersion = 8.2;
-						DevelopmentTeam = 4TK36P6MK9;
-						ProvisioningStyle = Automatic;
-					};
-				};
 			};
 			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "HTMLString" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -222,27 +159,18 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_17 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				OBJ_20 /* HTMLString */,
 				OBJ_29 /* HTMLStringTests */,
-				5E04778F1E2CEA8A0052B9DA /* HTMLStringObjC */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		5E04778C1E2CEA8A0052B9DA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5E0477931E2CEA8A0052B9DA /* main.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		OBJ_24 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
@@ -272,90 +200,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		5E0477951E2CEA8A0052B9DA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
-				DEVELOPMENT_TEAM = 4TK36P6MK9;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		5E0477961E2CEA8A0052B9DA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
-				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = 4TK36P6MK9;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 		OBJ_22 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -475,14 +319,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5E0477941E2CEA8A0052B9DA /* Build configuration list for PBXNativeTarget "HTMLStringObjC" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5E0477951E2CEA8A0052B9DA /* Debug */,
-				5E0477961E2CEA8A0052B9DA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-		};
 		OBJ_2 /* Build configuration list for PBXProject "HTMLString" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
