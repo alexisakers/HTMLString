@@ -2,25 +2,19 @@ language: objective-c
 osx_image: xcode8
 env:
   global:
-  - FRAMEWORK_NAME=HTMLString
+    - FRAMEWORK_NAME=HTMLString
 before_install:
-- brew update
-- brew outdated carthage || brew upgrade carthage
+  - brew update
+  - brew outdated carthage || brew upgrade carthage
 script:
-- xcodebuild clean test -project HTMLString.xcodeproj -scheme HTMLString-iOS -destination
-  "platform=iOS Simulator,name=iPhone 6" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
-  ONLY_ACTIVE_ARCH=NO
-- xcodebuild clean build -project HTMLString.xcodeproj -scheme HTMLString-watchOS
-  CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
-- xcodebuild clean test -project HTMLString.xcodeproj -scheme HTMLString-tvOS -destination
-  "platform=tvOS Simulator,name=Apple TV 1080p" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
-  ONLY_ACTIVE_ARCH=NO
-- xcodebuild clean test -project HTMLString.xcodeproj -scheme HTMLString-macOS -destination
-  "platform=macOS" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
-- eval "$(curl -sL https://swift.vapor.sh/codecov)"
+  - xcodebuild clean test -project HTMLString.xcodeproj -scheme HTMLString-iOS -destination "platform=iOS Simulator,name=iPhone 6" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+  - xcodebuild clean build -project HTMLString.xcodeproj -scheme HTMLString-watchOS CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+  - xcodebuild clean test -project HTMLString.xcodeproj -scheme HTMLString-tvOS -destination "platform=tvOS Simulator,name=Apple TV 1080p" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+  - xcodebuild clean test -project HTMLString.xcodeproj -scheme HTMLString-macOS -destination "platform=macOS" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+  - eval "$(curl -sL https://swift.vapor.sh/codecov)"
 before_deploy:
-- carthage build --no-skip-current
-- carthage archive $FRAMEWORK_NAME
+  - carthage build --no-skip-current
+  - carthage archive $FRAMEWORK_NAME
 deploy:
   - provider: releases
     api_key:
