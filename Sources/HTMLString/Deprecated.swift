@@ -6,17 +6,17 @@ fileprivate func unavailable(_ fn: String = #function, file: StaticString = #fil
 
 extension String {
 
-    @available(*, unavailable, deprecated: 2.2, renamed: "addingUnicodeEntities")
+    @available(*, unavailable, deprecated: 3.0, renamed: "addingUnicodeEntities")
     public var escapingForUnicodeHTML: String {
         unavailable()
     }
 
-    @available(*, unavailable, deprecated: 2.2, renamed: "addingASCIIEntities")
+    @available(*, unavailable, deprecated: 3.0, renamed: "addingASCIIEntities")
     public var escapingForASCIIHTML: String {
         unavailable()
     }
 
-    @available(*, unavailable, deprecated: 2.2, renamed: "removingHTMLEntities")
+    @available(*, unavailable, deprecated: 3.0, renamed: "removingHTMLEntities")
     public var unescapingFromHTML: String {
         unavailable()
     }
@@ -27,17 +27,17 @@ extension String {
 
 extension NSString {
 
-    @available(*, unavailable, deprecated: 2.2, renamed: "addingUnicodeEntities")
+    @available(*, unavailable, deprecated: 3.0, renamed: "addingUnicodeEntities")
     public func stringByEscapingForUnicodeHTML() -> NSString {
         unavailable()
     }
 
-    @available(*, unavailable, deprecated: 2.2, renamed: "addingASCIIEntities")
+    @available(*, unavailable, deprecated: 3.0, renamed: "addingASCIIEntities")
     public func stringByEscapingForASCIIHTML() -> NSString {
         unavailable()
     }
 
-    @available(*, unavailable, deprecated: 2.2, renamed: "removingHTMLEntities")
+    @available(*, unavailable, deprecated: 3.0, renamed: "removingHTMLEntities")
     public func stringByUnescapingFromHTML() -> NSString {
         unavailable()
     }

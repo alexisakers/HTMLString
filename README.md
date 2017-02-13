@@ -48,7 +48,7 @@
 Add this line to your `Package.swift` :
 
 ~~~swift
-.Package(url: "https://github.com/alexaubry/HTMLString", majorVersion: 2, minor: 1)
+.Package(url: "https://github.com/alexaubry/HTMLString", majorVersion: 3, minor: 0)
 ~~~
 
 ### CocoaPods
