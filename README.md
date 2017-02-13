@@ -27,7 +27,7 @@
 &#128271; | Adds entities for ASCII and UTF-8/UTF-16 encodings
 &#128221; | Removes more than 2100 named entities (like `&amp;`)
 &#128290; | Supports removing decimal and hexadecimal entities
-&#128035; | Designed to support Swift Extended Grapheme Clusters
+&#128035; | Designed to support Swift Extended Grapheme Clusters (&#8594; 100% emoji-proof)
 &#009989; | Fully unit tested
 &#009889; | Fast
 &#128218; | [100% documented](https://alexaubry.github.io/HTMLString/)
