@@ -1,11 +1,38 @@
-os:
-  - linux
-  - osx
-language: generic
-sudo: required
-dist: trusty
-osx_image: xcode8.2
-
+language: objective-c
+osx_image: xcode8
+env:
+  global:
+  - FRAMEWORK_NAME=HTMLString
+before_install:
+- brew update
+- brew outdated carthage || brew upgrade carthage
 script:
-  - eval "$(curl -sL https://swift.vapor.sh/ci)"
-  - eval "$(curl -sL https://swift.vapor.sh/codecov)"
+- xcodebuild clean test -project HTMLString.xcodeproj -scheme HTMLString-iOS -destination
+  "platform=iOS Simulator,name=iPhone 6" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+  ONLY_ACTIVE_ARCH=NO
+- xcodebuild clean build -project HTMLString.xcodeproj -scheme HTMLString-watchOS
+  CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+- xcodebuild clean test -project HTMLString.xcodeproj -scheme HTMLString-tvOS -destination
+  "platform=tvOS Simulator,name=Apple TV 1080p" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+  ONLY_ACTIVE_ARCH=NO
+- xcodebuild clean test -project HTMLString.xcodeproj -scheme HTMLString-macOS -destination
+  "platform=macOS" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+- eval "$(curl -sL https://swift.vapor.sh/codecov)"
+before_deploy:
+- carthage build --no-skip-current
+- carthage archive $FRAMEWORK_NAME
+deploy:
+  - provider: releases
+    api_key:
+      secure: bI9J98yDzELOVAjxCxmxvRvQ99ITOAUPCUtShzSmhJTQdu+ED5MhAwPQshjSnU6uPtCm6tdYo6LzqgPVQKGs2ARdyYN2YCsrVx4cCzXNTt4VNOtUtbh4l3LHueLgBdlz4EGo76HTw49mlSt7jfBwN99BzrypQ8ZN51rGtmGNYzfFXXOaQbn4VmoKPpix64e/QMH6rX0smqkDQalDURDKY/uvlq3ON8nOqH5lWY6K++LT/XAWdUqb8DqpOJs/g6eVj+aAgrMH5rPkzTICAmN/6YvFK3JxBZt+cpfRgVnk4aMLyTGX84EFWfWPKO4MmVobyzEupAUh8/PjXuhSQN1sRpOe96aY0z6ysVN9mns+seEaLG627lcU7VFjF/mH+dy4goLvMyTDXlUMk6lZl5wRoYpL5p5+krlnUVYcr99zuVf+o5EZk1CuBdDLKgQc6DoB8X2flvKCuMqwfCRd0XqVdO6M3BvCNWg+cNlrdSoTNZ0wMm+0Otq2gTQWMRR7jWONhgsCPGiqVW/9C6ImTyUBkZHT9/HsrrLxIrNSRorY+4eHuCRKZmlSeAKuLmBmfmKotKz7ya0QgMKx6Rg6CWMpenEJckehfC2aeTWeEZPn2UW57pIe0yyLcRGbcsJuMiKMXUAaB8+i1AESyl42uje+dl5V2HSADhAIe0rXwaaONdc=
+    file: "$FRAMEWORK_NAME.framework.zip"
+    skip_cleanup: true
+    on:
+      repo: alexaubry/HTMLString
+      tags: true
+  - provider: script
+    skip_cleanup: true
+    script: ci/deploy_pod.sh
+    on:
+      repo: alexaubry/HTMLString
+      tags: true
