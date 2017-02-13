@@ -60,9 +60,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vE10HTMLStringSS22escapingForUnicodeHTMLSS"></a>
-                    <a name="//apple_ref/swift/Property/escapingForUnicodeHTML" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vE10HTMLStringSS22escapingForUnicodeHTMLSS">escapingForUnicodeHTML</a>
+                    <a name="/s:vE10HTMLStringSS21addingUnicodeEntitiesSS"></a>
+                    <a name="//apple_ref/swift/Property/addingUnicodeEntities" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vE10HTMLStringSS21addingUnicodeEntitiesSS">addingUnicodeEntities</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -71,8 +71,8 @@
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Returns a new string made from the <code>String</code> by replacing every character
-incompatible with HTML Unicode encoding (UTF-16 or UTF-8) by a standard
-HTML escape.</p>
+incompatible with HTML Unicode encoding (UTF-16 or UTF-8) by a decimal
+HTML entity.</p>
 
 <p><a href='#examples' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='examples'>Examples</h3></p>
 
@@ -86,7 +86,7 @@ HTML escape.</p>
 <tr>
 <td><code>&amp;</code></td>
 <td><code>&amp;#38;</code></td>
-<td>Decimal escape (part of the Unicode special characters)</td>
+<td>Decimal entity (part of the Unicode special characters)</td>
 </tr>
 <tr>
 <td><code>Σ</code></td>
@@ -112,12 +112,12 @@ HTML escape.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">escapingForUnicodeHTML</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">addingUnicodeEntities</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/alexaubry/HTMLString/tree/2.1.2/Sources/HTMLString/HTMLString.swift#L58-L60">Show on GitHub</a>
+                        <a href="https://github.com/alexaubry/HTMLString/tree/3.0.0/Sources/HTMLString/HTMLString.swift#L24-L26">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -125,9 +125,9 @@ HTML escape.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vE10HTMLStringSS20escapingForASCIIHTMLSS"></a>
-                    <a name="//apple_ref/swift/Property/escapingForASCIIHTML" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vE10HTMLStringSS20escapingForASCIIHTMLSS">escapingForASCIIHTML</a>
+                    <a name="/s:vE10HTMLStringSS19addingASCIIEntitiesSS"></a>
+                    <a name="//apple_ref/swift/Property/addingASCIIEntities" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vE10HTMLStringSS19addingASCIIEntitiesSS">addingASCIIEntities</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -136,7 +136,7 @@ HTML escape.</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Returns a new string made from the <code>String</code> by replacing every character
-incompatible with HTML ASCII encoding by a standard HTML escape.</p>
+incompatible with HTML ASCII encoding by a decimal HTML entity.</p>
 
 <p><a href='#examples' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='examples'>Examples</h3></p>
 
@@ -150,17 +150,17 @@ incompatible with HTML ASCII encoding by a standard HTML escape.</p>
 <tr>
 <td><code>&amp;</code></td>
 <td><code>&amp;#38;</code></td>
-<td>Keyword escape</td>
+<td>Decimal entity</td>
 </tr>
 <tr>
 <td><code>Σ</code></td>
 <td><code>&amp;#931;</code></td>
-<td>Decimal escape</td>
+<td>Decimal entity</td>
 </tr>
 <tr>
 <td><code>🇺🇸</code></td>
 <td><code>&amp;#127482;&amp;#127480;</code></td>
-<td>Combined decimal escapes (extented grapheme cluster)</td>
+<td>Combined decimal entities (extented grapheme cluster)</td>
 </tr>
 <tr>
 <td><code>a</code></td>
@@ -171,7 +171,7 @@ incompatible with HTML ASCII encoding by a standard HTML escape.</p>
 
 <p><a href='#performance' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='performance'>Performance</h3></p>
 
-<p>If your webpage is unicode encoded (UTF-16 or UTF-8) use <code><a href="../Extensions/String.html#/s:vE10HTMLStringSS22escapingForUnicodeHTMLSS">escapingForUnicodeHTML</a></code> instead 
+<p>If your webpage is unicode encoded (UTF-16 or UTF-8) use <code>escapingForUnicodeHTML</code> instead 
 as it is faster, and produces less bloated and more readable HTML (as long as you are using 
 a unicode compliant HTML reader).</p>
 
@@ -182,12 +182,12 @@ a unicode compliant HTML reader).</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">escapingForASCIIHTML</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">addingASCIIEntities</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/alexaubry/HTMLString/tree/2.1.2/Sources/HTMLString/HTMLString.swift#L84-L86">Show on GitHub</a>
+                        <a href="https://github.com/alexaubry/HTMLString/tree/3.0.0/Sources/HTMLString/HTMLString.swift#L50-L52">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -199,9 +199,9 @@ a unicode compliant HTML reader).</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vE10HTMLStringSS18unescapingFromHTMLSS"></a>
-                    <a name="//apple_ref/swift/Property/unescapingFromHTML" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vE10HTMLStringSS18unescapingFromHTMLSS">unescapingFromHTML</a>
+                    <a name="/s:vE10HTMLStringSS20removingHTMLEntitiesSS"></a>
+                    <a name="//apple_ref/swift/Property/removingHTMLEntities" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vE10HTMLStringSS20removingHTMLEntitiesSS">removingHTMLEntities</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -209,8 +209,8 @@ a unicode compliant HTML reader).</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Returns a new string made from the <code>String</code> by replacing every HTML escape
-sequence with the matching Unicode character.</p>
+                        <p>Returns a new string made from the <code>String</code> by replacing every HTML entity
+with the matching Unicode character.</p>
 
 <p><a href='#examples' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='examples'>Examples</h3></p>
 
@@ -224,32 +224,32 @@ sequence with the matching Unicode character.</p>
 <tr>
 <td><code>&amp;amp;</code></td>
 <td><code>&amp;</code></td>
-<td>Keyword escape</td>
+<td>Keyword entity</td>
 </tr>
 <tr>
 <td><code>&amp;#931;</code></td>
 <td><code>Σ</code></td>
-<td>Decimal escape</td>
+<td>Decimal entity</td>
 </tr>
 <tr>
 <td><code>&amp;#x10d;</code></td>
 <td><code>č</code></td>
-<td>Hexadecimal escape</td>
+<td>Hexadecimal entity</td>
 </tr>
 <tr>
 <td><code>&amp;#127482;&amp;#127480;</code></td>
 <td><code>🇺🇸</code></td>
-<td>Combined decimal escapes (extented grapheme cluster)</td>
+<td>Combined decimal entities (extented grapheme cluster)</td>
 </tr>
 <tr>
 <td><code>a</code></td>
 <td><code>a</code></td>
-<td>Not an escape</td>
+<td>Not an entity</td>
 </tr>
 <tr>
 <td><code>&amp;</code></td>
 <td><code>&amp;</code></td>
-<td>Not an escape</td>
+<td>Not an entity</td>
 </tr>
 </tbody></table>
 
@@ -260,12 +260,12 @@ sequence with the matching Unicode character.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">unescapingFromHTML</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">removingHTMLEntities</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/alexaubry/HTMLString/tree/2.1.2/Sources/HTMLString/HTMLString.swift#L112-L169">Show on GitHub</a>
+                        <a href="https://github.com/alexaubry/HTMLString/tree/3.0.0/Sources/HTMLString/HTMLString.swift#L78-L135">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
