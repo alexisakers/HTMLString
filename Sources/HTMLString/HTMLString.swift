@@ -6,17 +6,17 @@ public extension String {
 
     ///
     /// Returns a new string made from the `String` by replacing every character
-    /// incompatible with HTML Unicode encoding (UTF-16 or UTF-8) by a standard
-    /// HTML escape.
+    /// incompatible with HTML Unicode encoding (UTF-16 or UTF-8) by a decimal
+    /// HTML entity.
     ///
     /// ### Examples
     ///
-    /// | String | Result  | Format                                                  |
-    /// |--------|---------|---------------------------------------------------------|
-    /// | `&`    | `&#38;` | Decimal escape (part of the Unicode special characters) |
-    /// | `Σ`    | `Σ`     | Not escaped (Unicode compliant)                         |
-    /// | `🇺🇸`   | `🇺🇸`     | Not escaped (Unicode compliant)                         |
-    /// | `a`    | `a`     | Not escaped (alphanumerical)                            |
+    /// | String | Result | Format |
+    /// |--------|--------|--------|
+    /// | `&` | `&#38;` | Decimal entity (part of the Unicode special characters) |
+    /// | `Σ` | `Σ` | Not escaped (Unicode compliant) |
+    /// | `🇺🇸` | `🇺🇸` | Not escaped (Unicode compliant) |
+    /// | `a` | `a` | Not escaped (alphanumerical) |
     ///
     /// **Complexity**: `O(N)` where `N` is the number of characters in the string.
     ///
@@ -27,16 +27,16 @@ public extension String {
 
     ///
     /// Returns a new string made from the `String` by replacing every character
-    /// incompatible with HTML ASCII encoding by a standard HTML escape.
+    /// incompatible with HTML ASCII encoding by a decimal HTML entity.
     ///
     /// ### Examples
     ///
-    /// | String | Result               | Format                                               |
-    /// |--------|----------------------|------------------------------------------------------|
-    /// | `&`    | `&#38;`              | Keyword escape                                       |
-    /// | `Σ`    | `&#931;`             | Decimal escape                                       |
-    /// | `🇺🇸`   | `&#127482;&#127480;` | Combined decimal escapes (extented grapheme cluster) |
-    /// | `a`    | `a`                  | Not escaped (alphanumerical)                         |
+    /// | String | Result | Format |
+    /// |--------|--------|--------|
+    /// | `&` | `&#38;` | Decimal entity |
+    /// | `Σ` | `&#931;` | Decimal entity |
+    /// | `🇺🇸` | `&#127482;&#127480;` | Combined decimal entities (extented grapheme cluster) |
+    /// | `a` | `a` | Not escaped (alphanumerical) |
     ///
     /// ### Performance
     ///
@@ -58,19 +58,19 @@ public extension String {
 extension String {
 
     ///
-    /// Returns a new string made from the `String` by replacing every HTML escape
-    /// sequence with the matching Unicode character.
+    /// Returns a new string made from the `String` by replacing every HTML entity
+    /// with the matching Unicode character.
     ///
     /// ### Examples
     ///
-    /// | String               | Result                 | Format                             |
-    /// |----------------------|------------------------|------------------------------------|
-    /// | `&amp;`              | `&`  | Keyword escape                                       |
-    /// | `&#931;`             | `Σ`  | Decimal escape                                       |
-    /// | `&#x10d;`            | `č`  | Hexadecimal escape                                   |
-    /// | `&#127482;&#127480;` | `🇺🇸` | Combined decimal escapes (extented grapheme cluster) |
-    /// | `a`                  | `a`  | Not an escape                                        |
-    /// | `&`                  | `&`  | Not an escape                                        |
+    /// | String | Result | Format |
+    /// |--------|--------|--------|
+    /// | `&amp;` | `&` | Keyword entity |
+    /// | `&#931;` | `Σ` | Decimal entity |
+    /// | `&#x10d;` | `č` | Hexadecimal entity |
+    /// | `&#127482;&#127480;` | `🇺🇸` | Combined decimal entities (extented grapheme cluster) |
+    /// | `a` | `a` | Not an entity |
+    /// | `&` | `&` | Not an entity |
     ///
     /// **Complexity**: `O(N)` where `N` is the number of characters in the string.
     ///
@@ -159,7 +159,7 @@ extension String {
 extension UnicodeScalar {
 
     ///
-    /// Returns the decimal HTML escape of the Unicode scalar.
+    /// Returns the decimal HTML entity of the Unicode scalar.
     ///
     /// This allows you to perform custom escaping.
     ///
