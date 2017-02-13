@@ -23,8 +23,9 @@ extension NSString {
     /// **Complexity**: `O(N)` where `N` is the number of characters in the string.
     ///
 
-    @objc public func stringByAddingASCIIEntities() -> NSString {
-        let escaped = (self as String).addingASCIIEntities
+    @objc(stringByAddingUnicodeEntities)
+    public func addingUnicodeEntities() -> NSString {
+        let escaped = (self as String).addingUnicodeEntities
         return escaped as NSString
     }
 
@@ -45,15 +46,16 @@ extension NSString {
     ///
     /// ### Performance
     ///
-    /// If your webpage is unicode encoded (UTF-16 or UTF-8) use `escapingForUnicodeHTML` instead 
-    /// as it is faster, and produces less bloated and more readable HTML (as long as you are using 
+    /// If your webpage is unicode encoded (UTF-16 or UTF-8) use `escapingForUnicodeHTML` instead
+    /// as it is faster, and produces less bloated and more readable HTML (as long as you are using
     /// a unicode compliant HTML reader).
     ///
     /// **Complexity**: `O(N)` where `N` is the number of characters in the string.
     ///
 
-    @objc public func stringByAddingUnicodeEntities() -> NSString {
-        let escaped = (self as String).addingUnicodeEntities
+    @objc(stringByAddingASCIIEntities)
+    public func addingASCIIEntities() -> NSString {
+        let escaped = (self as String).addingASCIIEntities
         return escaped as NSString
     }
 
@@ -77,7 +79,8 @@ extension NSString {
     /// **Complexity**: `O(N)` where `N` is the number of characters in the string.
     ///
 
-    @objc public func stringByRemovingHTMLEntities() -> NSString {
+    @objc(stringByRemovingHTMLEntities)
+    public func removingHTMLEntities() -> NSString {
         let escaped = (self as String).removingHTMLEntities
         return escaped as NSString
     }

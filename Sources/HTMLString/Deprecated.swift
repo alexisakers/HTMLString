@@ -27,18 +27,18 @@ extension String {
 
 extension NSString {
 
-    @available(*, unavailable, deprecated: 2.2, renamed: "stringByAddingUnicodeEntities")
-    @objc public func stringByEscapingForUnicodeHTML() -> NSString {
+    @available(*, unavailable, deprecated: 2.2, renamed: "addingUnicodeEntities")
+    public func stringByEscapingForUnicodeHTML() -> NSString {
         unavailable()
     }
 
-    @available(*, unavailable, deprecated: 2.2, renamed: "stringByAddingASCIIEntities")
-    @objc public func stringByEscapingForASCIIHTML() -> NSString {
+    @available(*, unavailable, deprecated: 2.2, renamed: "addingASCIIEntities")
+    public func stringByEscapingForASCIIHTML() -> NSString {
         unavailable()
     }
 
-    @available(*, unavailable, deprecated: 2.2, renamed: "stringByRemovingHTMLEntities")
-    @objc public func stringByUnescapingFromHTML() -> NSString {
+    @available(*, unavailable, deprecated: 2.2, renamed: "removingHTMLEntities")
+    public func stringByUnescapingFromHTML() -> NSString {
         unavailable()
     }
         
