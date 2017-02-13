@@ -21,7 +21,7 @@ public extension String {
     /// **Complexity**: `O(N)` where `N` is the number of characters in the string.
     ///
 
-    public var escapingForUnicodeHTML: String {
+    public var addingUnicodeEntities: String {
         return unicodeScalars.reduce("") { $0 + $1.escapingIfNeeded }
     }
 
@@ -47,7 +47,7 @@ public extension String {
     /// **Complexity**: `O(N)` where `N` is the number of characters in the string.
     ///
 
-    public var escapingForASCIIHTML: String {
+    public var addingASCIIEntities: String {
         return unicodeScalars.reduce("") { $0 + $1.escapingForASCII }
     }
 
@@ -75,7 +75,7 @@ extension String {
     /// **Complexity**: `O(N)` where `N` is the number of characters in the string.
     ///
 
-    public var unescapingFromHTML: String {
+    public var removingHTMLEntities: String {
 
         guard self.contains("&") else {
             return self

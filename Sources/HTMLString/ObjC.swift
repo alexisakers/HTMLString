@@ -23,8 +23,8 @@ extension NSString {
     /// **Complexity**: `O(N)` where `N` is the number of characters in the string.
     ///
 
-    @objc public func stringByEscapingForASCIIHTML() -> NSString {
-        let escaped = (self as String).escapingForASCIIHTML
+    @objc public func stringByAddingASCIIEntities() -> NSString {
+        let escaped = (self as String).addingASCIIEntities
         return escaped as NSString
     }
 
@@ -52,8 +52,8 @@ extension NSString {
     /// **Complexity**: `O(N)` where `N` is the number of characters in the string.
     ///
 
-    @objc public func stringByEscapingForUnicodeHTML() -> NSString {
-        let escaped = (self as String).escapingForUnicodeHTML
+    @objc public func stringByAddingUnicodeEntities() -> NSString {
+        let escaped = (self as String).addingUnicodeEntities
         return escaped as NSString
     }
 
@@ -77,8 +77,8 @@ extension NSString {
     /// **Complexity**: `O(N)` where `N` is the number of characters in the string.
     ///
 
-    @objc public func stringByUnescapingFromHTML() -> NSString {
-        let escaped = (self as String).unescapingFromHTML
+    @objc public func stringByRemovingHTMLEntities() -> NSString {
+        let escaped = (self as String).removingHTMLEntities
         return escaped as NSString
     }
 
