@@ -41,7 +41,7 @@ extension NSString {
     public func stringByUnescapingFromHTML() -> NSString {
         unavailable()
     }
-        
+
 }
-    
+
 #endif

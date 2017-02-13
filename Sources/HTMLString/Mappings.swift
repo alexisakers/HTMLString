@@ -17,4 +17,3 @@ internal struct HTMLTables {
     }()
 
 }
-
