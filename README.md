@@ -155,6 +155,8 @@ NSString *escapedSnack = @"Fish &amp; Chips";
 NSString *snack = [escapedSnack stringByRemovingHTMLEntities]; // "Fish & Chips"
 ~~~
 
-## Acknowledgements
+## &#128175; Acknowledgements
 
-This library was inspired by Google's `GTMNSString+HTML`.
+![Thanks @google](http://i.giphy.com/QBC5foQmcOkdq.gif)
+
+This library was inspired by [**@google**'s Toolbox for Mac](https://github.com/google/google-toolbox-for-mac).
