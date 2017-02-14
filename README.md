@@ -85,8 +85,8 @@ You can choose between ASCII and Unicode escaping.
 
 #### Docs
 
-- [`addingUnicodeEntities`](https://alexaubry.github.io/HTMLString/Extensions/String.html#/s:vE10HTMLStringSS22escapingForUnicodeHTMLSS)
-- [`addingASCIIEntities`](https://alexaubry.github.io/HTMLString/Extensions/String.html#/s:vE10HTMLStringSS20escapingForASCIIHTMLSS)
+- [`addingUnicodeEntities`](https://alexaubry.github.io/HTMLString/Extensions/String.html#/s:vE10HTMLStringSS21addingUnicodeEntitiesSS)
+- [`addingASCIIEntities`](https://alexaubry.github.io/HTMLString/Extensions/String.html#/s:vE10HTMLStringSS19addingASCIIEntitiesSS)
 
 #### Example
 
@@ -107,7 +107,7 @@ To remove HTML entities from a String, use the `removingHTMLEntities` property.
 
 #### Docs
 
-- [`removingHTMLEntities`](https://alexaubry.github.io/HTMLString/Extensions/String.html#/s:vE10HTMLStringSS18unescapingFromHTMLSS)
+- [`removingHTMLEntities`](https://alexaubry.github.io/HTMLString/String.html#/s:vE10HTMLStringSS20removingHTMLEntitiesSS)
 
 #### Example
 
