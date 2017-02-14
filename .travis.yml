@@ -7,10 +7,13 @@ before_install:
   - brew update
   - brew outdated carthage || brew upgrade carthage
 script:
-  - xcodebuild clean test -project HTMLString.xcodeproj -scheme HTMLString-iOS -destination "platform=iOS Simulator,name=iPhone 6" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+  - xcodebuild clean build build-for-testing -project HTMLString.xcodeproj -scheme HTMLString-iOS -destination "platform=iOS Simulator,name=iPhone 6" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+  - xcodebuild clean build build-for-testing -project HTMLString.xcodeproj -scheme HTMLString-tvOS -destination "platform=tvOS Simulator,name=Apple TV 1080p" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+  - xcodebuild clean build build-for-testing -project HTMLString.xcodeproj -scheme HTMLString-macOS -destination "platform=macOS" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+  - xcodebuild test-without-building -project HTMLString.xcodeproj -scheme HTMLString-iOS -destination "platform=iOS Simulator,name=iPhone 6" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+  - xcodebuild test-without-building -project HTMLString.xcodeproj -scheme HTMLString-tvOS -destination "platform=tvOS Simulator,name=Apple TV 1080p" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+  - xcodebuild test-without-building -project HTMLString.xcodeproj -scheme HTMLString-macOS -destination "platform=macOS" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
   - xcodebuild clean build -project HTMLString.xcodeproj -scheme HTMLString-watchOS CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
-  - xcodebuild clean test -project HTMLString.xcodeproj -scheme HTMLString-tvOS -destination "platform=tvOS Simulator,name=Apple TV 1080p" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
-  - xcodebuild clean test -project HTMLString.xcodeproj -scheme HTMLString-macOS -destination "platform=macOS" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
   - eval "$(curl -sL https://swift.vapor.sh/codecov)"
 before_deploy:
   - carthage build --no-skip-current
