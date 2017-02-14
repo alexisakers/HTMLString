@@ -107,7 +107,7 @@ To remove HTML entities from a String, use the `removingHTMLEntities` property.
 
 #### Docs
 
-- [`removingHTMLEntities`](https://alexaubry.github.io/HTMLString/String.html#/s:vE10HTMLStringSS20removingHTMLEntitiesSS)
+- [`removingHTMLEntities`](https://alexaubry.github.io/HTMLString/Extensions/String.html#/s:vE10HTMLStringSS20removingHTMLEntitiesSS)
 
 #### Example
 
