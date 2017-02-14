@@ -1,37 +1,3 @@
-/**
- * ==---------------------------------------------------------------------------------==
- *
- *  File            :   HTMLString.swift
- *  Project         :   HTMLString
- *  Author          :   Alexis Aubry Radanovic
- *
- *  License         :   The MIT License (MIT)
- *
- * ==---------------------------------------------------------------------------------==
- *
- *	The MIT License (MIT)
- *	Copyright (c) 2016-2017 Alexis Aubry Radanovic
- *
- *	Permission is hereby granted, free of charge, to any person obtaining a copy of
- *	this software and associated documentation files (the "Software"), to deal in
- *	the Software without restriction, including without limitation the rights to
- *	use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- *	the Software, and to permit persons to whom the Software is furnished to do so,
- *	subject to the following conditions:
- *
- *	The above copyright notice and this permission notice shall be included in all
- *	copies or substantial portions of the Software.
- *
- *	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- *	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- *	FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- *	COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- *	IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- *	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- *
- * ==---------------------------------------------------------------------------------==
- */
-
 import Foundation
 
 // MARK: Escaping
@@ -40,37 +6,37 @@ public extension String {
 
     ///
     /// Returns a new string made from the `String` by replacing every character
-    /// incompatible with HTML Unicode encoding (UTF-16 or UTF-8) by a standard
-    /// HTML escape.
+    /// incompatible with HTML Unicode encoding (UTF-16 or UTF-8) by a decimal
+    /// HTML entity.
     ///
     /// ### Examples
     ///
-    /// | String | Result  | Format                                                  |
-    /// |--------|---------|---------------------------------------------------------|
-    /// | `&`    | `&#38;` | Decimal escape (part of the Unicode special characters) |
-    /// | `Σ`    | `Σ`     | Not escaped (Unicode compliant)                         |
-    /// | `🇺🇸`   | `🇺🇸`     | Not escaped (Unicode compliant)                         |
-    /// | `a`    | `a`     | Not escaped (alphanumerical)                            |
+    /// | String | Result | Format |
+    /// |--------|--------|--------|
+    /// | `&` | `&#38;` | Decimal entity (part of the Unicode special characters) |
+    /// | `Σ` | `Σ` | Not escaped (Unicode compliant) |
+    /// | `🇺🇸` | `🇺🇸` | Not escaped (Unicode compliant) |
+    /// | `a` | `a` | Not escaped (alphanumerical) |
     ///
     /// **Complexity**: `O(N)` where `N` is the number of characters in the string.
     ///
 
-    public var escapingForUnicodeHTML: String {
+    public var addingUnicodeEntities: String {
         return unicodeScalars.reduce("") { $0 + $1.escapingIfNeeded }
     }
 
     ///
     /// Returns a new string made from the `String` by replacing every character
-    /// incompatible with HTML ASCII encoding by a standard HTML escape.
+    /// incompatible with HTML ASCII encoding by a decimal HTML entity.
     ///
     /// ### Examples
     ///
-    /// | String | Result               | Format                                               |
-    /// |--------|----------------------|------------------------------------------------------|
-    /// | `&`    | `&#38;`              | Keyword escape                                       |
-    /// | `Σ`    | `&#931;`             | Decimal escape                                       |
-    /// | `🇺🇸`   | `&#127482;&#127480;` | Combined decimal escapes (extented grapheme cluster) |
-    /// | `a`    | `a`                  | Not escaped (alphanumerical)                         |
+    /// | String | Result | Format |
+    /// |--------|--------|--------|
+    /// | `&` | `&#38;` | Decimal entity |
+    /// | `Σ` | `&#931;` | Decimal entity |
+    /// | `🇺🇸` | `&#127482;&#127480;` | Combined decimal entities (extented grapheme cluster) |
+    /// | `a` | `a` | Not escaped (alphanumerical) |
     ///
     /// ### Performance
     ///
@@ -81,7 +47,7 @@ public extension String {
     /// **Complexity**: `O(N)` where `N` is the number of characters in the string.
     ///
 
-    public var escapingForASCIIHTML: String {
+    public var addingASCIIEntities: String {
         return unicodeScalars.reduce("") { $0 + $1.escapingForASCII }
     }
 
@@ -92,24 +58,24 @@ public extension String {
 extension String {
 
     ///
-    /// Returns a new string made from the `String` by replacing every HTML escape
-    /// sequence with the matching Unicode character.
+    /// Returns a new string made from the `String` by replacing every HTML entity
+    /// with the matching Unicode character.
     ///
     /// ### Examples
     ///
-    /// | String               | Result                 | Format                             |
-    /// |----------------------|------------------------|------------------------------------|
-    /// | `&amp;`              | `&`  | Keyword escape                                       |
-    /// | `&#931;`             | `Σ`  | Decimal escape                                       |
-    /// | `&#x10d;`            | `č`  | Hexadecimal escape                                   |
-    /// | `&#127482;&#127480;` | `🇺🇸` | Combined decimal escapes (extented grapheme cluster) |
-    /// | `a`                  | `a`  | Not an escape                                        |
-    /// | `&`                  | `&`  | Not an escape                                        |
+    /// | String | Result | Format |
+    /// |--------|--------|--------|
+    /// | `&amp;` | `&` | Keyword entity |
+    /// | `&#931;` | `Σ` | Decimal entity |
+    /// | `&#x10d;` | `č` | Hexadecimal entity |
+    /// | `&#127482;&#127480;` | `🇺🇸` | Combined decimal entities (extented grapheme cluster) |
+    /// | `a` | `a` | Not an entity |
+    /// | `&` | `&` | Not an entity |
     ///
     /// **Complexity**: `O(N)` where `N` is the number of characters in the string.
     ///
 
-    public var unescapingFromHTML: String {
+    public var removingHTMLEntities: String {
 
         guard self.contains("&") else {
             return self
@@ -193,7 +159,7 @@ extension String {
 extension UnicodeScalar {
 
     ///
-    /// Returns the decimal HTML escape of the Unicode scalar.
+    /// Returns the decimal HTML entity of the Unicode scalar.
     ///
     /// This allows you to perform custom escaping.
     ///

@@ -47,13 +47,6 @@
             
             <p align="center">
     <img src="https://github.com/alexaubry/HTMLString/raw/master/logo.png" alt="HTMLString" />
-</p>
-
-<p align="center" style="margin:30px;">
-    <a href="https://alexaubry.github.io/HTMLString/">Documentation</a>
-</p>
-
-<p align="center">
     <a>
         <img src="https://img.shields.io/badge/Swift-3.0.2-ee4f37.svg" alt="Swift 3.0.2" />
     </a>
@@ -74,7 +67,7 @@
     </a>
 </p>
 
-<p><code>HTMLString</code> is a micro-library written in Swift that enables your app to escape and unescape HTML Strings.</p>
+<p><code>HTMLString</code> is a library written in Swift that enables your app to escape and unescape HTML entities in Strings.</p>
 
 <table><thead>
 <tr>
@@ -84,34 +77,38 @@
 </thead><tbody>
 <tr>
 <td>&#128271;</td>
-<td>Escapes for ASCII and UTF-8/UTF-16 encodings</td>
+<td>Adds entities for ASCII and UTF-8/UTF-16 encodings</td>
 </tr>
 <tr>
 <td>&#128221;</td>
-<td>Unescapes more than 2100 entities</td>
+<td>Removes more than 2100 named entities (like <code>&amp;amp;</code>)</td>
 </tr>
 <tr>
 <td>&#128290;</td>
-<td>Supports decimal and hexadecimal entities</td>
+<td>Supports removing decimal and hexadecimal entities</td>
 </tr>
 <tr>
 <td>&#128035;</td>
-<td>Designed for Swift Extended Grapheme Clusters</td>
+<td>Designed to support Swift Extended Grapheme Clusters (&#8594; 100% emoji-proof)</td>
 </tr>
 <tr>
 <td>&#009989;</td>
 <td>Fully unit tested</td>
 </tr>
 <tr>
+<td>&#009889;</td>
+<td>Fast</td>
+</tr>
+<tr>
+<td>&#128218;</td>
+<td><a href="https://alexaubry.github.io/HTMLString/">100% documented</a></td>
+</tr>
+<tr>
 <td>&#129302;</td>
 <td><a href="https://github.com/alexaubry/HTMLString/tree/master/README.md#objective%2Dc-api">Compatible with Objective-C</a></td>
 </tr>
-<tr>
-<td>&#009889;</td>
-<td><a href="https://github.com/alexaubry/HTMLString/tree/master/Benchmark.md">Fast</a></td>
-</tr>
 </tbody></table>
-<a href='#platforms' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='platforms'>Platforms</h2>
+<a href='#supported-platforms' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='supported-platforms'>Supported Platforms</h2>
 
 <ul>
 <li>iOS 8.0+</li>
@@ -124,7 +121,7 @@
 <a href='#swift-package-manager' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='swift-package-manager'>Swift Package Manager</h3>
 
 <p>Add this line to your <code>Package.swift</code> :</p>
-<pre class="highlight swift"><code><span class="o">.</span><span class="kt">Package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/alexaubry/HTMLString"</span><span class="p">,</span> <span class="nv">majorVersion</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="nv">minor</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span>
+<pre class="highlight swift"><code><span class="o">.</span><span class="kt">Package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/alexaubry/HTMLString"</span><span class="p">,</span> <span class="nv">majorVersion</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="nv">minor</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
 </code></pre>
 <a href='#cocoapods' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='cocoapods'>CocoaPods</h3>
 
@@ -138,62 +135,80 @@
 </code></pre>
 <a href='#manual' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='manual'>Manual</h3>
 
-<p>Drop the files in the <code>Sources/HTMLString/</code> directory into your project.</p>
+<p>Copy the <code>Sources/HTMLString/</code> directory into your project.</p>
 <a href='#usage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='usage'>Usage</h2>
 
-<p>You interact with HTML strings with these extensions on the <code>String</code> type:</p>
+<p><code>HTMLString</code> allows you to add and remove HTML entities from a String.</p>
+<a href='#128271-add-html-entities-escape' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='128271-add-html-entities-escape'>&#128271; Add HTML Entities (Escape)</h3>
+
+<p>When a character is not supported into the specified encoding, the library replaces it with a decimal entitiy, such as <code>&amp;#038;</code> &lt;=&gt; <code>&amp;</code> (compatible with HTML 4+). </p>
+
+<p>You can choose between ASCII and Unicode escaping. </p>
+
+<blockquote>
+<p>&#128161; <strong>Pro Tip</strong>: When your content supports UTF-8 or UTF-16, use Unicode escaping as it is faster and yields a less bloated output.</p>
+</blockquote>
+<a href='#docs' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='docs'>Docs</h4>
 
 <ul>
-<li><a href="https://alexaubry.github.io/HTMLString/Extensions/String.html#/s:vE10HTMLStringSS22escapingForUnicodeHTMLSS"><code>escapingForUnicodeHTML</code></a>: Replaces every character incompatible with Unicode encoding by an HTML escape.</li>
-<li><a href="https://alexaubry.github.io/HTMLString/Extensions/String.html#/s:vE10HTMLStringSS20escapingForASCIIHTMLSS"><code>escapingForASCIIHTML</code></a> : Replaces every character incompatible with ASCII encoding by an HTML escape.</li>
-<li><a href="https://alexaubry.github.io/HTMLString/Extensions/String.html#/s:vE10HTMLStringSS18unescapingFromHTMLSS"><code>unescapingFromHTML</code></a> : Replaces every HTML entity with its matching Unicode character.</li>
+<li><a href="https://alexaubry.github.io/HTMLString/Extensions/String.html#/s:vE10HTMLStringSS21addingUnicodeEntitiesSS"><code>addingUnicodeEntities</code></a></li>
+<li><a href="https://alexaubry.github.io/HTMLString/Extensions/String.html#/s:vE10HTMLStringSS19addingASCIIEntitiesSS"><code>addingASCIIEntities</code></a></li>
 </ul>
-<a href='#escaping-examples' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='escaping-examples'>Escaping Examples</h3>
+<a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='example'>Example</h4>
 <pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">HTMLString</span>
 
 <span class="k">let</span> <span class="nv">emoji</span> <span class="o">=</span> <span class="s">"My favorite emoji is 🙃"</span>
-<span class="k">let</span> <span class="nv">escapedEmoji</span> <span class="o">=</span> <span class="n">emoji</span><span class="o">.</span><span class="n">escapingForASCIIHTML</span> <span class="c1">// "My favorite emoji is &amp;#128579;"</span>
+<span class="k">let</span> <span class="nv">escapedEmoji</span> <span class="o">=</span> <span class="n">emoji</span><span class="o">.</span><span class="n">addingASCIIEntities</span> <span class="c1">// "My favorite emoji is &amp;#128579;"</span>
+<span class="k">let</span> <span class="nv">noNeedToEscapeThatEmoji</span> <span class="o">=</span> <span class="n">emoji</span><span class="o">.</span><span class="n">addingUnicodeEntities</span> <span class="c1">// "My favorite emoji is 🙃"</span>
 
 <span class="k">let</span> <span class="nv">snack</span> <span class="o">=</span> <span class="s">"Fish &amp; Chips"</span>
-<span class="k">let</span> <span class="nv">escapedSnack</span> <span class="o">=</span> <span class="n">snack</span><span class="o">.</span><span class="n">escapingForUnicodeHTML</span> <span class="c1">// "Fish &amp;amp; Chips"</span>
+<span class="k">let</span> <span class="nv">escapedSnack</span> <span class="o">=</span> <span class="n">snack</span><span class="o">.</span><span class="n">addingUnicodeEntities</span> <span class="c1">// "Fish &amp;#038; Chips"</span>
 </code></pre>
-<a href='#unescaping-examples' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='unescaping-examples'>Unescaping Examples</h3>
+<a href='#128221-remove-html-entities-unescape' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='128221-remove-html-entities-unescape'>&#128221; Remove HTML Entities (Unescape)</h3>
+
+<p>To remove HTML entities from a String, use the <code>removingHTMLEntities</code> property.</p>
+<a href='#docs' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='docs'>Docs</h4>
+
+<ul>
+<li><a href="https://alexaubry.github.io/HTMLString/String.html#/s:vE10HTMLStringSS20removingHTMLEntitiesSS"><code>removingHTMLEntities</code></a></li>
+</ul>
+<a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='example'>Example</h4>
 <pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">HTMLString</span>
 
 <span class="k">let</span> <span class="nv">escapedEmoji</span> <span class="o">=</span> <span class="s">"My favorite emoji is &amp;#x1F643;"</span>
-<span class="k">let</span> <span class="nv">emoji</span> <span class="o">=</span> <span class="n">escapedEmoji</span><span class="o">.</span><span class="n">unescapingFromHTML</span> <span class="c1">// "My favorite emoji is 🙃"</span>
+<span class="k">let</span> <span class="nv">emoji</span> <span class="o">=</span> <span class="n">escapedEmoji</span><span class="o">.</span><span class="n">removingHTMLEntities</span> <span class="c1">// "My favorite emoji is 🙃"</span>
 
 <span class="k">let</span> <span class="nv">escapedSnack</span> <span class="o">=</span> <span class="s">"Fish &amp;amp; Chips"</span>
-<span class="k">let</span> <span class="nv">snack</span> <span class="o">=</span> <span class="n">escapedSnack</span><span class="o">.</span><span class="n">unescapingFromHTML</span> <span class="c1">// "Fish &amp; Chips"</span>
+<span class="k">let</span> <span class="nv">snack</span> <span class="o">=</span> <span class="n">escapedSnack</span><span class="o">.</span><span class="n">removingHTMLEntities</span> <span class="c1">// "Fish &amp; Chips"</span>
 </code></pre>
 <a href='#objective-c-api' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='objective-c-api'>Objective-C API</h2>
 
-<p>With Obj-C Mix and Match, you can import and use <code>HTMLString</code> in Objective-C code.</p>
+<p>With Obj-C Mix and Match, you can import and use the <code>HTMLString</code> module from in Objective-C code.</p>
 
-<p>You interact with HTML strings with these categories on the <code>NSString</code> type:</p>
+<p>The library introduces a set of Objective-C specific APIs as categories on the <code>NSString</code> type:</p>
 
 <ul>
-<li><code>[aString stringByEscapingForUnicodeHTML];</code> : Replaces every character incompatible with HTML Unicode encoding HTML escape.</li>
-<li><code>[aString stringByEscapingForASCIIHTML];</code> : Replaces every character incompatible with HTML ASCII encoding by a standard HTML escape.</li>
-<li><code>[aString stringByUnescapingFromHTML];</code> : Replaces every HTML escape sequence with the matching Unicode character.</li>
+<li><code>[aString stringByAddingUnicodeEntities];</code> : Replaces every character incompatible with HTML Unicode encoding by a decimal HTML entitiy.</li>
+<li><code>[aString stringByAddingASCIIEntities];</code> : Replaces every character incompatible with HTML ASCII encoding by a decimal HTML entitiy.</li>
+<li><code>[aString stringByRemovingHTMLEntities];</code> : Replaces every HTML entity with the matching Unicode character.</li>
 </ul>
 <a href='#escaping-examples' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='escaping-examples'>Escaping Examples</h3>
 <pre class="highlight objective_c"><code><span class="k">@import</span> <span class="n">HTMLString</span><span class="p">;</span>
 
 <span class="n">NSString</span> <span class="o">*</span><span class="n">emoji</span> <span class="o">=</span> <span class="s">@"My favorite emoji is 🙃"</span><span class="p">;</span>
-<span class="n">NSString</span> <span class="o">*</span><span class="n">escapedEmoji</span> <span class="o">=</span> <span class="p">[</span><span class="n">emoji</span> <span class="nf">stringByEscapingForASCIIHTML</span><span class="p">];</span> <span class="c1">// "My favorite emoji is &amp;#128579;"
+<span class="n">NSString</span> <span class="o">*</span><span class="n">escapedEmoji</span> <span class="o">=</span> <span class="p">[</span><span class="n">emoji</span> <span class="nf">stringByAddingASCIIEntities</span><span class="p">];</span> <span class="c1">// "My favorite emoji is &amp;#128579;"
 </span>
 <span class="n">NSString</span> <span class="o">*</span><span class="n">snack</span> <span class="o">=</span> <span class="s">@"Fish &amp; Chips"</span><span class="p">;</span>
-<span class="n">NSString</span> <span class="o">*</span><span class="n">escapedSnack</span> <span class="o">=</span> <span class="p">[</span><span class="n">snack</span> <span class="nf">stringByEscapingForUnicodeHTML</span><span class="p">];</span> <span class="c1">// "Fish &amp;amp; Chips"
+<span class="n">NSString</span> <span class="o">*</span><span class="n">escapedSnack</span> <span class="o">=</span> <span class="p">[</span><span class="n">snack</span> <span class="nf">stringByAddingUnicodeEntities</span><span class="p">];</span> <span class="c1">// "Fish &amp;#038; Chips"
 </span></code></pre>
 <a href='#unescaping-examples' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='unescaping-examples'>Unescaping Examples</h3>
 <pre class="highlight objective_c"><code><span class="k">@import</span> <span class="n">HTMLString</span><span class="p">;</span>
 
 <span class="n">NSString</span> <span class="o">*</span><span class="n">escapedEmoji</span> <span class="o">=</span> <span class="s">@"My favorite emoji is &amp;#x1F643;"</span><span class="p">;</span>
-<span class="n">NSString</span> <span class="o">*</span><span class="n">emoji</span> <span class="o">=</span> <span class="p">[</span><span class="n">escapedEmoji</span> <span class="nf">stringByUnescapingFromHTML</span><span class="p">];</span> <span class="c1">// "My favorite emoji is 🙃"
+<span class="n">NSString</span> <span class="o">*</span><span class="n">emoji</span> <span class="o">=</span> <span class="p">[</span><span class="n">escapedEmoji</span> <span class="nf">stringByRemovingHTMLEntities</span><span class="p">];</span> <span class="c1">// "My favorite emoji is 🙃"
 </span>
 <span class="n">NSString</span> <span class="o">*</span><span class="n">escapedSnack</span> <span class="o">=</span> <span class="s">@"Fish &amp;amp; Chips"</span><span class="p">;</span>
-<span class="n">NSString</span> <span class="o">*</span><span class="n">snack</span> <span class="o">=</span> <span class="p">[</span><span class="n">escapedSnack</span> <span class="nf">stringByUnescapingFromHTML</span><span class="p">];</span> <span class="c1">// "Fish &amp; Chips"
+<span class="n">NSString</span> <span class="o">*</span><span class="n">snack</span> <span class="o">=</span> <span class="p">[</span><span class="n">escapedSnack</span> <span class="nf">stringByRemovingHTMLEntities</span><span class="p">];</span> <span class="c1">// "Fish &amp; Chips"
 </span></code></pre>
 <a href='#acknowledgements' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='acknowledgements'>Acknowledgements</h2>
 

@@ -1,37 +1,3 @@
-/**
- * ==---------------------------------------------------------------------------------==
- *
- *  File            :   HTMLStringTests.swift
- *  Project         :   HTMLString
- *  Author          :   Alexis Aubry Radanovic
- *
- *  License         :   The MIT License (MIT)
- *
- * ==---------------------------------------------------------------------------------==
- *
- *	The MIT License (MIT)
- *	Copyright (c) 2016-2017 Alexis Aubry Radanovic
- *
- *	Permission is hereby granted, free of charge, to any person obtaining a copy of
- *	this software and associated documentation files (the "Software"), to deal in
- *	the Software without restriction, including without limitation the rights to
- *	use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- *	the Software, and to permit persons to whom the Software is furnished to do so,
- *	subject to the following conditions:
- *
- *	The above copyright notice and this permission notice shall be included in all
- *	copies or substantial portions of the Software.
- *
- *	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- *	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- *	FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- *	COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- *	IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- *	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- *
- * ==---------------------------------------------------------------------------------==
- */
-
 import XCTest
 @testable import HTMLString
 
@@ -49,16 +15,16 @@ class HTMLStringTests: XCTestCase {
 
     func testStringASCIIEscaping() {
 
-        let namedEscape = ("Fish & Chips").escapingForASCIIHTML
+        let namedEscape = ("Fish & Chips").addingASCIIEntities
         XCTAssertEqual(namedEscape, "Fish &#38; Chips")
 
-        let namedDualEscape = ("a ⪰̸ b").escapingForASCIIHTML
+        let namedDualEscape = ("a ⪰̸ b").addingASCIIEntities
         XCTAssertEqual(namedDualEscape, "a &#10928;&#824; b")
 
-        let emojiEscape = ("Hey 🙃").escapingForASCIIHTML
+        let emojiEscape = ("Hey 🙃").addingASCIIEntities
         XCTAssertEqual(emojiEscape, "Hey &#128579;")
 
-        let doubleEmojiEscape = ("Going to the 🇺🇸 next June").escapingForASCIIHTML
+        let doubleEmojiEscape = ("Going to the 🇺🇸 next June").addingASCIIEntities
         XCTAssertEqual(doubleEmojiEscape, "Going to the &#127482;&#127480; next June")
 
     }
@@ -69,16 +35,16 @@ class HTMLStringTests: XCTestCase {
 
     func testStringUnicodeEscaping() {
 
-        let requiredEscape = ("Fish & Chips").escapingForUnicodeHTML
+        let requiredEscape = ("Fish & Chips").addingUnicodeEntities
         XCTAssertEqual(requiredEscape, "Fish &#38; Chips")
 
-        let namedDualEscape = ("a ⪰̸ b").escapingForUnicodeHTML
+        let namedDualEscape = ("a ⪰̸ b").addingUnicodeEntities
         XCTAssertEqual(namedDualEscape, "a ⪰̸ b")
 
-        let emojiEscape = ("Hey 🙃!").escapingForUnicodeHTML
+        let emojiEscape = ("Hey 🙃!").addingUnicodeEntities
         XCTAssertEqual(emojiEscape, "Hey 🙃&#33;")
 
-        let doubleEmojiEscape = ("Going to the 🇺🇸 next June").escapingForUnicodeHTML
+        let doubleEmojiEscape = ("Going to the 🇺🇸 next June").addingUnicodeEntities
         XCTAssertEqual(doubleEmojiEscape, "Going to the 🇺🇸 next June")
 
     }
@@ -91,37 +57,37 @@ class HTMLStringTests: XCTestCase {
 
     func testUnescaping() {
 
-        let withoutMarker = "Hello, world.".unescapingFromHTML
+        let withoutMarker = "Hello, world.".removingHTMLEntities
         XCTAssertEqual(withoutMarker, "Hello, world.")
 
-        let noSemicolon = "Fish & Chips".unescapingFromHTML
+        let noSemicolon = "Fish & Chips".removingHTMLEntities
         XCTAssertEqual(noSemicolon, "Fish & Chips")
 
-        let decimal = "My phone number starts with a &#49;".unescapingFromHTML
+        let decimal = "My phone number starts with a &#49;".removingHTMLEntities
         XCTAssertEqual(decimal, "My phone number starts with a 1")
 
-        let invalidDecimal = "My phone number starts with a &#4_9;!".unescapingFromHTML
+        let invalidDecimal = "My phone number starts with a &#4_9;!".removingHTMLEntities
         XCTAssertEqual(invalidDecimal, "My phone number starts with a &#4_9;!")
 
-        let hex = "Let's meet at the caf&#xe9;".unescapingFromHTML
+        let hex = "Let's meet at the caf&#xe9;".removingHTMLEntities
         XCTAssertEqual(hex, "Let's meet at the café")
 
-        let invalidHex = "Let's meet at the caf&#xzi;!".unescapingFromHTML
+        let invalidHex = "Let's meet at the caf&#xzi;!".removingHTMLEntities
         XCTAssertEqual(invalidHex, "Let's meet at the caf&#xzi;!")
 
-        let invalidUnicodePoint = "What is this character ? -> &#xd8ff;".unescapingFromHTML
+        let invalidUnicodePoint = "What is this character ? -> &#xd8ff;".removingHTMLEntities
         XCTAssertEqual(invalidUnicodePoint, "What is this character ? -> &#xd8ff;")
 
-        let badSequence = "I love &swift;".unescapingFromHTML
+        let badSequence = "I love &swift;".removingHTMLEntities
         XCTAssertEqual(badSequence, "I love &swift;")
 
-        let goodSequence = "Do you know &aleph;?".unescapingFromHTML
+        let goodSequence = "Do you know &aleph;?".removingHTMLEntities
         XCTAssertEqual(goodSequence, "Do you know ℵ?")
 
-        let twoSequences = "a &amp;&amp; b".unescapingFromHTML
+        let twoSequences = "a &amp;&amp; b".removingHTMLEntities
         XCTAssertEqual(twoSequences, "a && b")
 
-        let doubleEmojiEscape = ("Going to the &#127482;&#127480; next June").unescapingFromHTML
+        let doubleEmojiEscape = ("Going to the &#127482;&#127480; next June").removingHTMLEntities
         XCTAssertEqual(doubleEmojiEscape, "Going to the 🇺🇸 next June")
 
     }
@@ -136,16 +102,16 @@ class HTMLStringTests: XCTestCase {
 
         self.measure {
 
-            _ = "Hello, world.".unescapingFromHTML
-            _ = "Fish & Chips".unescapingFromHTML
-            _ = "My phone number starts with a &#49;".unescapingFromHTML
-            _ = "My phone number starts with a &#4_9;!".unescapingFromHTML
-            _ = "Let's meet at the caf&#xe9;".unescapingFromHTML
-            _ = "Let's meet at the caf&#xzi;!".unescapingFromHTML
-            _ = "What is this character ? -> &#xd8ff;".unescapingFromHTML
-            _ = "I love &swift;".unescapingFromHTML
-            _ = "Do you know &aleph;?".unescapingFromHTML
-            _ = "a &amp;&amp; b".unescapingFromHTML
+            _ = "Hello, world.".removingHTMLEntities
+            _ = "Fish & Chips".removingHTMLEntities
+            _ = "My phone number starts with a &#49;".removingHTMLEntities
+            _ = "My phone number starts with a &#4_9;!".removingHTMLEntities
+            _ = "Let's meet at the caf&#xe9;".removingHTMLEntities
+            _ = "Let's meet at the caf&#xzi;!".removingHTMLEntities
+            _ = "What is this character ? -> &#xd8ff;".removingHTMLEntities
+            _ = "I love &swift;".removingHTMLEntities
+            _ = "Do you know &aleph;?".removingHTMLEntities
+            _ = "a &amp;&amp; b".removingHTMLEntities
 
         }
 
@@ -159,15 +125,15 @@ class HTMLStringTests: XCTestCase {
 
         self.measure {
 
-            _ = ("Fish & Chips").escapingForASCIIHTML
-            _ = ("a ⪰̸ b").escapingForASCIIHTML
-            _ = ("Hey 🙃").escapingForASCIIHTML
-            _ = ("Going to the 🇺🇸 next June").escapingForASCIIHTML
+            _ = ("Fish & Chips").addingASCIIEntities
+            _ = ("a ⪰̸ b").addingASCIIEntities
+            _ = ("Hey 🙃").addingASCIIEntities
+            _ = ("Going to the 🇺🇸 next June").addingASCIIEntities
 
-            _ = ("Fish & Chips").escapingForUnicodeHTML
-            _ = ("a ⪰̸ b").escapingForUnicodeHTML
-            _ = ("Hey 🙃!").escapingForUnicodeHTML
-            _ = ("Going to the 🇺🇸 next June").escapingForUnicodeHTML
+            _ = ("Fish & Chips").addingUnicodeEntities
+            _ = ("a ⪰̸ b").addingUnicodeEntities
+            _ = ("Hey 🙃!").addingUnicodeEntities
+            _ = ("Going to the 🇺🇸 next June").addingUnicodeEntities
 
         }
 

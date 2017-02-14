@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "9999"
+   LastUpgradeVersion = "0820"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_20"
+               BlueprintIdentifier = "5E441ED91E52604A0041CF34"
                BuildableName = "HTMLString.framework"
-               BlueprintName = "HTMLString"
+               BlueprintName = "HTMLString-macOS"
                ReferencedContainer = "container:HTMLString.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,13 +33,22 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_29"
-               BuildableName = "HTMLStringTests.xctest"
-               BlueprintName = "HTMLStringTests"
+               BlueprintIdentifier = "5E441F0C1E52629D0041CF34"
+               BuildableName = "HTMLString-macOS Tests.xctest"
+               BlueprintName = "HTMLString-macOS Tests"
                ReferencedContainer = "container:HTMLString.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "5E441ED91E52604A0041CF34"
+            BuildableName = "HTMLString.framework"
+            BlueprintName = "HTMLString-macOS"
+            ReferencedContainer = "container:HTMLString.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -56,9 +65,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "OBJ_20"
+            BlueprintIdentifier = "5E441ED91E52604A0041CF34"
             BuildableName = "HTMLString.framework"
-            BlueprintName = "HTMLString"
+            BlueprintName = "HTMLString-macOS"
             ReferencedContainer = "container:HTMLString.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -71,6 +80,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "5E441ED91E52604A0041CF34"
+            BuildableName = "HTMLString.framework"
+            BlueprintName = "HTMLString-macOS"
+            ReferencedContainer = "container:HTMLString.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

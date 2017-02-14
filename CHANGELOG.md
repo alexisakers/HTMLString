@@ -1,5 +1,15 @@
 # HTMLString Change Log
 
+## 2017-02-14 — Version 3.0.0
+
+- Implemented final API: same design as Foundation `addingPercentEncoding`/`removingPercentEncoding`
+- Reorganized Xcode project and targets (1 target/platform)
+- Better @objc annotations
+- Automatic deployment from CI
+- Fix Carthage minimum deployment version issue
+- Updated README
+- Sanitized codebase
+
 ## 2017-01-16 — Version 2.1.2
 
 - Added an Objective-C Mix & Match API
