@@ -83,11 +83,6 @@ You can choose between ASCII and Unicode escaping.
 
 > &#128161; **Pro Tip**: When your content supports UTF-8 or UTF-16, use Unicode escaping as it is faster and yields a less bloated output.
 
-#### Docs
-
-- [`addingUnicodeEntities`](https://alexaubry.github.io/HTMLString/Extensions/String.html#/s:vE10HTMLStringSS21addingUnicodeEntitiesSS)
-- [`addingASCIIEntities`](https://alexaubry.github.io/HTMLString/Extensions/String.html#/s:vE10HTMLStringSS19addingASCIIEntitiesSS)
-
 #### Example
 
 ~~~swift
@@ -104,10 +99,6 @@ let escapedSnack = snack.addingUnicodeEntities // "Fish &#038; Chips"
 ### &#128221; Remove HTML Entities (Unescape)
 
 To remove HTML entities from a String, use the `removingHTMLEntities` property.
-
-#### Docs
-
-- [`removingHTMLEntities`](https://alexaubry.github.io/HTMLString/Extensions/String.html#/s:vE10HTMLStringSS20removingHTMLEntitiesSS)
 
 #### Example
 
