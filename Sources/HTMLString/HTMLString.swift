@@ -82,17 +82,17 @@ extension String {
         }
 
         var result = String()
-        var idx = startIndex
+        var cursorPosition = startIndex
 
-        while let delimiterRange = range(of: "&", range: idx ..< endIndex) {
+        while let delimiterRange = range(of: "&", range: cursorPosition ..< endIndex) {
 
             // Avoid unnecessary operations
-            let head = self[idx ..< delimiterRange.lowerBound]
+            let head = self[cursorPosition ..< delimiterRange.lowerBound]
             result += head
 
             guard let semicolonRange = range(of: ";", range: delimiterRange.upperBound ..< endIndex) else {
                 result += "&"
-                idx = delimiterRange.upperBound
+                cursorPosition = delimiterRange.upperBound
                 break
             }
 
@@ -103,7 +103,7 @@ extension String {
 
                 guard let unescapedNumber = escapableContent.unescapeAsNumber() else {
                     result += self[delimiterRange.lowerBound ..< semicolonRange.upperBound]
-                    idx = semicolonRange.upperBound
+                    cursorPosition = semicolonRange.upperBound
                     continue
                 }
 
@@ -113,7 +113,7 @@ extension String {
 
                 guard let unescapedCharacter = HTMLTables.unescapingTable[escapableContent] else {
                     result += self[delimiterRange.lowerBound ..< semicolonRange.upperBound]
-                    idx = semicolonRange.upperBound
+                    cursorPosition = semicolonRange.upperBound
                     continue
                 }
 
@@ -122,12 +122,12 @@ extension String {
             }
 
             result += replacementString
-            idx = semicolonRange.upperBound
+            cursorPosition = semicolonRange.upperBound
 
         }
 
         // Append unprocessed data, if unprocessed data there is
-        let tail = self[idx ..< endIndex]
+        let tail = self[cursorPosition ..< endIndex]
         result += tail
 
         return result
@@ -136,12 +136,11 @@ extension String {
 
     private func unescapeAsNumber() -> String? {
 
-        let isHexadecimal = self.hasPrefix("#X") || self.hasPrefix("#x")
-
-        let numberStartIndexOffset = isHexadecimal ? 2 : 1
-        let numberString = self [ index(startIndex, offsetBy: numberStartIndexOffset) ..< endIndex ]
-
+        let isHexadecimal = hasPrefix("#X") || hasPrefix("#x")
         let radix = isHexadecimal ? 16 : 10
+
+        let numberStartIndex = index(startIndex, offsetBy: isHexadecimal ? 2 : 1)
+        let numberString = self[numberStartIndex ..< endIndex]
 
         guard let codePoint = UInt32(numberString, radix: radix),
               let scalar = UnicodeScalar(codePoint) else {
