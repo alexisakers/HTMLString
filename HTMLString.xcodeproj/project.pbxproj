@@ -1412,6 +1412,7 @@
 				5E441EF91E5262540041CF34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5E441F061E5262910041CF34 /* Build configuration list for PBXNativeTarget "HTMLString-tvOS Tests" */ = {
 			isa = XCConfigurationList;
@@ -1420,6 +1421,7 @@
 				5E441F081E5262910041CF34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5E441F151E52629D0041CF34 /* Build configuration list for PBXNativeTarget "HTMLString-macOS Tests" */ = {
 			isa = XCConfigurationList;
@@ -1428,6 +1430,7 @@
 				5E441F171E52629D0041CF34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		OBJ_2 /* Build configuration list for PBXProject "HTMLString" */ = {
 			isa = XCConfigurationList;
