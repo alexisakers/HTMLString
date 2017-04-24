@@ -7,5 +7,4 @@ Packages/
 Carthage/Build
 Gemfile
 Gemfile.lock
-docs/undocumented.json
-docs/docsets/HTMLString.docset/Contents/Resources/Documents/undocumented.json
+**/undocumented.json
