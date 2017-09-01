@@ -1,8 +1,11 @@
 import Foundation
 
+/// Function to call when a function is unavailable.
 fileprivate func unavailable(_ fn: String = #function, file: StaticString = #file, line: UInt = #line) -> Never {
     fatalError("[HTMLString] \(fn) is not available.", file: file, line: line)
 }
+
+// MARK: String
 
 extension String {
 
@@ -22,6 +25,8 @@ extension String {
     }
 
 }
+
+// MARK: NSString
 
 #if os(iOS) || os(macOS) || os(tvOS) || os(watchOS)
 

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		55BFFFD71F59574E00F13633 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BFFFD61F59574E00F13633 /* TestData.swift */; };
+		55BFFFD81F59574E00F13633 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BFFFD61F59574E00F13633 /* TestData.swift */; };
+		55BFFFD91F59574E00F13633 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BFFFD61F59574E00F13633 /* TestData.swift */; };
 		5E441EB81E525FCA0041CF34 /* HTMLString.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* HTMLString.swift */; };
 		5E441EB91E525FCA0041CF34 /* Mappings.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Mappings.swift */; };
 		5E441EE21E5260980041CF34 /* HTMLString.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* HTMLString.swift */; };
@@ -56,6 +59,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		55BFFFD61F59574E00F13633 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TestData.swift; path = HTMLStringTests/TestData.swift; sourceTree = "<group>"; };
 		5E441EA91E525F2D0041CF34 /* HTMLString.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = HTMLString.plist; path = Configs/HTMLString.plist; sourceTree = "<group>"; };
 		5E441EAA1E525F340041CF34 /* HTMLStringTests.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = HTMLStringTests.plist; path = Configs/HTMLStringTests.plist; sourceTree = "<group>"; };
 		5E441EB01E525FB70041CF34 /* HTMLString.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HTMLString.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_14 /* HTMLStringTests.swift */,
+				55BFFFD61F59574E00F13633 /* TestData.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -529,6 +534,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E441F181E5263C70041CF34 /* HTMLStringTests.swift in Sources */,
+				55BFFFD71F59574E00F13633 /* TestData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,6 +543,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E441F191E5263C70041CF34 /* HTMLStringTests.swift in Sources */,
+				55BFFFD91F59574E00F13633 /* TestData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,6 +552,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E441F1A1E5263C70041CF34 /* HTMLStringTests.swift in Sources */,
+				55BFFFD81F59574E00F13633 /* TestData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -5,9 +5,8 @@ import Foundation
 public extension String {
 
     ///
-    /// Returns a new string made from the `String` by replacing every character
-    /// incompatible with HTML Unicode encoding (UTF-16 or UTF-8) by a decimal
-    /// HTML entity.
+    /// Returns a copy of the current `String` where every character incompatible with HTML Unicode
+    /// encoding (UTF-16 or UTF-8) is replaced by a decimal HTML entity.
     ///
     /// ### Examples
     ///
@@ -18,16 +17,14 @@ public extension String {
     /// | `🇺🇸` | `🇺🇸` | Not escaped (Unicode compliant) |
     /// | `a` | `a` | Not escaped (alphanumerical) |
     ///
-    /// **Complexity**: `O(N)` where `N` is the number of characters in the string.
-    ///
 
     public var addingUnicodeEntities: String {
         return unicodeScalars.reduce("") { $0 + $1.escapingIfNeeded }
     }
 
     ///
-    /// Returns a new string made from the `String` by replacing every character
-    /// incompatible with HTML ASCII encoding by a decimal HTML entity.
+    /// Returns a copy of the current `String` where every character incompatible with HTML ASCII
+    /// encoding is replaced by a decimal HTML entity.
     ///
     /// ### Examples
     ///
@@ -40,11 +37,8 @@ public extension String {
     ///
     /// ### Performance
     ///
-    /// If your webpage is unicode encoded (UTF-16 or UTF-8) use `escapingForUnicodeHTML` instead 
-    /// as it is faster, and produces less bloated and more readable HTML (as long as you are using 
-    /// a unicode compliant HTML reader).
-    ///
-    /// **Complexity**: `O(N)` where `N` is the number of characters in the string.
+    /// If your webpage is unicode encoded (UTF-16 or UTF-8) use `addingUnicodeEntities` instead,
+    /// as it is faster and produces a less bloated and more readable HTML.
     ///
 
     public var addingASCIIEntities: String {
@@ -58,8 +52,8 @@ public extension String {
 extension String {
 
     ///
-    /// Returns a new string made from the `String` by replacing every HTML entity
-    /// with the matching Unicode character.
+    /// Returns a copy of the current `String` where every HTML entity is replaced with the matching
+    /// Unicode character.
     ///
     /// ### Examples
     ///
@@ -71,8 +65,6 @@ extension String {
     /// | `&#127482;&#127480;` | `🇺🇸` | Combined decimal entities (extented grapheme cluster) |
     /// | `a` | `a` | Not an entity |
     /// | `&` | `&` | Not an entity |
-    ///
-    /// **Complexity**: `O(N)` where `N` is the number of characters in the string.
     ///
 
     public var removingHTMLEntities: String {
@@ -97,11 +89,12 @@ extension String {
             }
 
             let escapableContent = self[delimiterRange.upperBound ..< semicolonRange.lowerBound]
+            let escapableContentString = String(escapableContent)
             let replacementString: String
 
-            if escapableContent.hasPrefix("#") {
+            if escapableContentString.hasPrefix("#") {
 
-                guard let unescapedNumber = escapableContent.unescapeAsNumber() else {
+                guard let unescapedNumber = escapableContentString.unescapeAsNumber() else {
                     result += self[delimiterRange.lowerBound ..< semicolonRange.upperBound]
                     cursorPosition = semicolonRange.upperBound
                     continue
@@ -111,7 +104,7 @@ extension String {
 
             } else {
 
-                guard let unescapedCharacter = HTMLTables.unescapingTable[escapableContent] else {
+                guard let unescapedCharacter = HTMLUnescapingTable[escapableContentString] else {
                     result += self[delimiterRange.lowerBound ..< semicolonRange.upperBound]
                     cursorPosition = semicolonRange.upperBound
                     continue
@@ -157,20 +150,12 @@ extension String {
 
 extension UnicodeScalar {
 
-    ///
-    /// Returns the decimal HTML entity of the Unicode scalar.
-    ///
-    /// This allows you to perform custom escaping.
-    ///
-
+    /// Returns the decimal HTML entity for this Unicode scalar.
     public var htmlEscaped: String {
         return "&#" + String(value) + ";"
     }
 
-    ///
     /// The scalar escaped for ASCII encoding.
-    ///
-
     fileprivate var escapingForASCII: String {
         return isASCII ? escapingIfNeeded : htmlEscaped
     }
