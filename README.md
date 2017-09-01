@@ -43,6 +43,15 @@
 
 ## Installation
 
+### HTMLString version vs Swift version
+
+Below is a table that shows which version of HTMLString you should use for your Swift version.
+
+| Swift version | HTMLString Version |
+|---------------|--------------------|
+| 4.X           | >= 4.0.0           |
+| 3.X           | >= 3.0.0           |
+
 ### Swift Package Manager
 
 Add this line to your `Package.swift` :
