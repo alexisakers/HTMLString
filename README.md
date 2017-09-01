@@ -1,7 +1,7 @@
 <p align="center">
     <img src="https://github.com/alexaubry/HTMLString/raw/master/logo.png" alt="HTMLString" />
     <a>
-        <img src="https://img.shields.io/badge/Swift-3.0.2-ee4f37.svg" alt="Swift 3.0.2" />
+        <img src="https://img.shields.io/badge/Swift-4.0-ee4f37.svg" alt="Swift 4.0" />
     </a>
     <a href="https://travis-ci.org/alexaubry/HTMLString">
         <img src="https://travis-ci.org/alexaubry/HTMLString.svg?branch=master" alt="Build Status" />
@@ -15,12 +15,12 @@
     <a href="https://codecov.io/gh/alexaubry/HTMLString">
         <img src="https://codecov.io/gh/alexaubry/HTMLString/branch/master/graph/badge.svg" alt="Code coverage" />
     </a>
-    <a href="https://twitter.com/leksantoine">
-        <img src="https://img.shields.io/badge/Twitter-%40leksantoine-6C7A89.svg" alt="Twitter : @leksantoine" />
+    <a href="https://twitter.com/_alexaubry">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTMyIiBoZWlnaHQ9IjIwIj48bGluZWFyR3JhZGllbnQgaWQ9ImIiIHgyPSIwIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYmJiIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PC9saW5lYXJHcmFkaWVudD48Y2xpcFBhdGggaWQ9ImEiPjxyZWN0IHdpZHRoPSIxMzIiIGhlaWdodD0iMjAiIHJ4PSIzIiBmaWxsPSIjZmZmIi8+PC9jbGlwUGF0aD48ZyBjbGlwLXBhdGg9InVybCgjYSkiPjxwYXRoIGZpbGw9IiM1NTUiIGQ9Ik0wIDBoNTN2MjBIMHoiLz48cGF0aCBmaWxsPSIjNkM3QTg5IiBkPSJNNTMgMGg3OXYyMEg1M3oiLz48cGF0aCBmaWxsPSJ1cmwoI2IpIiBkPSJNMCAwaDEzMnYyMEgweiIvPjwvZz48ZyBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iRGVqYVZ1IFNhbnMsVmVyZGFuYSxHZW5ldmEsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMSI+PHRleHQgeD0iMjYuNSIgeT0iMTUiIGZpbGw9IiMwMTAxMDEiIGZpbGwtb3BhY2l0eT0iLjMiPkNvbnRhY3Q8L3RleHQ+PHRleHQgeD0iMjYuNSIgeT0iMTQiPkNvbnRhY3Q8L3RleHQ+PHRleHQgeD0iOTEuNSIgeT0iMTUiIGZpbGw9IiMwMTAxMDEiIGZpbGwtb3BhY2l0eT0iLjMiPkBfYWxleGF1YnJ5PC90ZXh0Pjx0ZXh0IHg9IjkxLjUiIHk9IjE0Ij5AX2FsZXhhdWJyeTwvdGV4dD48L2c+PC9zdmc+" alt="Contact : @_alexaubry" />
     </a>
 </p>
 
-`HTMLString` is a library written in Swift that enables your app to escape and unescape HTML entities in Strings.
+`HTMLString` is a library written in Swift that allows your program to add and remove HTML entities in Strings.
 
 |         | Main features |
 ----------|----------------
@@ -30,7 +30,7 @@
 &#128035; | Designed to support Swift Extended Grapheme Clusters (&#8594; 100% emoji-proof)
 &#009989; | Fully unit tested
 &#009889; | Fast
-&#128218; | [100% documented](https://alexaubry.github.io/HTMLString/)
+&#128218; | [Documented](https://alexaubry.github.io/HTMLString/)
 &#129302; | [Compatible with Objective-C](https://github.com/alexaubry/HTMLString/tree/master/README.md#objective%2Dc-api)
 
 ## Supported Platforms
@@ -48,15 +48,15 @@
 Add this line to your `Package.swift` :
 
 ~~~swift
-.Package(url: "https://github.com/alexaubry/HTMLString", majorVersion: 3, minor: 0)
+.Package(url: "https://github.com/alexaubry/HTMLString", majorVersion: 4, minor: 0)
 ~~~
 
 ### CocoaPods
 
 Add this line to your `Podfile`:
 
-~~~
-pod 'HTMLString'
+~~~ruby
+pod 'HTMLString', '~> 4.0'
 ~~~
 
 ### Carthage
@@ -64,7 +64,7 @@ pod 'HTMLString'
 Add this line to your Cartfile:
 
 ~~~
-github "alexaurby/HTMLString"
+github "alexaurby/HTMLString" ~> 4.0
 ~~~
 
 ### Manual
@@ -75,13 +75,18 @@ Copy the `Sources/HTMLString/` directory into your project.
 
 `HTMLString` allows you to add and remove HTML entities from a String.
 
-### &#128271; Add HTML Entities (Escape)
+### &#128271; Adding HTML Entities (Escape)
 
-When a character is not supported into the specified encoding, the library replaces it with a decimal entitiy, such as `&#038;` <=> `&` (compatible with HTML 4+). 
+When a character is not supported into the specified encoding, the library will replace it with a decimal entity (supported by all browsers supporting HTML 4 and later).
 
-You can choose between ASCII and Unicode escaping. 
+> For instance, the `&` character will be replaced by `&#038;`.
 
-> &#128161; **Pro Tip**: When your content supports UTF-8 or UTF-16, use Unicode escaping as it is faster and yields a less bloated output.
+You can choose between ASCII and Unicode escaping:
+
+- Use the `addingASCIIEntities` property to escape for ASCII-encoded content
+- Use the `addingUnicodeEntities` property to escape for Unicode-compatible content
+
+> &#128161; **Pro Tip**: When your content supports UTF-8 or UTF-16, use Unicode escaping as it is faster and produces a less bloated output.
 
 #### Example
 
@@ -93,12 +98,13 @@ let escapedEmoji = emoji.addingASCIIEntities // "My favorite emoji is &#128579;"
 let noNeedToEscapeThatEmoji = emoji.addingUnicodeEntities // "My favorite emoji is 🙃"
 
 let snack = "Fish & Chips"
-let escapedSnack = snack.addingUnicodeEntities // "Fish &#038; Chips"
+let escapedSnack = snack.addingASCIIEntities // "Fish &#038; Chips"
+let weAlsoNeedToEscapeThisSnack = snack.addingUnicodeEntities // "Fish &#038; Chips"
 ~~~
 
-### &#128221; Remove HTML Entities (Unescape)
+### &#128221; Removing HTML Entities (Unescape)
 
-To remove HTML entities from a String, use the `removingHTMLEntities` property.
+To remove all the HTML entities from a String, use the `removingHTMLEntities` property.
 
 #### Example
 
@@ -118,9 +124,9 @@ With Obj-C Mix and Match, you can import and use the `HTMLString` module from in
 
 The library introduces a set of Objective-C specific APIs as categories on the `NSString` type:
 
-- `[aString stringByAddingUnicodeEntities];` : Replaces every character incompatible with HTML Unicode encoding by a decimal HTML entitiy.
-- `[aString stringByAddingASCIIEntities];` : Replaces every character incompatible with HTML ASCII encoding by a decimal HTML entitiy.
-- `[aString stringByRemovingHTMLEntities];` : Replaces every HTML entity with the matching Unicode character.
+- `-[NSString stringByAddingUnicodeEntities];` : Replaces every character incompatible with HTML Unicode encoding by a decimal HTML entitiy.
+- `-[NSString stringByAddingASCIIEntities];` : Replaces every character incompatible with HTML ASCII encoding by a decimal HTML entitiy.
+- `-[NSString stringByRemovingHTMLEntities];` : Replaces every HTML entity with the matching Unicode character.
 
 ### Escaping Examples
 
@@ -146,8 +152,38 @@ NSString *escapedSnack = @"Fish &amp; Chips";
 NSString *snack = [escapedSnack stringByRemovingHTMLEntities]; // "Fish & Chips"
 ~~~
 
+## Licence
+
+This project is licenced under the MIT Licence.
+
+~~~
+The MIT License (MIT)
+
+Copyright (c) 2016-2017 Alexis Aubry Radanovic <me at alexaubry dot fr>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+~~~
+
+See the [LICENCE file](LICENCE).
+
 ## &#128175; Acknowledgements
 
-![Thanks @google](http://i.giphy.com/QBC5foQmcOkdq.gif)
+![Thanks @google](https://i.giphy.com/QBC5foQmcOkdq.gif)
 
-This library was inspired by [**@google**'s Toolbox for Mac](https://github.com/google/google-toolbox-for-mac).
+This library was originally inspired by [**@google**'s Toolbox for Mac](https://github.com/google/google-toolbox-for-mac).
