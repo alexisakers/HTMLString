@@ -1,10 +1,10 @@
 <p align="center">
-    <img src="https://github.com/alexaubry/HTMLString/raw/master/logo.png" alt="HTMLString" />
+    <img src="https://github.com/alexaubry/HTMLString/raw/swift4/.github/logo.png" alt="HTMLString" />
     <a>
         <img src="https://img.shields.io/badge/Swift-4.0-ee4f37.svg" alt="Swift 4.0" />
     </a>
     <a href="https://travis-ci.org/alexaubry/HTMLString">
-        <img src="https://travis-ci.org/alexaubry/HTMLString.svg?branch=master" alt="Build Status" />
+        <img src="https://travis-ci.org/alexaubry/HTMLString.svg?branch=swift4" alt="Build Status" />
     </a>
     <a href="https://cocoapods.org/pods/HTMLString">
         <img src="https://img.shields.io/cocoapods/v/HTMLString.svg" alt="CocoaPods" />
@@ -13,10 +13,10 @@
         <img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible" />
     </a>
     <a href="https://codecov.io/gh/alexaubry/HTMLString">
-        <img src="https://codecov.io/gh/alexaubry/HTMLString/branch/master/graph/badge.svg" alt="Code coverage" />
+        <img src="https://codecov.io/gh/alexaubry/HTMLString/branch/swift4/graph/badge.svg" alt="Code coverage" />
     </a>
     <a href="https://twitter.com/_alexaubry">
-        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTMyIiBoZWlnaHQ9IjIwIj48bGluZWFyR3JhZGllbnQgaWQ9ImIiIHgyPSIwIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYmJiIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PC9saW5lYXJHcmFkaWVudD48Y2xpcFBhdGggaWQ9ImEiPjxyZWN0IHdpZHRoPSIxMzIiIGhlaWdodD0iMjAiIHJ4PSIzIiBmaWxsPSIjZmZmIi8+PC9jbGlwUGF0aD48ZyBjbGlwLXBhdGg9InVybCgjYSkiPjxwYXRoIGZpbGw9IiM1NTUiIGQ9Ik0wIDBoNTN2MjBIMHoiLz48cGF0aCBmaWxsPSIjNkM3QTg5IiBkPSJNNTMgMGg3OXYyMEg1M3oiLz48cGF0aCBmaWxsPSJ1cmwoI2IpIiBkPSJNMCAwaDEzMnYyMEgweiIvPjwvZz48ZyBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iRGVqYVZ1IFNhbnMsVmVyZGFuYSxHZW5ldmEsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMSI+PHRleHQgeD0iMjYuNSIgeT0iMTUiIGZpbGw9IiMwMTAxMDEiIGZpbGwtb3BhY2l0eT0iLjMiPkNvbnRhY3Q8L3RleHQ+PHRleHQgeD0iMjYuNSIgeT0iMTQiPkNvbnRhY3Q8L3RleHQ+PHRleHQgeD0iOTEuNSIgeT0iMTUiIGZpbGw9IiMwMTAxMDEiIGZpbGwtb3BhY2l0eT0iLjMiPkBfYWxleGF1YnJ5PC90ZXh0Pjx0ZXh0IHg9IjkxLjUiIHk9IjE0Ij5AX2FsZXhhdWJyeTwvdGV4dD48L2c+PC9zdmc+" alt="Contact : @_alexaubry" />
+        <img src="https://github.com/alexaubry/HTMLString/raw/swift4/.github/contact-badge.svg" alt="Contact : @_alexaubry" />
     </a>
 </p>
 
