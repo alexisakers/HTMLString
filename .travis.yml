@@ -1,35 +1,87 @@
-language: objective-c
-osx_image: xcode9
-env:
-  global:
-    - FRAMEWORK_NAME=HTMLString
-before_install:
-  - brew update
-  - brew outdated carthage || brew upgrade carthage
+language: generic
+
+matrix:
+    include:
+        - os: linux
+          dist: trusty
+          sudo: required
+          env: DEPLOY=false SWIFT_VERSION="https://swift.org/builds/swift-4.0-branch/ubuntu1604/swift-4.0-DEVELOPMENT-SNAPSHOT-2017-08-31-a/swift-4.0-DEVELOPMENT-SNAPSHOT-2017-08-31-a-ubuntu16.04.tar.gz"
+        - os: osx
+          osx_image: xcode9
+          language: objective-c
+          env: PLATFORM="iOS" TEST="simulator" TEST_DEVICE="iPhone-6s" TEST_RUNTIME="iOS-9-0" SCHEME="HTMLString-iOS" DEPLOY="false"
+        - os: osx
+          osx_image: xcode9
+          language: objective-c
+          env: PLATFORM="iOS" TEST="simulator" TEST_DEVICE="iPhone-6s" TEST_RUNTIME="iOS-9-1" SCHEME="HTMLString-iOS" DEPLOY="false"
+        - os: osx
+          osx_image: xcode9
+          language: objective-c
+          env: PLATFORM="iOS" TEST="simulator" TEST_DEVICE="iPhone-6s" TEST_RUNTIME="iOS-9-2" SCHEME="HTMLString-iOS" DEPLOY="false"
+        - os: osx
+          osx_image: xcode9
+          language: objective-c
+          env: PLATFORM="iOS" TEST="simulator" TEST_DEVICE="iPhone-6s" TEST_RUNTIME="iOS-9-3" SCHEME="HTMLString-iOS" DEPLOY="false"
+        - os: osx
+          osx_image: xcode9
+          language: objective-c
+          env: PLATFORM="iOS" TEST="simulator" TEST_DEVICE="iPhone-6s" TEST_RUNTIME="iOS-10-0" SCHEME="HTMLString-iOS" DEPLOY="false"
+        - os: osx
+          osx_image: xcode9
+          language: objective-c
+          env: PLATFORM="iOS" TEST="simulator" TEST_DEVICE="iPhone-6s" TEST_RUNTIME="iOS-10-1" SCHEME="HTMLString-iOS" DEPLOY="false"
+        - os: osx
+          osx_image: xcode9
+          language: objective-c
+          env: PLATFORM="iOS" TEST="simulator" TEST_DEVICE="iPhone-6s" TEST_RUNTIME="iOS-10-2" SCHEME="HTMLString-iOS" DEPLOY="false"
+        - os: osx
+          osx_image: xcode9
+          language: objective-c
+          env: PLATFORM="iOS" TEST="simulator" TEST_DEVICE="iPhone-6s" TEST_RUNTIME="iOS-10-3" SCHEME="HTMLString-iOS" DEPLOY="false"
+        - os: osx
+          osx_image: xcode9
+          language: objective-c
+          env: PLATFORM="iOS" TEST="simulator" TEST_DEVICE="iPhone-6s" TEST_RUNTIME="iOS-11-0" SCHEME="HTMLString-iOS" DEPLOY="false"
+        - os: osx
+          osx_image: xcode9
+          language: objective-c
+          env: PLATFORM="tvOS" TEST="simulator" TEST_DEVICE="Apple-TV-1080p" TEST_RUNTIME="tvOS-9-0" SCHEME="HTMLString-tvOS" DEPLOY="false"
+        - os: osx
+          osx_image: xcode9
+          language: objective-c
+          env: PLATFORM="tvOS" TEST="simulator" TEST_DEVICE="Apple-TV-1080p" TEST_RUNTIME="tvOS-10-0" SCHEME="HTMLString-tvOS" DEPLOY="false"
+        - os: osx
+          osx_image: xcode9
+          language: objective-c
+          env: PLATFORM="tvOS" TEST="simulator" TEST_DEVICE="Apple-TV-1080p" TEST_RUNTIME="tvOS-11-0" SCHEME="HTMLString-tvOS" DEPLOY="false"
+        - os: osx
+          osx_image: xcode9
+          language: objective-c
+          env: PLATFORM="watchOS" TEST="none" SCHEME="HTMLString-watchOS" DEPLOY="false"
+        - os: osx
+          osx_image: xcode9
+          language: objective-c
+          env: PLATFORM="macOS" TEST="device" DESTINATION="arch=x86_64" SCHEME="HTMLString-macOS" DEPLOY="true" FRAMEWORK_NAME="HTMLString"
+
+install:
+  - sudo bash ./.ci/install.sh
+  - eval "$(curl -sL https://gist.githubusercontent.com/kylef/5c0475ff02b7c7671d2a/raw/9f442512a46d7a2af7b850d65a7e9bd31edfb09b/swiftenv-install.sh)"
+  - export SWIFT_VERSION="DEVELOPMENT-SNAPSHOT-2017-08-31-a"
+
 script:
-  - xcodebuild clean build -project HTMLString.xcodeproj -scheme HTMLString-watchOS CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
-  - xcodebuild clean build build-for-testing -project HTMLString.xcodeproj -scheme HTMLString-iOS -destination "platform=iOS Simulator,name=iPhone 6" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
-  - xcodebuild clean build build-for-testing -project HTMLString.xcodeproj -scheme HTMLString-tvOS -destination "platform=tvOS Simulator,name=Apple TV 1080p" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
-  - xcodebuild clean build build-for-testing -project HTMLString.xcodeproj -scheme HTMLString-macOS -destination "platform=macOS" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
-  - xcodebuild test-without-building -project HTMLString.xcodeproj -scheme HTMLString-iOS -destination "platform=iOS Simulator,name=iPhone 6" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
-  - xcodebuild test-without-building -project HTMLString.xcodeproj -scheme HTMLString-tvOS -destination "platform=tvOS Simulator,name=Apple TV 1080p" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
-  - xcodebuild test-without-building -project HTMLString.xcodeproj -scheme HTMLString-macOS -destination "platform=macOS" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
-  - eval "$(curl -sL https://swift.vapor.sh/codecov)"
+  - set -o pipefail
+  - bash ./.ci/test.sh
+
 before_deploy:
-  - carthage build --no-skip-current
-  - carthage archive $FRAMEWORK_NAME
+  - bash ./.ci/before_deploy.sh
+
 deploy:
-  - provider: releases
-    api_key:
-      secure: bI9J98yDzELOVAjxCxmxvRvQ99ITOAUPCUtShzSmhJTQdu+ED5MhAwPQshjSnU6uPtCm6tdYo6LzqgPVQKGs2ARdyYN2YCsrVx4cCzXNTt4VNOtUtbh4l3LHueLgBdlz4EGo76HTw49mlSt7jfBwN99BzrypQ8ZN51rGtmGNYzfFXXOaQbn4VmoKPpix64e/QMH6rX0smqkDQalDURDKY/uvlq3ON8nOqH5lWY6K++LT/XAWdUqb8DqpOJs/g6eVj+aAgrMH5rPkzTICAmN/6YvFK3JxBZt+cpfRgVnk4aMLyTGX84EFWfWPKO4MmVobyzEupAUh8/PjXuhSQN1sRpOe96aY0z6ysVN9mns+seEaLG627lcU7VFjF/mH+dy4goLvMyTDXlUMk6lZl5wRoYpL5p5+krlnUVYcr99zuVf+o5EZk1CuBdDLKgQc6DoB8X2flvKCuMqwfCRd0XqVdO6M3BvCNWg+cNlrdSoTNZ0wMm+0Otq2gTQWMRR7jWONhgsCPGiqVW/9C6ImTyUBkZHT9/HsrrLxIrNSRorY+4eHuCRKZmlSeAKuLmBmfmKotKz7ya0QgMKx6Rg6CWMpenEJckehfC2aeTWeEZPn2UW57pIe0yyLcRGbcsJuMiKMXUAaB8+i1AESyl42uje+dl5V2HSADhAIe0rXwaaONdc=
-    file: "$FRAMEWORK_NAME.framework.zip"
-    skip_cleanup: true
-    on:
-      repo: alexaubry/HTMLString
-      tags: true
-  - provider: script
-    skip_cleanup: true
-    script: ci/deploy_pod.sh
-    on:
-      repo: alexaubry/HTMLString
-      tags: true
+  provider: releases
+  api_key:
+    secure: pkSjDbK34odvP+saJlPEuj1E2SxOnA3VZxp2Zbke/UkZq/ZUOC0+jBuOZvem2/usW2xu2QtB40gTiVlg7Ez3bTZ//3jIvCWcVbwlfJMx5fKTIq8OpGz/OF7bkDd00lPbcATy9/33qD1K6+G+yPwMz7Qqd6Cwty33ivkLHypD/8Fxcln2W/CJmwrBqxdwlmyGnYk5wPX3SVC8FKMsYFY3OGkzpX7BSW75x7EPFesXQutqvQeD/2jUerLScmE64KMpOW6G1qbXKV/zjzrdZVJ2a+rID1I1RGgql9gkP/XIgsaWYcQ2hhitDiIzqgT6h2lQA/VV8BPkdMlD6UiP4x3/ThanQUdbOw6pJQ0hBlJv5MxFBrw28L6YRNshe59dlF/+B05XJSV8tXETECYJbIOf/egkwEUfspby0C+b7MDsdjE52MkL1oMhkyr0pNUa9ey8xKcNw+lW9jPmsGVXSxnGM6P1oLudJQYca+WD2pDx2/YY5/JkFdIZWwiZ5kfIQfoujaMZaMdoujaXR1DpcYdGz97zWwv9Ph2hgl8ZXfiYhhxsw8cNE26TQX2DRmnXTfxWxfFV0aGQnR6mhS65IGnosSNSXDFlV7JTAc7Nn6onP+bQecK5XO1bubPOa24JWoNBYBT1tu1mPYu0UCLw+kyS4z6TaLhZ0dP1Su6dItRSEso=
+  file: "$FRAMEWORK_NAME.framework.zip"
+  skip_cleanup: true
+  on:
+    repo: alexaubry/HTMLString
+    tags: true
+    condition: $DEPLOY = true
