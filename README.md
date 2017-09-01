@@ -16,7 +16,7 @@
         <img src="https://codecov.io/gh/alexaubry/HTMLString/branch/swift4/graph/badge.svg" alt="Code coverage" />
     </a>
     <a href="https://twitter.com/_alexaubry">
-        <img src="https://github.com/alexaubry/HTMLString/raw/swift4/.github/contact-badge.svg" alt="Contact : @_alexaubry" />
+        <img src="https://github.com/alexaubry/HTMLString/raw/swift4/.github/contact-badge.svg?sanitize=true" alt="Contact : @_alexaubry" />
     </a>
 </p>
 
