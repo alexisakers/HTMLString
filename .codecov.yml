@@ -1,3 +1,0 @@
-ignore:
-    - "Tests"
-    - "Sources/HTMLString/NSString+HTMLString.swift"

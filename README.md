@@ -12,9 +12,6 @@
     <a href="https://github.com/Carthage/Carthage">
         <img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible" />
     </a>
-    <a href="https://codecov.io/gh/alexaubry/HTMLString">
-        <img src="https://codecov.io/gh/alexaubry/HTMLString/branch/swift4/graph/badge.svg" alt="Code coverage" />
-    </a>
     <a href="https://twitter.com/_alexaubry">
         <img src="https://github.com/alexaubry/HTMLString/raw/swift4/.github/contact-badge.svg?sanitize=true" alt="Contact : @_alexaubry" />
     </a>
