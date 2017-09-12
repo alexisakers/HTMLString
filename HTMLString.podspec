@@ -8,7 +8,7 @@ DESC
   s.homepage     = "https://github.com/alexaubry/HTMLString"
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.author             = { "Alexis Aubry Radanovic" => "me@alexaubry.fr" }
-  s.social_media_url   = "http://twitter.com/_alexaubry"
+  s.social_media_url   = "https://twitter.com/_alexaubry"
   s.ios.deployment_target = "8.0"
   s.osx.deployment_target = "10.10"
   s.watchos.deployment_target = "2.0"
