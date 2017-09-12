@@ -161,9 +161,9 @@ NSString *escapedSnack = @"Fish &amp; Chips";
 NSString *snack = [escapedSnack stringByRemovingHTMLEntities]; // "Fish & Chips"
 ~~~
 
-## Licence
+## License
 
-This project is licenced under the MIT Licence.
+This project is licenced under the MIT License.
 
 ~~~
 The MIT License (MIT)
@@ -189,7 +189,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ~~~
 
-See the [LICENCE file](LICENCE).
+See the [LICENSE file](LICENSE).
 
 ## &#128175; Acknowledgements
 
