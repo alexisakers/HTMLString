@@ -23,7 +23,7 @@ if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
         ;;
 
     'device')
-        echo "🔍 Running unit tests on device'"
+        echo "🔍 Running unit tests on device"
         xcodebuild clean test -project HTMLString.xcodeproj -scheme "$SCHEME" -destination "$DESTINATION" | xcpretty
         ;;
 
@@ -36,7 +36,14 @@ if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
 fi
 
 if [[ $TRAVIS_OS_NAME == 'linux' ]]; then
+
+    echo "🛠 Building project in Debug mode"
     swift build
+    
+    echo "🛠 Building project in Release mode"
     swift build -c release
+
+    echo "🔍 Running unit tests"
     swift test
+
 fi

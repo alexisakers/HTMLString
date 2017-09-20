@@ -5,7 +5,7 @@ matrix:
         - os: linux
           dist: trusty
           sudo: required
-          env: DEPLOY=false SWIFT_VERSION="https://swift.org/builds/swift-4.0-branch/ubuntu1604/swift-4.0-DEVELOPMENT-SNAPSHOT-2017-09-11-a/swift-4.0-DEVELOPMENT-SNAPSHOT-2017-09-11-a-ubuntu16.04.tar.gz"
+          env: LOCAL_SWIFT_BRANCH="swift-4.0-release" LOCAL_SWIFT_VERSION="swift-4.0-RELEASE" DEPLOY="false"
         - os: osx
           osx_image: xcode9
           language: objective-c
@@ -65,12 +65,9 @@ matrix:
 
 install:
   - sudo bash ./.ci/install.sh
-  - eval "$(curl -sL https://gist.githubusercontent.com/kylef/5c0475ff02b7c7671d2a/raw/9f442512a46d7a2af7b850d65a7e9bd31edfb09b/swiftenv-install.sh)"
-  - export SWIFT_VERSION="4.0-DEVELOPMENT-SNAPSHOT-2017-09-11-a"
 
 script:
-  - set -o pipefail
-  - bash ./.ci/test.sh
+  - set -o pipefail && bash ./.ci/test.sh
 
 before_deploy:
   - bash ./.ci/before_deploy.sh
