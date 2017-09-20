@@ -1,5 +1,9 @@
 # Updates to HTMLString
 
+## 🔖 v4.0.1 — 2017-09-20
+
+- Fix CocoaPods metadata
+
 ## 🔖 v4.0.0 — 2017-09-20
 
 - Update project for Swift 4
