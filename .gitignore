@@ -1,10 +1,2 @@
-**/.DS_Store
-build/
-DerivedData/
-xcuserdata/
-Packages/
-.build/
-Carthage/Build
-Gemfile
-Gemfile.lock
-**/undocumented.json
+.DS_Store
+**/*/undocumented.json
