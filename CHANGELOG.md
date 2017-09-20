@@ -1,13 +1,13 @@
-# HTMLString Change Log
+# Updates to HTMLString
 
-## [TO BE RELEASED] — Version 4.0.0
+## 🔖 v4.0.0 — 2017-09-20
 
 - Update project for Swift 4
 - Improve tests and documentation
 - Run CI tests on mutliple platforms
 - Update metadata
 
-## 2017-02-14 — Version 3.0.0
+## 🔖 v3.0.0 — 2017-02-14
 
 - Implemented final API: same design as Foundation `addingPercentEncoding`/`removingPercentEncoding`
 - Reorganized Xcode project and targets (1 target/platform)
@@ -17,12 +17,12 @@
 - Updated README
 - Sanitized codebase
 
-## 2017-01-16 — Version 2.1.2
+## 🔖 v2.1.2 — 2017-01-16
 
 - Added an Objective-C Mix & Match API
 - Codebase improvements
 
-## 2017-01-05 — Version 2.1.1
+## 🔖 v2.1.1 — 2017-01-05
 
 ### API
 
@@ -39,7 +39,7 @@
 
 - Removed .DS_Store
 
-## 2017-01-04 — Version 2.1.0
+## 🔖 v2.1.0 — 2017-01-04
 
 - Changed the escaping algorithm (`reduce` instead of `map`)
 - Reduced the size of the escaping mappings
@@ -51,13 +51,13 @@
 
 - The `Character` (un)escaping extensions have been removed. 
 
-## 2016-12-06 — Version 2.0.1
+## 🔖 v2.0.1 — 2016-12-06
 
 - Performance improvements : escaping is **99.37%** faster and unescaping is **10,38%** faster (in average)
 - Changed the escaping/unescaping tables model
 - Better tests and coverage
 
-## 2016-12-03 — Version 2.0.0
+## 🔖 v2.0.0 — 2016-12-03
 
 - Transitioned to a `Character`-based API: this adds full support for extended grapheme clusters.
 - Reduced build times: now builds in ~5seconds (vs ~15 in v1)
@@ -65,7 +65,7 @@
 - Several bug fixes and code improvements
 - Added independent documentation
 
-## 2016-10-29 — Version 1.0.2
+## 🔖 v1.0.2 — 2016-10-29
 
 ### Fixed
 
