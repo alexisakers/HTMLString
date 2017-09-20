@@ -9,10 +9,7 @@ class HTMLStringTests: XCTestCase {
 
     // MARK: - Escaping
 
-    ///
     /// Tests escaping a string for ASCII.
-    ///
-
     func testStringASCIIEscaping() {
 
         let namedEscape = ("Fish & Chips").addingASCIIEntities
@@ -29,10 +26,7 @@ class HTMLStringTests: XCTestCase {
 
     }
 
-    ///
     /// Tests escaping a string for Unicode.
-    ///
-
     func testStringUnicodeEscaping() {
 
         let requiredEscape = ("Fish & Chips").addingUnicodeEntities
@@ -51,10 +45,7 @@ class HTMLStringTests: XCTestCase {
 
     // MARK: - Unescaping
 
-    ///
-    /// Tests unescaping sequences.
-    ///
-
+    /// Tests unescaping strings.
     func testUnescaping() {
 
         let withoutMarker = "Hello, world.".removingHTMLEntities
@@ -94,10 +85,7 @@ class HTMLStringTests: XCTestCase {
 
     // MARK: - Benchmark
 
-    ///
-    /// Measures the performance of unescaping.
-    ///
-
+    /// Measures the average unescaping performance.
     func testUnescapingPerformance() {
 
         self.measure {
@@ -117,10 +105,7 @@ class HTMLStringTests: XCTestCase {
 
     }
 
-    ///
-    /// Measures performance of unescaping.
-    ///
-
+    /// Measures escaping avergae performance.
     func testEscapingPerformance() {
 
         self.measure {
@@ -139,6 +124,15 @@ class HTMLStringTests: XCTestCase {
 
     }
 
+    /// Measures the average perforance of unescaping a long String with a large number of entities.
+    func testLargeUnescapingPerformance() {
+
+        self.measure {
+            _ = HTMLTestLongUnescapableString.removingHTMLEntities
+        }
+
+    }
+
 }
 
 extension HTMLStringTests {
@@ -149,7 +143,8 @@ extension HTMLStringTests {
             ("testStringUnicodeEscaping", testStringUnicodeEscaping),
             ("testUnescaping", testUnescaping),
             ("testUnescapingPerformance", testUnescapingPerformance),
-            ("testEscapingPerformance", testEscapingPerformance)
+            ("testEscapingPerformance", testEscapingPerformance),
+            ("testLargeUnescapingPerformance", testLargeUnescapingPerformance)
         ]
     }
 

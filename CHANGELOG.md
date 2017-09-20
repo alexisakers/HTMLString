@@ -1,5 +1,12 @@
 # HTMLString Change Log
 
+## [TO BE RELEASED] — Version 4.0.0
+
+- Update project for Swift 4
+- Improve tests and documentation
+- Run CI tests on mutliple platforms
+- Update metadata
+
 ## 2017-02-14 — Version 3.0.0
 
 - Implemented final API: same design as Foundation `addingPercentEncoding`/`removingPercentEncoding`
