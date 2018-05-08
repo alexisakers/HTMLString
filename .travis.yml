@@ -27,7 +27,7 @@ matrix:
           language: objective-c
           env: PLATFORM="watchOS" TEST="none" SCHEME="HTMLString-watchOS" DEPLOY="false"
         - os: osx
-          osx_image: xcode9
+          osx_image: xcode9.3
           language: objective-c
           env: PLATFORM="macOS" TEST="device" DESTINATION="arch=x86_64" SCHEME="HTMLString-macOS" DEPLOY="true" FRAMEWORK_NAME="HTMLString"
 
