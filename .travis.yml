@@ -5,34 +5,48 @@ matrix:
         - os: linux
           dist: trusty
           sudo: required
-          env: LOCAL_SWIFT_BRANCH="swift-4.1-release" LOCAL_SWIFT_VERSION="swift-4.1-RELEASE"
+          env: LOCAL_SWIFT_BRANCH="swift-4.0-release" LOCAL_SWIFT_VERSION="swift-4.0-RELEASE" DEPLOY="false"
         - os: osx
           osx_image: xcode9
           language: objective-c
-          env: PLATFORM="iOS" TEST="simulator" TEST_DEVICE="iPhone-6s" TEST_RUNTIME="iOS-9-3" SCHEME="HTMLString-iOS"
+          env: PLATFORM="iOS" TEST="simulator" TEST_DEVICE="iPhone-6s" TEST_RUNTIME="iOS-9-3" SCHEME="HTMLString-iOS" DEPLOY="false"
         - os: osx
           osx_image: xcode9
           language: objective-c
-          env: PLATFORM="iOS" TEST="simulator" TEST_DEVICE="iPhone-6s" TEST_RUNTIME="iOS-10-3" SCHEME="HTMLString-iOS"
+          env: PLATFORM="iOS" TEST="simulator" TEST_DEVICE="iPhone-6s" TEST_RUNTIME="iOS-10-3" SCHEME="HTMLString-iOS" DEPLOY="false"
         - os: osx
           osx_image: xcode9
           language: objective-c
-          env: PLATFORM="iOS" TEST="simulator" TEST_DEVICE="iPhone-6s" TEST_RUNTIME="iOS-11-0" SCHEME="HTMLString-iOS"
+          env: PLATFORM="iOS" TEST="simulator" TEST_DEVICE="iPhone-6s" TEST_RUNTIME="iOS-11-0" SCHEME="HTMLString-iOS" DEPLOY="false"
         - os: osx
           osx_image: xcode9
           language: objective-c
-          env: PLATFORM="tvOS" TEST="simulator" TEST_DEVICE="Apple-TV-1080p" TEST_RUNTIME="tvOS-11-0" SCHEME="HTMLString-tvOS"
+          env: PLATFORM="tvOS" TEST="simulator" TEST_DEVICE="Apple-TV-1080p" TEST_RUNTIME="tvOS-11-0" SCHEME="HTMLString-tvOS" DEPLOY="false"
         - os: osx
           osx_image: xcode9
           language: objective-c
-          env: PLATFORM="watchOS" TEST="none" SCHEME="HTMLString-watchOS"
+          env: PLATFORM="watchOS" TEST="none" SCHEME="HTMLString-watchOS" DEPLOY="false"
         - os: osx
           osx_image: xcode9
           language: objective-c
-          env: PLATFORM="macOS" TEST="device" DESTINATION="arch=x86_64" SCHEME="HTMLString-macOS" 
+          env: PLATFORM="macOS" TEST="device" DESTINATION="arch=x86_64" SCHEME="HTMLString-macOS" DEPLOY="true" FRAMEWORK_NAME="HTMLString"
 
 install:
   - sudo bash ./.ci/install.sh
 
 script:
   - set -o pipefail && bash ./.ci/test.sh
+
+before_deploy:
+  - bash ./.ci/before_deploy.sh
+
+deploy:
+  provider: releases
+  api_key:
+    secure: pkSjDbK34odvP+saJlPEuj1E2SxOnA3VZxp2Zbke/UkZq/ZUOC0+jBuOZvem2/usW2xu2QtB40gTiVlg7Ez3bTZ//3jIvCWcVbwlfJMx5fKTIq8OpGz/OF7bkDd00lPbcATy9/33qD1K6+G+yPwMz7Qqd6Cwty33ivkLHypD/8Fxcln2W/CJmwrBqxdwlmyGnYk5wPX3SVC8FKMsYFY3OGkzpX7BSW75x7EPFesXQutqvQeD/2jUerLScmE64KMpOW6G1qbXKV/zjzrdZVJ2a+rID1I1RGgql9gkP/XIgsaWYcQ2hhitDiIzqgT6h2lQA/VV8BPkdMlD6UiP4x3/ThanQUdbOw6pJQ0hBlJv5MxFBrw28L6YRNshe59dlF/+B05XJSV8tXETECYJbIOf/egkwEUfspby0C+b7MDsdjE52MkL1oMhkyr0pNUa9ey8xKcNw+lW9jPmsGVXSxnGM6P1oLudJQYca+WD2pDx2/YY5/JkFdIZWwiZ5kfIQfoujaMZaMdoujaXR1DpcYdGz97zWwv9Ph2hgl8ZXfiYhhxsw8cNE26TQX2DRmnXTfxWxfFV0aGQnR6mhS65IGnosSNSXDFlV7JTAc7Nn6onP+bQecK5XO1bubPOa24JWoNBYBT1tu1mPYu0UCLw+kyS4z6TaLhZ0dP1Su6dItRSEso=
+  file: "$FRAMEWORK_NAME.framework.zip"
+  skip_cleanup: true
+  on:
+    repo: alexaubry/HTMLString
+    tags: true
+    condition: $DEPLOY = true
