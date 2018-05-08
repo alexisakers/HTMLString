@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "HTMLString"
-  s.version      = "4.0.1"
+  s.version      = "4.0.2"
   s.summary      = "Escape and unescape HTML entities in Swift"
   s.description  = <<-DESC
 HTMLString is a fast library written in Swift that enables your program to add and remove HTML entities in Strings. It supports both ASCII and Unicode. You can use it with 2125 named (`&amp;`), decimal (`&#128;`) and hexadecimal (`&#x1F643;`) entities. It has native support for Swift's Extended Grapheme Clusters. Fully unit tested and documented.

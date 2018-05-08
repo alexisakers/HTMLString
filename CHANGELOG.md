@@ -1,5 +1,10 @@
 # Updates to HTMLString
 
+## 🔖 v4.0.1 — 2018-05-08
+
+- Update project for Xcode 9.3
+- Improve tests and documentation
+
 ## 🔖 v4.0.1 — 2017-09-20
 
 - Fix CocoaPods metadata
