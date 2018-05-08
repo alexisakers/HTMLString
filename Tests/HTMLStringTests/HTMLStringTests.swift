@@ -83,6 +83,29 @@ class HTMLStringTests: XCTestCase {
 
     }
 
+    // MARK: - Open Data
+
+    func testThatItUnescapesSampleData() {
+
+        let review = "44 Fotos und 68 Tipps von 567 Besucher bei NETA Mexican Street Food anzeigen. &quot;Not sharing the enthusiasm of the other reviewers. The tacos were...&quot;"
+
+        let expectedReview = "44 Fotos und 68 Tipps von 567 Besucher bei NETA Mexican Street Food anzeigen. \"Not sharing the enthusiasm of the other reviewers. The tacos were...\""
+
+        XCTAssertEqual(review.removingHTMLEntities, expectedReview)
+
+        let foursquare = "NETA Mexican Street Food, Weinbergsweg 5, Berlin, Berlin, neta mexican street food, Burritos, Mexikanisch, Nachspeise, Abendessen &amp; more"
+
+        let expectedFoursquare = "NETA Mexican Street Food, Weinbergsweg 5, Berlin, Berlin, neta mexican street food, Burritos, Mexikanisch, Nachspeise, Abendessen & more"
+
+        XCTAssertEqual(foursquare.removingHTMLEntities, expectedFoursquare)
+
+        let headline = "What&#x27;s it like to drive with Tesla&#x27;s Autopilot and how does it work?"
+        let expectedHeadline = "What's it like to drive with Tesla's Autopilot and how does it work?"
+
+        XCTAssertEqual(headline.removingHTMLEntities, expectedHeadline)
+
+    }
+
     // MARK: - Benchmark
 
     /// Measures the average unescaping performance.
