@@ -7,27 +7,27 @@ matrix:
           sudo: required
           env: LOCAL_SWIFT_BRANCH="swift-4.0-release" LOCAL_SWIFT_VERSION="swift-4.0-RELEASE" DEPLOY="false"
         - os: osx
-          osx_image: xcode9
+          osx_image: xcode10
           language: objective-c
           env: PLATFORM="iOS" TEST="simulator" TEST_DEVICE="iPhone-6s" TEST_RUNTIME="iOS-9-3" SCHEME="HTMLString-iOS" DEPLOY="false"
         - os: osx
-          osx_image: xcode9
+          osx_image: xcode10
           language: objective-c
           env: PLATFORM="iOS" TEST="simulator" TEST_DEVICE="iPhone-6s" TEST_RUNTIME="iOS-10-3" SCHEME="HTMLString-iOS" DEPLOY="false"
         - os: osx
-          osx_image: xcode9
+          osx_image: xcode10
           language: objective-c
           env: PLATFORM="iOS" TEST="simulator" TEST_DEVICE="iPhone-6s" TEST_RUNTIME="iOS-11-0" SCHEME="HTMLString-iOS" DEPLOY="false"
         - os: osx
-          osx_image: xcode9
+          osx_image: xcode10
           language: objective-c
           env: PLATFORM="tvOS" TEST="simulator" TEST_DEVICE="Apple-TV-1080p" TEST_RUNTIME="tvOS-11-0" SCHEME="HTMLString-tvOS" DEPLOY="false"
         - os: osx
-          osx_image: xcode9
+          osx_image: xcode10
           language: objective-c
           env: PLATFORM="watchOS" TEST="none" SCHEME="HTMLString-watchOS" DEPLOY="false"
         - os: osx
-          osx_image: xcode9.3
+          osx_image: xcode10
           language: objective-c
           env: PLATFORM="macOS" TEST="device" DESTINATION="arch=x86_64" SCHEME="HTMLString-macOS" DEPLOY="true" FRAMEWORK_NAME="HTMLString"
 
