@@ -89,7 +89,7 @@ extension String {
             }
 
             let escapableContent = self[delimiterRange.upperBound ..< semicolonRange.lowerBound]
-            let escapableContentString = String(escapableContent)
+            let escapableContentString = String(escapableContent)!
             let replacementString: String
 
             if escapableContentString.hasPrefix("#") {
