@@ -18,5 +18,6 @@ DESC
 
   s.source       = { :git => "https://github.com/alexaubry/HTMLString.git", :tag => "#{s.version}" }
   s.source_files  = "Sources/HTMLString/*.swift"
+  s.swift_version = "4.1"
   s.documentation_url = "https://alexaubry.github.io/HTMLString/"
 end
