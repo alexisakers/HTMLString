@@ -10,6 +10,10 @@
 		55BFFFD71F59574E00F13633 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BFFFD61F59574E00F13633 /* TestData.swift */; };
 		55BFFFD81F59574E00F13633 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BFFFD61F59574E00F13633 /* TestData.swift */; };
 		55BFFFD91F59574E00F13633 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BFFFD61F59574E00F13633 /* TestData.swift */; };
+		5E0A736B224CFC2300DCD41D /* HTMLEscapes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E0A736A224CFC2300DCD41D /* HTMLEscapes.plist */; };
+		5E0A736C224CFC2300DCD41D /* HTMLEscapes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E0A736A224CFC2300DCD41D /* HTMLEscapes.plist */; };
+		5E0A736D224CFC2300DCD41D /* HTMLEscapes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E0A736A224CFC2300DCD41D /* HTMLEscapes.plist */; };
+		5E0A736E224CFC2300DCD41D /* HTMLEscapes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E0A736A224CFC2300DCD41D /* HTMLEscapes.plist */; };
 		5E441EB81E525FCA0041CF34 /* HTMLString.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* HTMLString.swift */; };
 		5E441EB91E525FCA0041CF34 /* Mappings.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Mappings.swift */; };
 		5E441EE21E5260980041CF34 /* HTMLString.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* HTMLString.swift */; };
@@ -24,10 +28,6 @@
 		5E441F181E5263C70041CF34 /* HTMLStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* HTMLStringTests.swift */; };
 		5E441F191E5263C70041CF34 /* HTMLStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* HTMLStringTests.swift */; };
 		5E441F1A1E5263C70041CF34 /* HTMLStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* HTMLStringTests.swift */; };
-		5E441F1C1E5265070041CF34 /* Deprecated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E441F1B1E5265070041CF34 /* Deprecated.swift */; };
-		5E441F1D1E5265070041CF34 /* Deprecated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E441F1B1E5265070041CF34 /* Deprecated.swift */; };
-		5E441F1E1E5265070041CF34 /* Deprecated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E441F1B1E5265070041CF34 /* Deprecated.swift */; };
-		5E441F1F1E5265070041CF34 /* Deprecated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E441F1B1E5265070041CF34 /* Deprecated.swift */; };
 		5E441F201E526DD70041CF34 /* NSString+HTMLString.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* NSString+HTMLString.swift */; };
 		5E441F211E526DD70041CF34 /* NSString+HTMLString.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* NSString+HTMLString.swift */; };
 		5E441F221E526DD70041CF34 /* NSString+HTMLString.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* NSString+HTMLString.swift */; };
@@ -60,6 +60,7 @@
 
 /* Begin PBXFileReference section */
 		55BFFFD61F59574E00F13633 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TestData.swift; path = HTMLStringTests/TestData.swift; sourceTree = "<group>"; };
+		5E0A736A224CFC2300DCD41D /* HTMLEscapes.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = HTMLEscapes.plist; sourceTree = "<group>"; };
 		5E441EA91E525F2D0041CF34 /* HTMLString.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = HTMLString.plist; path = Configs/HTMLString.plist; sourceTree = "<group>"; };
 		5E441EAA1E525F340041CF34 /* HTMLStringTests.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = HTMLStringTests.plist; path = Configs/HTMLStringTests.plist; sourceTree = "<group>"; };
 		5E441EB01E525FB70041CF34 /* HTMLString.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HTMLString.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,7 +70,6 @@
 		5E441EEF1E5262540041CF34 /* HTMLString-iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HTMLString-iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E441EFE1E5262910041CF34 /* HTMLString-tvOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HTMLString-tvOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E441F0D1E52629D0041CF34 /* HTMLString-macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HTMLString-macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5E441F1B1E5265070041CF34 /* Deprecated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Deprecated.swift; path = HTMLString/Deprecated.swift; sourceTree = "<group>"; };
 		OBJ_10 /* Mappings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Mappings.swift; path = HTMLString/Mappings.swift; sourceTree = "<group>"; };
 		OBJ_11 /* NSString+HTMLString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "NSString+HTMLString.swift"; path = "HTMLString/NSString+HTMLString.swift"; sourceTree = "<group>"; };
 		OBJ_14 /* HTMLStringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HTMLStringTests.swift; path = HTMLStringTests/HTMLStringTests.swift; sourceTree = "<group>"; };
@@ -133,6 +133,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5E0A7369224CFC2300DCD41D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5E0A736A224CFC2300DCD41D /* HTMLEscapes.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		5E441EA61E525EFC0041CF34 /* Configs */ = {
 			isa = PBXGroup;
 			children = (
@@ -185,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
+				5E0A7369224CFC2300DCD41D /* Resources */,
 				OBJ_7 /* Sources */,
 				OBJ_12 /* Tests */,
 				5E441EA61E525EFC0041CF34 /* Configs */,
@@ -198,7 +207,6 @@
 				OBJ_9 /* HTMLString.swift */,
 				OBJ_11 /* NSString+HTMLString.swift */,
 				OBJ_10 /* Mappings.swift */,
-				5E441F1B1E5265070041CF34 /* Deprecated.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -414,6 +422,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = OBJ_5;
@@ -437,6 +446,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E0A736B224CFC2300DCD41D /* HTMLEscapes.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,6 +454,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E0A736E224CFC2300DCD41D /* HTMLEscapes.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,6 +462,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E0A736D224CFC2300DCD41D /* HTMLEscapes.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,6 +470,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E0A736C224CFC2300DCD41D /* HTMLEscapes.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,7 +502,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E441F1C1E5265070041CF34 /* Deprecated.swift in Sources */,
 				5E441EB91E525FCA0041CF34 /* Mappings.swift in Sources */,
 				5E441EB81E525FCA0041CF34 /* HTMLString.swift in Sources */,
 				5E441F201E526DD70041CF34 /* NSString+HTMLString.swift in Sources */,
@@ -500,7 +512,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E441F1D1E5265070041CF34 /* Deprecated.swift in Sources */,
 				5E441EE31E5260980041CF34 /* Mappings.swift in Sources */,
 				5E441EE21E5260980041CF34 /* HTMLString.swift in Sources */,
 				5E441F211E526DD70041CF34 /* NSString+HTMLString.swift in Sources */,
@@ -511,7 +522,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E441F1E1E5265070041CF34 /* Deprecated.swift in Sources */,
 				5E441EE61E5260990041CF34 /* Mappings.swift in Sources */,
 				5E441EE51E5260990041CF34 /* HTMLString.swift in Sources */,
 				5E441F221E526DD70041CF34 /* NSString+HTMLString.swift in Sources */,
@@ -522,7 +532,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E441F1F1E5265070041CF34 /* Deprecated.swift in Sources */,
 				5E441EE91E5260990041CF34 /* Mappings.swift in Sources */,
 				5E441EE81E5260990041CF34 /* HTMLString.swift in Sources */,
 				5E441F231E526DD80041CF34 /* NSString+HTMLString.swift in Sources */,
@@ -633,7 +642,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -692,7 +701,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -754,7 +763,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -812,7 +821,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -875,7 +884,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -933,7 +942,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VALIDATE_PRODUCT = YES;
@@ -996,7 +1005,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1052,7 +1061,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1106,7 +1115,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1154,7 +1163,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1207,7 +1216,7 @@
 				SDKROOT = appletvos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Debug;
@@ -1256,7 +1265,7 @@
 				SDKROOT = appletvos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1310,7 +1319,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1358,7 +1367,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
