@@ -11,6 +11,8 @@ class HTMLStringTests: XCTestCase {
 
     /// Tests escaping a string for ASCII.
     func testStringASCIIEscaping() {
+        let emptyString = ("").addingASCIIEntities
+        XCTAssertEqual(emptyString, "")
 
         let namedEscape = ("Fish & Chips").addingASCIIEntities
         XCTAssertEqual(namedEscape, "Fish &#38; Chips")
@@ -23,12 +25,10 @@ class HTMLStringTests: XCTestCase {
 
         let doubleEmojiEscape = ("Going to the 🇺🇸 next June").addingASCIIEntities
         XCTAssertEqual(doubleEmojiEscape, "Going to the &#127482;&#127480; next June")
-
     }
 
     /// Tests escaping a string for Unicode.
     func testStringUnicodeEscaping() {
-
         let requiredEscape = ("Fish & Chips").addingUnicodeEntities
         XCTAssertEqual(requiredEscape, "Fish &#38; Chips")
 
@@ -40,14 +40,12 @@ class HTMLStringTests: XCTestCase {
 
         let doubleEmojiEscape = ("Going to the 🇺🇸 next June").addingUnicodeEntities
         XCTAssertEqual(doubleEmojiEscape, "Going to the 🇺🇸 next June")
-
     }
 
     // MARK: - Unescaping
 
     /// Tests unescaping strings.
     func testUnescaping() {
-
         let withoutMarker = "Hello, world.".removingHTMLEntities
         XCTAssertEqual(withoutMarker, "Hello, world.")
 
@@ -80,39 +78,29 @@ class HTMLStringTests: XCTestCase {
 
         let doubleEmojiEscape = ("Going to the &#127482;&#127480; next June").removingHTMLEntities
         XCTAssertEqual(doubleEmojiEscape, "Going to the 🇺🇸 next June")
-
     }
 
     // MARK: - Open Data
 
     func testThatItUnescapesSampleData() {
-
         let review = "44 Fotos und 68 Tipps von 567 Besucher bei NETA Mexican Street Food anzeigen. &quot;Not sharing the enthusiasm of the other reviewers. The tacos were...&quot;"
-
         let expectedReview = "44 Fotos und 68 Tipps von 567 Besucher bei NETA Mexican Street Food anzeigen. \"Not sharing the enthusiasm of the other reviewers. The tacos were...\""
-
         XCTAssertEqual(review.removingHTMLEntities, expectedReview)
 
         let foursquare = "NETA Mexican Street Food, Weinbergsweg 5, Berlin, Berlin, neta mexican street food, Burritos, Mexikanisch, Nachspeise, Abendessen &amp; more"
-
         let expectedFoursquare = "NETA Mexican Street Food, Weinbergsweg 5, Berlin, Berlin, neta mexican street food, Burritos, Mexikanisch, Nachspeise, Abendessen & more"
-
         XCTAssertEqual(foursquare.removingHTMLEntities, expectedFoursquare)
 
         let headline = "What&#x27;s it like to drive with Tesla&#x27;s Autopilot and how does it work?"
         let expectedHeadline = "What's it like to drive with Tesla's Autopilot and how does it work?"
-
         XCTAssertEqual(headline.removingHTMLEntities, expectedHeadline)
-
     }
 
     // MARK: - Benchmark
 
     /// Measures the average unescaping performance.
     func testUnescapingPerformance() {
-
         self.measure {
-
             _ = "Hello, world.".removingHTMLEntities
             _ = "Fish & Chips".removingHTMLEntities
             _ = "My phone number starts with a &#49;".removingHTMLEntities
@@ -123,16 +111,13 @@ class HTMLStringTests: XCTestCase {
             _ = "I love &swift;".removingHTMLEntities
             _ = "Do you know &aleph;?".removingHTMLEntities
             _ = "a &amp;&amp; b".removingHTMLEntities
-
         }
-
     }
 
     /// Measures escaping avergae performance.
     func testEscapingPerformance() {
-
+        // baseline average: 0.001s
         self.measure {
-
             _ = ("Fish & Chips").addingASCIIEntities
             _ = ("a ⪰̸ b").addingASCIIEntities
             _ = ("Hey 🙃").addingASCIIEntities
@@ -142,18 +127,15 @@ class HTMLStringTests: XCTestCase {
             _ = ("a ⪰̸ b").addingUnicodeEntities
             _ = ("Hey 🙃!").addingUnicodeEntities
             _ = ("Going to the 🇺🇸 next June").addingUnicodeEntities
-
         }
-
     }
 
     /// Measures the average perforance of unescaping a long String with a large number of entities.
     func testLargeUnescapingPerformance() {
-
+        // baseline average: 5s
         self.measure {
             _ = HTMLTestLongUnescapableString.removingHTMLEntities
         }
-
     }
 
 }
