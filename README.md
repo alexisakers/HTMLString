@@ -1,7 +1,7 @@
 <p align="center">
     <img src="https://github.com/alexaubry/HTMLString/raw/swift4/.github/logo.png" alt="HTMLString" />
     <a>
-        <img src="https://img.shields.io/badge/Swift-4.0-ee4f37.svg" alt="Swift 4.0" />
+        <img src="https://img.shields.io/badge/Swift-5.0-ee4f37.svg" alt="Swift 5.0" />
     </a>
     <a href="https://travis-ci.org/alexaubry/HTMLString">
         <img src="https://travis-ci.org/alexaubry/HTMLString.svg?branch=swift4" alt="Build Status" />
@@ -40,21 +40,12 @@
 
 ## Installation
 
-### HTMLString version vs Swift version
-
-Below is a table that shows which version of HTMLString you should use for your Swift version.
-
-| Swift version | HTMLString Version |
-|---------------|--------------------|
-| 4.X           | >= 4.0.0           |
-| 3.X           | >= 3.0.0           |
-
 ### Swift Package Manager
 
 Add this line to your `Package.swift` :
 
 ~~~swift
-.Package(url: "https://github.com/alexaubry/HTMLString", majorVersion: 4, minor: 0)
+.Package(url: "https://github.com/alexaubry/HTMLString", majorVersion: 5, minor: 0)
 ~~~
 
 ### CocoaPods
@@ -62,7 +53,7 @@ Add this line to your `Package.swift` :
 Add this line to your `Podfile`:
 
 ~~~ruby
-pod 'HTMLString', '~> 4.0'
+pod 'HTMLString', '~> 5.0'
 ~~~
 
 ### Carthage
@@ -70,12 +61,8 @@ pod 'HTMLString', '~> 4.0'
 Add this line to your Cartfile:
 
 ~~~
-github "alexaubry/HTMLString" ~> 4.0
+github "alexaubry/HTMLString" ~> 5.0
 ~~~
-
-### Manual
-
-Copy the `Sources/HTMLString/` directory into your project.
 
 ## Usage
 
@@ -166,9 +153,3 @@ NSString *snack = [escapedSnack stringByRemovingHTMLEntities]; // "Fish & Chips"
 ## License
 
 HTMLString is available under the MIT license. See the [LICENSE](LICENSE) file for more info.
-
-## &#128175; Acknowledgements
-
-![Thanks @google](https://i.giphy.com/QBC5foQmcOkdq.gif)
-
-This library was originally inspired by [**@google**'s Toolbox for Mac](https://github.com/google/google-toolbox-for-mac).

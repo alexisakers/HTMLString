@@ -1,5 +1,11 @@
 # Updates to HTMLString
 
+## 🔖 v5.0.0 — [Date TBD]
+
+- Swift 5 support
+- Improve unescaping algorithm speed
+- Add mutable methods
+
 ## 🔖 v4.0.1 — 2018-05-08
 
 - Update project for Xcode 9.3
