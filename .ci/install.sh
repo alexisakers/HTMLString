@@ -1,15 +1,17 @@
 #!/bin/bash
 set -e
+OS_NAME=$1
 
-if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
+if [[ $OS_NAME == 'Darwin' ]]; then
     echo "👉  Installing build dependencies"
-    gem install xcpretty
+    sudo xcode-select -switch /Applications/Xcode_10.2.app
+    bundle install
 fi
 
-if [[ $TRAVIS_OS_NAME == 'linux' ]]; then
+if [[ $OS_NAME == 'Linux' ]]; then
     
     echo "👉  Installing Swift"
-    SWIFT_URL=https://swift.org/builds/$LOCAL_SWIFT_BRANCH/ubuntu1404/$LOCAL_SWIFT_VERSION/$LOCAL_SWIFT_VERSION-ubuntu14.04.tar.gz
+    SWIFT_URL=https://swift.org/builds/swift-5.0.1-release/ubuntu1604/swift-5.0.1-RELEASE/swift-5.0.1-RELEASE-ubuntu16.04.tar.gz
     curl -L $SWIFT_URL -o swift.tar.gz
     sudo tar -xzf swift.tar.gz --directory /usr/local --strip-components=2
 

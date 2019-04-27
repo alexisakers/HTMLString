@@ -1,7 +1,8 @@
 #!/bin/bash
 set -e
+OS_NAME=$1
 
-if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
+if [[ $OS_NAME == 'Darwin' ]]; then
 
     echo "🛠 Building project in Debug mode"
     xcodebuild clean build -project HTMLString.xcodeproj -scheme "$SCHEME" -configuration Debug | xcpretty
@@ -35,7 +36,7 @@ if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
     
 fi
 
-if [[ $TRAVIS_OS_NAME == 'linux' ]]; then
+if [[ $OS_NAME == 'Linux' ]]; then
 
     echo "🛠 Building project in Debug mode"
     swift build

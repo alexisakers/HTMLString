@@ -1,20 +1,18 @@
+strategy:
+  matrix:
+    linux:
+      imageName: 'ubuntu-16.04'
+    mac:
+      imageName: 'macos-10.134'
+
 pool:
-   vmImage: 'macOS 10.14'
-   
-trigger:
-  branches:
-    include:
-      - develop
+  vmImage: $(imageName)
 
 steps:
 - script: |
-    sh .ci/install.sh
+    sh .ci/install.sh $(Agent.OS)
   displayName: "Setup environment"
 
 - script: |
-    sh .ci/install.sh
-  displayName: "Build"
-
-- script: |
-    sh .ci/test.sh
+    sh .ci/test.sh $(Agent.OS)
   displayName: "Test"
