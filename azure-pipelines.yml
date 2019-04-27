@@ -1,0 +1,20 @@
+pool:
+   vmImage: 'macOS 10.14'
+   
+trigger:
+  branches:
+    include:
+      - develop
+
+steps:
+- script: |
+    sh .ci/install.sh
+  displayName: "Setup environment"
+
+- script: |
+    sh .ci/install.sh
+  displayName: "Build"
+
+- script: |
+    sh .ci/test.sh
+  displayName: "Test"
