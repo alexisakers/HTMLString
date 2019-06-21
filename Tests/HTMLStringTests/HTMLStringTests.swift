@@ -79,6 +79,13 @@ class HTMLStringTests: XCTestCase {
         let doubleEmojiEscape = ("Going to the &#127482;&#127480; next June").removingHTMLEntities
         XCTAssertEqual(doubleEmojiEscape, "Going to the 🇺🇸 next June")
     }
+    
+    /// Refer to issue https://github.com/alexaubry/HTMLString/issues/22
+    func testNSString() {
+        let nsSepcialCharacter = NSString("𝟸𝟺𝟶&deg;")
+        let sepcialCharacter = nsSepcialCharacter as String
+        XCTAssertEqual(sepcialCharacter.removingHTMLEntities, "𝟸𝟺𝟶°")
+    }
 
     // MARK: - Open Data
 

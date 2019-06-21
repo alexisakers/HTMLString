@@ -141,28 +141,30 @@ extension String {
     ///
 
     public mutating func removeHTMLEntities() {
-        var cursorPosition = startIndex
+        var searchSubstring = self[startIndex ..< endIndex]
 
-        while let delimiterRange = range(of: "&", range: cursorPosition ..< endIndex) {
+        while let delimiterIndex = searchSubstring.firstIndex(of: "&") {
             // Avoid unnecessary operations
-            guard let semicolonRange = range(of: ";", range: delimiterRange.upperBound ..< endIndex) else {
-                cursorPosition = delimiterRange.upperBound
+            guard let semicolonIndex = searchSubstring[delimiterIndex ..< endIndex].firstIndex(of: ";") else {
                 break
             }
 
-            let escapableRange = delimiterRange.upperBound ..< semicolonRange.lowerBound
-            let replaceableRange = delimiterRange.lowerBound ..< semicolonRange.upperBound
+            let escapableRange = index(after: delimiterIndex) ..< semicolonIndex
+            let replaceableRange = delimiterIndex ... semicolonIndex
             let escapableContent = self[escapableRange]
 
+            let cursorPosition: Index
             if let unescapedNumber = escapableContent.unescapeAsNumber() {
                 self.replaceSubrange(replaceableRange, with: unescapedNumber)
-                cursorPosition = self.index(delimiterRange.lowerBound, offsetBy: unescapedNumber.count)
+                cursorPosition = self.index(delimiterIndex, offsetBy: unescapedNumber.count)
             } else if let unescapedCharacter = HTMLStringMappings.shared.unescapingTable[String(escapableContent)] {
                 self.replaceSubrange(replaceableRange, with: unescapedCharacter)
-                cursorPosition = self.index(delimiterRange.lowerBound, offsetBy: unescapedCharacter.count)
+                cursorPosition = self.index(delimiterIndex, offsetBy: unescapedCharacter.count)
             } else {
-                cursorPosition = semicolonRange.upperBound
+                cursorPosition = semicolonIndex
             }
+
+            searchSubstring = self[cursorPosition ..< endIndex]
         }
     }
 
