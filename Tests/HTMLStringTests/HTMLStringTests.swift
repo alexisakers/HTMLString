@@ -78,6 +78,9 @@ class HTMLStringTests: XCTestCase {
 
         let doubleEmojiEscape = ("Going to the &#127482;&#127480; next June").removingHTMLEntities
         XCTAssertEqual(doubleEmojiEscape, "Going to the 🇺🇸 next June")
+
+        let textInTheMiddle = "Fish & Chips tastes &quot;great\"".removingHTMLEntities
+        XCTAssertEqual(textInTheMiddle, "Fish & Chips tastes \"great\"")
     }
     
     /// Refer to issue https://github.com/alexaubry/HTMLString/issues/22
@@ -107,6 +110,7 @@ class HTMLStringTests: XCTestCase {
 
     /// Measures the average unescaping performance.
     func testUnescapingPerformance() {
+        // baseline average: 0.001s
         self.measure {
             _ = "Hello, world.".removingHTMLEntities
             _ = "Fish & Chips".removingHTMLEntities
@@ -139,7 +143,7 @@ class HTMLStringTests: XCTestCase {
 
     /// Measures the average perforance of unescaping a long String with a large number of entities.
     func testLargeUnescapingPerformance() {
-        // baseline average: 5s
+        // baseline average: 0.3s
         self.measure {
             _ = HTMLTestLongUnescapableString.removingHTMLEntities
         }

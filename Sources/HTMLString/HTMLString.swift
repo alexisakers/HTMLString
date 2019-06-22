@@ -149,17 +149,20 @@ extension String {
                 break
             }
 
-            let escapableRange = index(after: delimiterIndex) ..< semicolonIndex
-            let replaceableRange = delimiterIndex ... semicolonIndex
+            // Parse the last sequence (ex: Fish & chips &amp; sauce -> "&amp;" instead of "& chips &amp;")
+            let lastDelimiterIndex = searchSubstring[delimiterIndex ..< semicolonIndex].lastIndex(of: "&") ?? delimiterIndex
+
+            let escapableRange = index(after: lastDelimiterIndex) ..< semicolonIndex
+            let replaceableRange = lastDelimiterIndex ... semicolonIndex
             let escapableContent = self[escapableRange]
 
             let cursorPosition: Index
             if let unescapedNumber = escapableContent.unescapeAsNumber() {
                 self.replaceSubrange(replaceableRange, with: unescapedNumber)
-                cursorPosition = self.index(delimiterIndex, offsetBy: unescapedNumber.count)
+                cursorPosition = self.index(lastDelimiterIndex, offsetBy: unescapedNumber.count)
             } else if let unescapedCharacter = HTMLStringMappings.shared.unescapingTable[String(escapableContent)] {
                 self.replaceSubrange(replaceableRange, with: unescapedCharacter)
-                cursorPosition = self.index(delimiterIndex, offsetBy: unescapedCharacter.count)
+                cursorPosition = self.index(lastDelimiterIndex, offsetBy: unescapedCharacter.count)
             } else {
                 cursorPosition = semicolonIndex
             }
