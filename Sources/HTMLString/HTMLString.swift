@@ -38,22 +38,24 @@ extension String {
     ///
 
     public mutating func addUnicodeEntities() {
-        var position: String.Index? = startIndex
+        var result = ""
+        var cursorPosition = startIndex
         let requiredEscapes: Set<Character> = ["!", "\"", "$", "%", "&", "'", "+", ",", "<", "=", ">", "@", "[", "]", "`", "{", "}"]
 
-        while let cursorPosition = position {
-            guard cursorPosition != endIndex else { break }
+        while cursorPosition != endIndex {
             let character = self[cursorPosition]
 
             if requiredEscapes.contains(character) {
                 // One of the required escapes for security reasons
                 let escape = "&#\(character.asciiValue!);" // required escapes can can only be ASCII
-                position = positionAfterReplacingCharacter(at: cursorPosition, with: escape)
+                result.append(escape)
             } else {
                 // Not a required escape, no need to replace the character
-                position = index(cursorPosition, offsetBy: 1, limitedBy: endIndex)
+                result.append(character)
             }
+            cursorPosition = index(after: cursorPosition)
         }
+        self = result
     }
 
     ///
@@ -95,28 +97,30 @@ extension String {
     ///
 
     public mutating func addASCIIEntities() {
-        var position: String.Index? = startIndex
+        var result = ""
+        var cursorPosition = startIndex
         let requiredEscapes: Set<Character> = ["!", "\"", "$", "%", "&", "'", "+", ",", "<", "=", ">", "@", "[", "]", "`", "{", "}"]
 
-        while let cursorPosition = position {
-            guard cursorPosition != endIndex else { break }
+        while cursorPosition != endIndex {
             let character = self[cursorPosition]
 
             if let asciiiValue = character.asciiValue {
                 if requiredEscapes.contains(character) {
                     // One of the required escapes for security reasons
                     let escape = "&#\(asciiiValue);"
-                    position = positionAfterReplacingCharacter(at: cursorPosition, with: escape)
+                    result.append(escape)
                 } else {
-                    // Not a required escape, no need to replace the character
-                    position = index(cursorPosition, offsetBy: 1, limitedBy: endIndex)
+                    // Escape is not needed, adding character to result
+                    result.append(character)
                 }
             } else {
                 // Not an ASCII Character, we need to escape.
                 let escape = character.unicodeScalars.reduce(into: "") { $0 += "&#\($1.value);" }
-                position = positionAfterReplacingCharacter(at: cursorPosition, with: escape)
+                result.append(escape)
             }
+            cursorPosition = index(after: cursorPosition)
         }
+        self = result
     }
 
 }
@@ -218,26 +222,6 @@ extension StringProtocol {
         }
 
         return String(scalar)
-    }
-
-}
-
-extension String {
-
-    /// Replaces the character at the given position with the escape and returns the new position.
-    fileprivate mutating func positionAfterReplacingCharacter(at position: String.Index, with escape: String) -> String.Index? {
-        let nextIndex = index(position, offsetBy: 1)
-
-        if let fittingPosition = index(position, offsetBy: escape.count, limitedBy: endIndex) {
-            // Check if we can fit the whole escape in the receiver
-            replaceSubrange(position ..< nextIndex, with: escape)
-            return fittingPosition
-        } else {
-            // If we can't, remove the character and insert the escape to make it fit.
-            remove(at: position)
-            insert(contentsOf: escape, at: position)
-            return index(position, offsetBy: escape.count, limitedBy: endIndex)
-        }
     }
 
 }
