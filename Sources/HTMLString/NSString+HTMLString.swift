@@ -20,7 +20,7 @@ extension NSString {
 
     @objc(stringByAddingUnicodeEntities)
     public func addingUnicodeEntities() -> NSString {
-        return NSString(string: String(self).addingUnicodeEntities)
+        return (self as String).addingUnicodeEntities as NSString
     }
 
     ///
@@ -44,7 +44,7 @@ extension NSString {
 
     @objc(stringByAddingASCIIEntities)
     public func addingASCIIEntities() -> NSString {
-        return NSString(string: String(self).addingASCIIEntities)
+        return (self as String).addingASCIIEntities as NSString
     }
 
     ///
@@ -65,7 +65,7 @@ extension NSString {
 
     @objc(stringByRemovingHTMLEntities)
     public func removingHTMLEntities() -> NSString {
-        return NSString(string: String(self).removingHTMLEntities)
+        return (self as String).removingHTMLEntities as NSString
     }
 
 }
