@@ -140,35 +140,64 @@ extension String {
     /// | `&` | `&` | Not an entity |
     ///
 
-    public mutating func removeHTMLEntities() {
-        var searchSubstring = self[startIndex ..< endIndex]
+    public func removeHTMLEntities() -> String {
+        var result = ""
+        var currentIndex = startIndex
 
-        while let delimiterIndex = searchSubstring.firstIndex(of: "&") {
+        while let delimiterIndex = self[currentIndex...].firstIndex(of: "&") {
             // Avoid unnecessary operations
-            guard let semicolonIndex = searchSubstring[delimiterIndex ..< endIndex].firstIndex(of: ";") else {
-                break
-            }
+            var semicolonIndex = self.index(after: delimiterIndex)
 
             // Parse the last sequence (ex: Fish & chips &amp; sauce -> "&amp;" instead of "& chips &amp;")
-            let lastDelimiterIndex = searchSubstring[delimiterIndex ..< semicolonIndex].lastIndex(of: "&") ?? delimiterIndex
+            var lastDelimiterIndex = delimiterIndex
 
-            let escapableRange = index(after: lastDelimiterIndex) ..< semicolonIndex
-            let replaceableRange = lastDelimiterIndex ... semicolonIndex
-            let escapableContent = self[escapableRange]
+            while semicolonIndex != endIndex, self[semicolonIndex] != ";" {
+                if self[semicolonIndex] == "&" {
+                    lastDelimiterIndex = semicolonIndex
+                }
 
-            let cursorPosition: Index
-            if let unescapedNumber = escapableContent.unescapeAsNumber() {
-                self.replaceSubrange(replaceableRange, with: unescapedNumber)
-                cursorPosition = self.index(lastDelimiterIndex, offsetBy: unescapedNumber.count)
-            } else if let unescapedCharacter = HTMLStringMappings.shared.unescapingTable[String(escapableContent)] {
-                self.replaceSubrange(replaceableRange, with: unescapedCharacter)
-                cursorPosition = self.index(lastDelimiterIndex, offsetBy: unescapedCharacter.count)
-            } else {
-                cursorPosition = semicolonIndex
+                semicolonIndex = self.index(after: semicolonIndex)
             }
 
-            searchSubstring = self[cursorPosition ..< endIndex]
+            let escapableRange = index(after: lastDelimiterIndex) ..< semicolonIndex
+            let escapableContent = self[escapableRange]
+
+            result.append(contentsOf: self[currentIndex..<lastDelimiterIndex])
+
+            if lastDelimiterIndex == startIndex {
+                let cursorPosition: Index
+                if let unescapedNumber = escapableContent.unescapeAsNumber() {
+                    result.append(contentsOf: unescapedNumber)
+                    cursorPosition = self.index(semicolonIndex, offsetBy: 1)
+                } else if let unescapedCharacter = HTMLStringMappings.shared.unescapingTable[String(escapableContent)] {
+                    result.append(contentsOf: unescapedCharacter)
+                    cursorPosition = self.index(semicolonIndex, offsetBy: 1)
+                } else {
+                    result.append(self[lastDelimiterIndex])
+                    cursorPosition = self.index(after: lastDelimiterIndex)
+                }
+
+                currentIndex = cursorPosition
+            } else {
+                let cursorPosition: Index
+                if let unescapedNumber = escapableContent.unescapeAsNumber() {
+                    result.append(contentsOf: unescapedNumber)
+                    cursorPosition = self.index(semicolonIndex, offsetBy: 1)
+                } else if let unescapedCharacter = HTMLStringMappings.shared.unescapingTable[String(escapableContent)] {
+                    result.append(contentsOf: unescapedCharacter)
+                    cursorPosition = self.index(semicolonIndex, offsetBy: 1)
+                } else {
+                    result.append(self[lastDelimiterIndex])
+                    cursorPosition = self.index(after: lastDelimiterIndex)
+                }
+
+                currentIndex = cursorPosition
+            }
         }
+
+        result.append(contentsOf: self[currentIndex...])
+
+        return result
     }
 
     ///
@@ -188,9 +217,7 @@ extension String {
     ///
 
     public var removingHTMLEntities: String {
-        var copy = self
-        copy.removeHTMLEntities()
-        return copy
+        return removeHTMLEntities()
     }
 
 }
