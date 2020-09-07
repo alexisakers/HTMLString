@@ -159,6 +159,12 @@ extension String {
                 semicolonIndex = self.index(after: semicolonIndex)
             }
 
+            // Fast path if semicolon doesn't exists in current range
+            if semicolonIndex == endIndex {
+                result.append(contentsOf: self[currentIndex..<semicolonIndex])
+                return result
+            }
+
             let escapableRange = index(after: lastDelimiterIndex) ..< semicolonIndex
             let escapableContent = self[escapableRange]
 
