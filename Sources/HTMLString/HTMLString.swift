@@ -162,35 +162,19 @@ extension String {
 
             result.append(contentsOf: self[currentIndex..<lastDelimiterIndex])
 
-            if lastDelimiterIndex == startIndex {
-                let cursorPosition: Index
-                if let unescapedNumber = escapableContent.unescapeAsNumber() {
-                    result.append(contentsOf: unescapedNumber)
-                    cursorPosition = self.index(semicolonIndex, offsetBy: 1)
-                } else if let unescapedCharacter = HTMLStringMappings.shared.unescapingTable[String(escapableContent)] {
-                    result.append(contentsOf: unescapedCharacter)
-                    cursorPosition = self.index(semicolonIndex, offsetBy: 1)
-                } else {
-                    result.append(self[lastDelimiterIndex])
-                    cursorPosition = self.index(after: lastDelimiterIndex)
-                }
-
-                currentIndex = cursorPosition
+            let cursorPosition: Index
+            if let unescapedNumber = escapableContent.unescapeAsNumber() {
+                result.append(contentsOf: unescapedNumber)
+                cursorPosition = self.index(semicolonIndex, offsetBy: 1)
+            } else if let unescapedCharacter = HTMLStringMappings.shared.unescapingTable[String(escapableContent)] {
+                result.append(contentsOf: unescapedCharacter)
+                cursorPosition = self.index(semicolonIndex, offsetBy: 1)
             } else {
-                let cursorPosition: Index
-                if let unescapedNumber = escapableContent.unescapeAsNumber() {
-                    result.append(contentsOf: unescapedNumber)
-                    cursorPosition = self.index(semicolonIndex, offsetBy: 1)
-                } else if let unescapedCharacter = HTMLStringMappings.shared.unescapingTable[String(escapableContent)] {
-                    result.append(contentsOf: unescapedCharacter)
-                    cursorPosition = self.index(semicolonIndex, offsetBy: 1)
-                } else {
-                    result.append(self[lastDelimiterIndex])
-                    cursorPosition = self.index(after: lastDelimiterIndex)
-                }
-
-                currentIndex = cursorPosition
+                result.append(self[lastDelimiterIndex])
+                cursorPosition = self.index(after: lastDelimiterIndex)
             }
+
+            currentIndex = cursorPosition
         }
 
         result.append(contentsOf: self[currentIndex...])
