@@ -36,14 +36,10 @@ extension String {
     ///
 
     public func addUnicodeEntities() -> String {
-        var position: String.Index? = startIndex
         let requiredEscapes: Set<Character> = ["!", "\"", "$", "%", "&", "'", "+", ",", "<", "=", ">", "@", "[", "]", "`", "{", "}"]
         var result = ""
 
-        while let cursorPosition = position {
-            guard cursorPosition != endIndex else { break }
-            let character = self[cursorPosition]
-
+        for character in self {
             if requiredEscapes.contains(character) {
                 // One of the required escapes for security reasons
                 result.append(contentsOf: "&#\(character.asciiValue!);")
@@ -51,8 +47,6 @@ extension String {
                 // Not a required escape, no need to replace the character
                 result.append(character)
             }
-
-            position = index(cursorPosition, offsetBy: 1, limitedBy: endIndex)
         }
 
         return result
@@ -95,15 +89,11 @@ extension String {
     ///
 
     public func addASCIIEntities() -> String {
-        var position: String.Index? = startIndex
         let requiredEscapes: Set<Character> = ["!", "\"", "$", "%", "&", "'", "+", ",", "<", "=", ">", "@", "[", "]", "`", "{", "}"]
 
         var result = ""
 
-        while let cursorPosition = position {
-            guard cursorPosition != endIndex else { break }
-            let character = self[cursorPosition]
-
+        for character in self {
             if let asciiiValue = character.asciiValue {
                 if requiredEscapes.contains(character) {
                     // One of the required escapes for security reasons
@@ -117,8 +107,6 @@ extension String {
                 let escape = character.unicodeScalars.reduce(into: "") { $0 += "&#\($1.value);" }
                 result.append(contentsOf: escape)
             }
-
-            position = index(after: cursorPosition)
         }
 
         return result
