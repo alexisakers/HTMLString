@@ -1,10 +1,7 @@
 <p align="center">
-    <img src="https://github.com/alexaubry/HTMLString/raw/swift4/.github/logo.png" alt="HTMLString" />
+    <img src="https://github.com/alexaubry/HTMLString/raw/main/.github/logo.png" alt="HTMLString" />
     <a>
         <img src="https://img.shields.io/badge/Swift-5.0-ee4f37.svg" alt="Swift 5.0" />
-    </a>
-    <a href="https://travis-ci.org/alexaubry/HTMLString">
-        <img src="https://travis-ci.org/alexaubry/HTMLString.svg?branch=swift4" alt="Build Status" />
     </a>
     <a href="https://cocoapods.org/pods/HTMLString">
         <img src="https://img.shields.io/cocoapods/v/HTMLString.svg" alt="CocoaPods" />
@@ -13,7 +10,7 @@
         <img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible" />
     </a>
     <a href="https://twitter.com/_alexaubry">
-        <img src="https://github.com/alexaubry/HTMLString/raw/swift4/.github/contact-badge.svg?sanitize=true" alt="Contact : @_alexaubry" />
+        <img src="https://github.com/alexaubry/HTMLString/raw/main/.github/contact-badge.svg?sanitize=true" alt="Contact : @_alexaubry" />
     </a>
 </p>
 
