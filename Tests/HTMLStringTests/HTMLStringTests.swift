@@ -11,34 +11,34 @@ class HTMLStringTests: XCTestCase {
 
     /// Tests escaping a string for ASCII.
     func testStringASCIIEscaping() {
-        let emptyString = ("").addingASCIIEntities
+        let emptyString = ("").addingASCIIEntities()
         XCTAssertEqual(emptyString, "")
 
-        let namedEscape = ("Fish & Chips").addingASCIIEntities
+        let namedEscape = ("Fish & Chips").addingASCIIEntities()
         XCTAssertEqual(namedEscape, "Fish &#38; Chips")
 
-        let namedDualEscape = ("a ⪰̸ b").addingASCIIEntities
+        let namedDualEscape = ("a ⪰̸ b").addingASCIIEntities()
         XCTAssertEqual(namedDualEscape, "a &#10928;&#824; b")
 
-        let emojiEscape = ("Hey 🙃").addingASCIIEntities
+        let emojiEscape = ("Hey 🙃").addingASCIIEntities()
         XCTAssertEqual(emojiEscape, "Hey &#128579;")
 
-        let doubleEmojiEscape = ("Going to the 🇺🇸 next June").addingASCIIEntities
+        let doubleEmojiEscape = ("Going to the 🇺🇸 next June").addingASCIIEntities()
         XCTAssertEqual(doubleEmojiEscape, "Going to the &#127482;&#127480; next June")
     }
 
     /// Tests escaping a string for Unicode.
     func testStringUnicodeEscaping() {
-        let requiredEscape = ("Fish & Chips").addingUnicodeEntities
+        let requiredEscape = ("Fish & Chips").addingUnicodeEntities()
         XCTAssertEqual(requiredEscape, "Fish &#38; Chips")
 
-        let namedDualEscape = ("a ⪰̸ b").addingUnicodeEntities
+        let namedDualEscape = ("a ⪰̸ b").addingUnicodeEntities()
         XCTAssertEqual(namedDualEscape, "a ⪰̸ b")
 
-        let emojiEscape = ("Hey 🙃!").addingUnicodeEntities
+        let emojiEscape = ("Hey 🙃!").addingUnicodeEntities()
         XCTAssertEqual(emojiEscape, "Hey 🙃&#33;")
 
-        let doubleEmojiEscape = ("Going to the 🇺🇸 next June").addingUnicodeEntities
+        let doubleEmojiEscape = ("Going to the 🇺🇸 next June").addingUnicodeEntities()
         XCTAssertEqual(doubleEmojiEscape, "Going to the 🇺🇸 next June")
     }
 
@@ -46,40 +46,40 @@ class HTMLStringTests: XCTestCase {
 
     /// Tests unescaping strings.
     func testUnescaping() {
-        let withoutMarker = "Hello, world.".removingHTMLEntities
+        let withoutMarker = "Hello, world.".removingHTMLEntities()
         XCTAssertEqual(withoutMarker, "Hello, world.")
 
-        let noSemicolon = "Fish & Chips".removingHTMLEntities
+        let noSemicolon = "Fish & Chips".removingHTMLEntities()
         XCTAssertEqual(noSemicolon, "Fish & Chips")
 
-        let decimal = "My phone number starts with a &#49;".removingHTMLEntities
+        let decimal = "My phone number starts with a &#49;".removingHTMLEntities()
         XCTAssertEqual(decimal, "My phone number starts with a 1")
 
-        let invalidDecimal = "My phone number starts with a &#4_9;!".removingHTMLEntities
+        let invalidDecimal = "My phone number starts with a &#4_9;!".removingHTMLEntities()
         XCTAssertEqual(invalidDecimal, "My phone number starts with a &#4_9;!")
 
-        let hex = "Let's meet at the caf&#xe9;".removingHTMLEntities
+        let hex = "Let's meet at the caf&#xe9;".removingHTMLEntities()
         XCTAssertEqual(hex, "Let's meet at the café")
 
-        let invalidHex = "Let's meet at the caf&#xzi;!".removingHTMLEntities
+        let invalidHex = "Let's meet at the caf&#xzi;!".removingHTMLEntities()
         XCTAssertEqual(invalidHex, "Let's meet at the caf&#xzi;!")
 
-        let invalidUnicodePoint = "What is this character ? -> &#xd8ff;".removingHTMLEntities
+        let invalidUnicodePoint = "What is this character ? -> &#xd8ff;".removingHTMLEntities()
         XCTAssertEqual(invalidUnicodePoint, "What is this character ? -> &#xd8ff;")
 
-        let badSequence = "I love &swift;".removingHTMLEntities
+        let badSequence = "I love &swift;".removingHTMLEntities()
         XCTAssertEqual(badSequence, "I love &swift;")
 
-        let goodSequence = "Do you know &aleph;?".removingHTMLEntities
+        let goodSequence = "Do you know &aleph;?".removingHTMLEntities()
         XCTAssertEqual(goodSequence, "Do you know ℵ?")
 
-        let twoSequences = "a &amp;&amp; b".removingHTMLEntities
+        let twoSequences = "a &amp;&amp; b".removingHTMLEntities()
         XCTAssertEqual(twoSequences, "a && b")
 
-        let doubleEmojiEscape = ("Going to the &#127482;&#127480; next June").removingHTMLEntities
+        let doubleEmojiEscape = ("Going to the &#127482;&#127480; next June").removingHTMLEntities()
         XCTAssertEqual(doubleEmojiEscape, "Going to the 🇺🇸 next June")
 
-        let textInTheMiddle = "Fish & Chips tastes &quot;great\"".removingHTMLEntities
+        let textInTheMiddle = "Fish & Chips tastes &quot;great\"".removingHTMLEntities()
         XCTAssertEqual(textInTheMiddle, "Fish & Chips tastes \"great\"")
     }
     
@@ -87,7 +87,7 @@ class HTMLStringTests: XCTestCase {
     func testNSString() {
         let nsSepcialCharacter = NSString("𝟸𝟺𝟶&deg;")
         let sepcialCharacter = nsSepcialCharacter as String
-        XCTAssertEqual(sepcialCharacter.removingHTMLEntities, "𝟸𝟺𝟶°")
+        XCTAssertEqual(sepcialCharacter.removingHTMLEntities(), "𝟸𝟺𝟶°")
     }
 
     // MARK: - Open Data
@@ -95,15 +95,15 @@ class HTMLStringTests: XCTestCase {
     func testThatItUnescapesSampleData() {
         let review = "44 Fotos und 68 Tipps von 567 Besucher bei NETA Mexican Street Food anzeigen. &quot;Not sharing the enthusiasm of the other reviewers. The tacos were...&quot;"
         let expectedReview = "44 Fotos und 68 Tipps von 567 Besucher bei NETA Mexican Street Food anzeigen. \"Not sharing the enthusiasm of the other reviewers. The tacos were...\""
-        XCTAssertEqual(review.removingHTMLEntities, expectedReview)
+        XCTAssertEqual(review.removingHTMLEntities(), expectedReview)
 
         let foursquare = "NETA Mexican Street Food, Weinbergsweg 5, Berlin, Berlin, neta mexican street food, Burritos, Mexikanisch, Nachspeise, Abendessen &amp; more"
         let expectedFoursquare = "NETA Mexican Street Food, Weinbergsweg 5, Berlin, Berlin, neta mexican street food, Burritos, Mexikanisch, Nachspeise, Abendessen & more"
-        XCTAssertEqual(foursquare.removingHTMLEntities, expectedFoursquare)
+        XCTAssertEqual(foursquare.removingHTMLEntities(), expectedFoursquare)
 
         let headline = "What&#x27;s it like to drive with Tesla&#x27;s Autopilot and how does it work?"
         let expectedHeadline = "What's it like to drive with Tesla's Autopilot and how does it work?"
-        XCTAssertEqual(headline.removingHTMLEntities, expectedHeadline)
+        XCTAssertEqual(headline.removingHTMLEntities(), expectedHeadline)
     }
 
     // MARK: - Benchmark

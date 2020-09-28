@@ -32,7 +32,7 @@
 
 ## Supported Platforms
 
-- iOS 8.0+
+- iOS 9.0+
 - macOS 10.10+
 - tvOS 9.0+
 - watchOS 2.0+
@@ -147,7 +147,7 @@ NSString *snack = [escapedSnack stringByRemovingHTMLEntities]; // "Fish & Chips"
 
 ## Author
 
-- Alexis Aubry, me@alexaubry.fr
+- Alexis Aubry-Akers, hi@alexisonline.dev
 - You can find me on Twitter: [@_alexaubry](https://twitter.com/_alexaubry)
 
 ## License

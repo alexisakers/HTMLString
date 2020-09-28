@@ -18,29 +18,11 @@ extension String {
     /// | `a` | `a` | Not escaped (alphanumerical) |
     ///
 
-    public var addingUnicodeEntities: String {
-        return self.addUnicodeEntities()
-    }
-
-    ///
-    /// Replaces every character incompatible with HTML Unicode encoding (UTF-16 or UTF-8) by a decimal HTML entity.
-    ///
-    /// ### Examples
-    ///
-    /// | String | Result | Format |
-    /// |--------|--------|--------|
-    /// | `&` | `&#38;` | Decimal entity (part of the Unicode special characters) |
-    /// | `Σ` | `Σ` | Not escaped (Unicode compliant) |
-    /// | `🇺🇸` | `🇺🇸` | Not escaped (Unicode compliant) |
-    /// | `a` | `a` | Not escaped (alphanumerical) |
-    ///
-
-    public func addUnicodeEntities() -> String {
-        let requiredEscapes: Set<Character> = ["!", "\"", "$", "%", "&", "'", "+", ",", "<", "=", ">", "@", "[", "]", "`", "{", "}"]
+    public func addingUnicodeEntities() -> String {
         var result = ""
 
         for character in self {
-            if requiredEscapes.contains(character) {
+            if HTMLStringMappings.unsafeUnicodeCharacters.contains(character) {
                 // One of the required escapes for security reasons
                 result.append(contentsOf: "&#\(character.asciiValue!);")
             } else {
@@ -71,31 +53,12 @@ extension String {
     /// as it is faster and produces a less bloated and more readable HTML.
     ///
 
-    public var addingASCIIEntities: String {
-        return self.addASCIIEntities()
-    }
-
-    ///
-    /// Replaces every character incompatible with HTML Unicode (UTF-16 or UTF-8) with a decimal HTML entity.
-    ///
-    /// ### Examples
-    ///
-    /// | String | Result | Format |
-    /// |--------|--------|--------|
-    /// | `&` | `&#38;` | Decimal entity (part of the Unicode special characters) |
-    /// | `Σ` | `Σ` | Not escaped (Unicode compliant) |
-    /// | `🇺🇸` | `🇺🇸` | Not escaped (Unicode compliant) |
-    /// | `a` | `a` | Not escaped (alphanumerical) |
-    ///
-
-    public func addASCIIEntities() -> String {
-        let requiredEscapes: Set<Character> = ["!", "\"", "$", "%", "&", "'", "+", ",", "<", "=", ">", "@", "[", "]", "`", "{", "}"]
-
+    public func addingASCIIEntities() -> String {
         var result = ""
 
         for character in self {
             if let asciiiValue = character.asciiValue {
-                if requiredEscapes.contains(character) {
+                if HTMLStringMappings.unsafeUnicodeCharacters.contains(character) {
                     // One of the required escapes for security reasons
                     result.append(contentsOf: "&#\(asciiiValue);")
                 } else {
@@ -132,7 +95,7 @@ extension String {
     /// | `&` | `&` | Not an entity |
     ///
 
-    public func removeHTMLEntities() -> String {
+    public func removingHTMLEntities() -> String {
         var result = ""
         var currentIndex = startIndex
 
@@ -166,7 +129,7 @@ extension String {
             if let unescapedNumber = escapableContent.unescapeAsNumber() {
                 result.append(contentsOf: unescapedNumber)
                 cursorPosition = self.index(semicolonIndex, offsetBy: 1)
-            } else if let unescapedCharacter = HTMLStringMappings.shared.unescapingTable[String(escapableContent)] {
+            } else if let unescapedCharacter = HTMLStringMappings.unescapingTable[String(escapableContent)] {
                 result.append(contentsOf: unescapedCharacter)
                 cursorPosition = self.index(semicolonIndex, offsetBy: 1)
             } else {
@@ -181,27 +144,6 @@ extension String {
 
         return result
     }
-
-    ///
-    /// Returns a copy of the current `String` where every HTML entity is replaced with the matching
-    /// Unicode character.
-    ///
-    /// ### Examples
-    ///
-    /// | String | Result | Format |
-    /// |--------|--------|--------|
-    /// | `&amp;` | `&` | Keyword entity |
-    /// | `&#931;` | `Σ` | Decimal entity |
-    /// | `&#x10d;` | `č` | Hexadecimal entity |
-    /// | `&#127482;&#127480;` | `🇺🇸` | Combined decimal entities (extented grapheme cluster) |
-    /// | `a` | `a` | Not an entity |
-    /// | `&` | `&` | Not an entity |
-    ///
-
-    public var removingHTMLEntities: String {
-        return removeHTMLEntities()
-    }
-
 }
 
 // MARK: - Helpers

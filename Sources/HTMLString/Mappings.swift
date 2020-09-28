@@ -5,16 +5,11 @@ import Foundation
  */
 
 class HTMLStringMappings {
-
-    /// The shared mappings.
-    static let shared = HTMLStringMappings()
+    /// The unicode characters that always need to be escaped.
+    static let unsafeUnicodeCharacters: Set<Character> = ["!", "\"", "$", "%", "&", "'", "+", ",", "<", "=", ">", "@", "[", "]", "`", "{", "}"]
 
     /// The table to unescape an HTML string.
-    let unescapingTable: [String: String]
-
-    // MARK: - Initialization
-
-    private init() {
+    static let unescapingTable: [String: String] = {
         let inputStream: InputStream
         let unescapingTableData = Data(base64Encoded: HTMLUnescapingTable)!
         inputStream = InputStream(data: unescapingTableData)
@@ -22,12 +17,12 @@ class HTMLStringMappings {
         inputStream.open()
 
         do {
-            unescapingTable = try PropertyListSerialization.propertyList(with: inputStream, options: [], format: nil) as! [String: String]
+            return try PropertyListSerialization
+                .propertyList(with: inputStream, options: [], format: nil) as! [String: String]
         } catch {
-            unescapingTable = [:]
+            return [:]
         }
-    }
-
+    }()
 }
 
 /// The table to use for unescaping.

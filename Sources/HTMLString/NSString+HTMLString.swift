@@ -1,7 +1,6 @@
 import Foundation
 
 #if os(iOS) || os(macOS) || os(tvOS) || os(watchOS)
-
 extension NSString {
 
     ///
@@ -20,7 +19,7 @@ extension NSString {
 
     @objc(stringByAddingUnicodeEntities)
     public func addingUnicodeEntities() -> NSString {
-        return (self as String).addingUnicodeEntities as NSString
+        return (self as String).addingUnicodeEntities() as NSString
     }
 
     ///
@@ -44,7 +43,7 @@ extension NSString {
 
     @objc(stringByAddingASCIIEntities)
     public func addingASCIIEntities() -> NSString {
-        return (self as String).addingASCIIEntities as NSString
+        return (self as String).addingASCIIEntities() as NSString
     }
 
     ///
@@ -65,9 +64,7 @@ extension NSString {
 
     @objc(stringByRemovingHTMLEntities)
     public func removingHTMLEntities() -> NSString {
-        return (self as String).removingHTMLEntities as NSString
+        return (self as String).removingHTMLEntities() as NSString
     }
-
 }
-
 #endif
