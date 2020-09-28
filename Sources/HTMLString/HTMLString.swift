@@ -19,9 +19,7 @@ extension String {
     ///
 
     public var addingUnicodeEntities: String {
-        var copy = self
-        copy.addUnicodeEntities()
-        return copy
+        return self.addUnicodeEntities()
     }
 
     ///
@@ -37,23 +35,21 @@ extension String {
     /// | `a` | `a` | Not escaped (alphanumerical) |
     ///
 
-    public mutating func addUnicodeEntities() {
-        var position: String.Index? = startIndex
+    public func addUnicodeEntities() -> String {
         let requiredEscapes: Set<Character> = ["!", "\"", "$", "%", "&", "'", "+", ",", "<", "=", ">", "@", "[", "]", "`", "{", "}"]
+        var result = ""
 
-        while let cursorPosition = position {
-            guard cursorPosition != endIndex else { break }
-            let character = self[cursorPosition]
-
+        for character in self {
             if requiredEscapes.contains(character) {
                 // One of the required escapes for security reasons
-                let escape = "&#\(character.asciiValue!);" // required escapes can can only be ASCII
-                position = positionAfterReplacingCharacter(at: cursorPosition, with: escape)
+                result.append(contentsOf: "&#\(character.asciiValue!);")
             } else {
                 // Not a required escape, no need to replace the character
-                position = index(cursorPosition, offsetBy: 1, limitedBy: endIndex)
+                result.append(character)
             }
         }
+
+        return result
     }
 
     ///
@@ -76,9 +72,7 @@ extension String {
     ///
 
     public var addingASCIIEntities: String {
-        var copy = self
-        copy.addASCIIEntities()
-        return copy
+        return self.addASCIIEntities()
     }
 
     ///
@@ -94,31 +88,29 @@ extension String {
     /// | `a` | `a` | Not escaped (alphanumerical) |
     ///
 
-    public mutating func addASCIIEntities() {
-        var position: String.Index? = startIndex
+    public func addASCIIEntities() -> String {
         let requiredEscapes: Set<Character> = ["!", "\"", "$", "%", "&", "'", "+", ",", "<", "=", ">", "@", "[", "]", "`", "{", "}"]
 
-        while let cursorPosition = position {
-            guard cursorPosition != endIndex else { break }
-            let character = self[cursorPosition]
+        var result = ""
 
+        for character in self {
             if let asciiiValue = character.asciiValue {
                 if requiredEscapes.contains(character) {
                     // One of the required escapes for security reasons
-                    let escape = "&#\(asciiiValue);"
-                    position = positionAfterReplacingCharacter(at: cursorPosition, with: escape)
+                    result.append(contentsOf: "&#\(asciiiValue);")
                 } else {
                     // Not a required escape, no need to replace the character
-                    position = index(cursorPosition, offsetBy: 1, limitedBy: endIndex)
+                    result.append(character)
                 }
             } else {
                 // Not an ASCII Character, we need to escape.
                 let escape = character.unicodeScalars.reduce(into: "") { $0 += "&#\($1.value);" }
-                position = positionAfterReplacingCharacter(at: cursorPosition, with: escape)
+                result.append(contentsOf: escape)
             }
         }
-    }
 
+        return result
+    }
 }
 
 // MARK: - Unescaping
@@ -140,35 +132,54 @@ extension String {
     /// | `&` | `&` | Not an entity |
     ///
 
-    public mutating func removeHTMLEntities() {
-        var searchSubstring = self[startIndex ..< endIndex]
+    public func removeHTMLEntities() -> String {
+        var result = ""
+        var currentIndex = startIndex
 
-        while let delimiterIndex = searchSubstring.firstIndex(of: "&") {
+        while let delimiterIndex = self[currentIndex...].firstIndex(of: "&") {
             // Avoid unnecessary operations
-            guard let semicolonIndex = searchSubstring[delimiterIndex ..< endIndex].firstIndex(of: ";") else {
-                break
-            }
+            var semicolonIndex = self.index(after: delimiterIndex)
 
             // Parse the last sequence (ex: Fish & chips &amp; sauce -> "&amp;" instead of "& chips &amp;")
-            let lastDelimiterIndex = searchSubstring[delimiterIndex ..< semicolonIndex].lastIndex(of: "&") ?? delimiterIndex
+            var lastDelimiterIndex = delimiterIndex
+
+            while semicolonIndex != endIndex, self[semicolonIndex] != ";" {
+                if self[semicolonIndex] == "&" {
+                    lastDelimiterIndex = semicolonIndex
+                }
+
+                semicolonIndex = self.index(after: semicolonIndex)
+            }
+
+            // Fast path if semicolon doesn't exists in current range
+            if semicolonIndex == endIndex {
+                result.append(contentsOf: self[currentIndex..<semicolonIndex])
+                return result
+            }
 
             let escapableRange = index(after: lastDelimiterIndex) ..< semicolonIndex
-            let replaceableRange = lastDelimiterIndex ... semicolonIndex
             let escapableContent = self[escapableRange]
+
+            result.append(contentsOf: self[currentIndex..<lastDelimiterIndex])
 
             let cursorPosition: Index
             if let unescapedNumber = escapableContent.unescapeAsNumber() {
-                self.replaceSubrange(replaceableRange, with: unescapedNumber)
-                cursorPosition = self.index(lastDelimiterIndex, offsetBy: unescapedNumber.count)
+                result.append(contentsOf: unescapedNumber)
+                cursorPosition = self.index(semicolonIndex, offsetBy: 1)
             } else if let unescapedCharacter = HTMLStringMappings.shared.unescapingTable[String(escapableContent)] {
-                self.replaceSubrange(replaceableRange, with: unescapedCharacter)
-                cursorPosition = self.index(lastDelimiterIndex, offsetBy: unescapedCharacter.count)
+                result.append(contentsOf: unescapedCharacter)
+                cursorPosition = self.index(semicolonIndex, offsetBy: 1)
             } else {
-                cursorPosition = semicolonIndex
+                result.append(self[lastDelimiterIndex])
+                cursorPosition = self.index(after: lastDelimiterIndex)
             }
 
-            searchSubstring = self[cursorPosition ..< endIndex]
+            currentIndex = cursorPosition
         }
+
+        result.append(contentsOf: self[currentIndex...])
+
+        return result
     }
 
     ///
@@ -188,9 +199,7 @@ extension String {
     ///
 
     public var removingHTMLEntities: String {
-        var copy = self
-        copy.removeHTMLEntities()
-        return copy
+        return removeHTMLEntities()
     }
 
 }
@@ -219,25 +228,4 @@ extension StringProtocol {
 
         return String(scalar)
     }
-
-}
-
-extension String {
-
-    /// Replaces the character at the given position with the escape and returns the new position.
-    fileprivate mutating func positionAfterReplacingCharacter(at position: String.Index, with escape: String) -> String.Index? {
-        let nextIndex = index(position, offsetBy: 1)
-
-        if let fittingPosition = index(position, offsetBy: escape.count, limitedBy: endIndex) {
-            // Check if we can fit the whole escape in the receiver
-            replaceSubrange(position ..< nextIndex, with: escape)
-            return fittingPosition
-        } else {
-            // If we can't, remove the character and insert the escape to make it fit.
-            remove(at: position)
-            insert(contentsOf: escape, at: position)
-            return index(position, offsetBy: escape.count, limitedBy: endIndex)
-        }
-    }
-
 }
