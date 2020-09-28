@@ -8,3 +8,4 @@ Carthage/Build
 Gemfile
 Gemfile.lock
 **/undocumented.json
+.swiftpm/
