@@ -8,14 +8,23 @@
     <script src="js/jquery.min.js" defer></script>
     <script src="js/jazzy.js" defer></script>
     
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
   </head>
   <body>
+    <a name="//apple_ref/swift/Section/Extensions" class="dashAnchor"></a>
     <a title="Extensions  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">HTMLString Docs</a> (100% documented)</p>
+        <p><a href="index.html">HTMLString 6.0.0 Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/alexaubry/HTMLString"><img src="img/gh.png"/>View on GitHub</a></p>
-        <p class="header-right"><a href="dash-feed://https%3A%2F%2Falexaubry%2Egithub%2Eio%2Fdocsets%2FHTMLString%2Exml"><img src="img/dash.png"/>Install in Dash</a></p>
+        <p class="header-right"><a href="dash-feed://https%3A%2F%2Falexaubry.github.io%2FHTMLString%2Fdocsets%2FHTMLString.xml"><img src="img/dash.png"/>Install in Dash</a></p>
+        <p class="header-right">
+          <form role="search" action="search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -37,9 +46,6 @@
               <li class="nav-group-task">
                 <a href="Extensions/String.html">String</a>
               </li>
-              <li class="nav-group-task">
-                <a href="Extensions/UnicodeScalar.html">UnicodeScalar</a>
-              </li>
             </ul>
           </li>
         </ul>
@@ -56,9 +62,11 @@
               <div class="task-name-container">
                 <a name="/Escaping"></a>
                 <a name="//apple_ref/swift/Section/Escaping" class="dashAnchor"></a>
-                <a href="#/Escaping">
-                  <h3 class="section-name">Escaping</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Escaping"></a>
+                  <h3 class="section-name"><p>Escaping</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -81,47 +89,13 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/UnicodeScalar+Escape"></a>
-                <a name="//apple_ref/swift/Section/UnicodeScalar+Escape" class="dashAnchor"></a>
-                <a href="#/UnicodeScalar+Escape">
-                  <h3 class="section-name">UnicodeScalar+Escape</h3>
-                </a>
-              </div>
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:Sc"></a>
-                    <a name="//apple_ref/swift/Extension/UnicodeScalar" class="dashAnchor"></a>
-                    <a class="token" href="#/s:Sc">UnicodeScalar</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                        <a href="Extensions/UnicodeScalar.html" class="slightly-smaller">See more</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -138,6 +112,14 @@
                         
                         <a href="Extensions/NSString.html" class="slightly-smaller">See more</a>
                       </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">NSString</span></code></pre>
+
+                        </div>
+                      </div>
                     </section>
                   </div>
                 </li>
@@ -146,8 +128,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>Copyright © 2017 Alexis Aubry. Available under the MIT License.</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>Copyright © 2016 - present Alexis Aubry-Akers. Available under the MIT License.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

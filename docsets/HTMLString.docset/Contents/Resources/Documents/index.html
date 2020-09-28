@@ -8,14 +8,22 @@
     <script src="js/jquery.min.js" defer></script>
     <script src="js/jazzy.js" defer></script>
     
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a title="HTMLString  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">HTMLString Docs</a> (100% documented)</p>
+        <p><a href="index.html">HTMLString 6.0.0 Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/alexaubry/HTMLString"><img src="img/gh.png"/>View on GitHub</a></p>
-        <p class="header-right"><a href="dash-feed://https%3A%2F%2Falexaubry%2Egithub%2Eio%2Fdocsets%2FHTMLString%2Exml"><img src="img/dash.png"/>Install in Dash</a></p>
+        <p class="header-right"><a href="dash-feed://https%3A%2F%2Falexaubry.github.io%2FHTMLString%2Fdocsets%2FHTMLString.xml"><img src="img/dash.png"/>Install in Dash</a></p>
+        <p class="header-right">
+          <form role="search" action="search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -37,9 +45,6 @@
               <li class="nav-group-task">
                 <a href="Extensions/String.html">String</a>
               </li>
-              <li class="nav-group-task">
-                <a href="Extensions/UnicodeScalar.html">UnicodeScalar</a>
-              </li>
             </ul>
           </li>
         </ul>
@@ -49,12 +54,9 @@
           <section class="section">
             
             <p align="center">
-    <img src="https://github.com/alexaubry/HTMLString/raw/swift4/.github/logo.png" alt="HTMLString" />
+    <img src="https://github.com/alexaubry/HTMLString/raw/main/.github/logo.png" alt="HTMLString" />
     <a>
-        <img src="https://img.shields.io/badge/Swift-4.0-ee4f37.svg" alt="Swift 4.0" />
-    </a>
-    <a href="https://travis-ci.org/alexaubry/HTMLString">
-        <img src="https://travis-ci.org/alexaubry/HTMLString.svg?branch=swift4" alt="Build Status" />
+        <img src="https://img.shields.io/badge/Swift-5.0-ee4f37.svg" alt="Swift 5.0" />
     </a>
     <a href="https://cocoapods.org/pods/HTMLString">
         <img src="https://img.shields.io/cocoapods/v/HTMLString.svg" alt="CocoaPods" />
@@ -63,7 +65,7 @@
         <img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible" />
     </a>
     <a href="https://twitter.com/_alexaubry">
-        <img src="https://github.com/alexaubry/HTMLString/raw/swift4/.github/contact-badge.svg?sanitize=true" alt="Contact : @_alexaubry" />
+        <img src="https://github.com/alexaubry/HTMLString/raw/main/.github/contact-badge.svg?sanitize=true" alt="Contact : @_alexaubry" />
     </a>
 </p>
 
@@ -105,56 +107,34 @@
 </tr>
 <tr>
 <td>&#129302;</td>
-<td><a href="https://github.com/alexaubry/HTMLString/tree/master/README.md#objective%2Dc-api">Compatible with Objective-C</a></td>
+<td><a href="https://github.com/alexaubry/HTMLString/tree/main/README.md#objective%2Dc-api">Compatible with Objective-C</a></td>
 </tr>
 </tbody></table>
 <h2 id='supported-platforms' class='heading'>Supported Platforms</h2>
 
 <ul>
-<li>iOS 8.0+</li>
+<li>iOS 9.0+</li>
 <li>macOS 10.10+</li>
 <li>tvOS 9.0+</li>
 <li>watchOS 2.0+</li>
 <li>Linux</li>
 </ul>
 <h2 id='installation' class='heading'>Installation</h2>
-<h3 id='htmlstring-version-vs-swift-version' class='heading'>HTMLString version vs Swift version</h3>
-
-<p>Below is a table that shows which version of HTMLString you should use for your Swift version.</p>
-
-<table><thead>
-<tr>
-<th>Swift version</th>
-<th>HTMLString Version</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>4.X</td>
-<td>&gt;= 4.0.0</td>
-</tr>
-<tr>
-<td>3.X</td>
-<td>&gt;= 3.0.0</td>
-</tr>
-</tbody></table>
 <h3 id='swift-package-manager' class='heading'>Swift Package Manager</h3>
 
 <p>Add this line to your <code>Package.swift</code> :</p>
-<pre class="highlight swift"><code><span class="o">.</span><span class="kt">Package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/alexaubry/HTMLString"</span><span class="p">,</span> <span class="nv">majorVersion</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="nv">minor</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
+<pre class="highlight swift"><code><span class="o">.</span><span class="kt">Package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/alexaubry/HTMLString"</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="s">"6.0.0"</span><span class="p">)</span>
 </code></pre>
 <h3 id='cocoapods' class='heading'>CocoaPods</h3>
 
 <p>Add this line to your <code>Podfile</code>:</p>
-<pre class="highlight ruby"><code><span class="n">pod</span> <span class="s1">'HTMLString'</span><span class="p">,</span> <span class="s1">'~&gt; 4.0'</span>
+<pre class="highlight ruby"><code><span class="n">pod</span> <span class="s1">'HTMLString'</span><span class="p">,</span> <span class="s1">'~&gt; 6.0'</span>
 </code></pre>
 <h3 id='carthage' class='heading'>Carthage</h3>
 
 <p>Add this line to your Cartfile:</p>
-<pre class="highlight plaintext"><code>github "alexaurby/HTMLString" ~&gt; 4.0
+<pre class="highlight plaintext"><code>github "alexaubry/HTMLString" ~&gt; 6.0
 </code></pre>
-<h3 id='manual' class='heading'>Manual</h3>
-
-<p>Copy the <code>Sources/HTMLString/</code> directory into your project.</p>
 <h2 id='usage' class='heading'>Usage</h2>
 
 <p><code>HTMLString</code> allows you to add and remove HTML entities from a String.</p>
@@ -201,7 +181,7 @@
 </code></pre>
 <h2 id='objective-c-api' class='heading'>Objective-C API</h2>
 
-<p>With Obj-C Mix and Match, you can import and use the <code>HTMLString</code> module from in Objective-C code.</p>
+<p>With Obj-C interoperability, you can import and use the <code>HTMLString</code> module from in Objective-C code.</p>
 
 <p>The library introduces a set of Objective-C specific APIs as categories on the <code>NSString</code> type:</p>
 
@@ -214,40 +194,35 @@
 <pre class="highlight objective_c"><code><span class="k">@import</span> <span class="n">HTMLString</span><span class="p">;</span>
 
 <span class="n">NSString</span> <span class="o">*</span><span class="n">emoji</span> <span class="o">=</span> <span class="s">@"My favorite emoji is 🙃"</span><span class="p">;</span>
-<span class="n">NSString</span> <span class="o">*</span><span class="n">escapedEmoji</span> <span class="o">=</span> <span class="p">[</span><span class="n">emoji</span> <span class="nf">stringByAddingASCIIEntities</span><span class="p">];</span> <span class="c1">// "My favorite emoji is &amp;#128579;"
-</span>
+<span class="n">NSString</span> <span class="o">*</span><span class="n">escapedEmoji</span> <span class="o">=</span> <span class="p">[</span><span class="n">emoji</span> <span class="nf">stringByAddingASCIIEntities</span><span class="p">];</span> <span class="c1">// "My favorite emoji is &amp;#128579;"</span>
+
 <span class="n">NSString</span> <span class="o">*</span><span class="n">snack</span> <span class="o">=</span> <span class="s">@"Fish &amp; Chips"</span><span class="p">;</span>
-<span class="n">NSString</span> <span class="o">*</span><span class="n">escapedSnack</span> <span class="o">=</span> <span class="p">[</span><span class="n">snack</span> <span class="nf">stringByAddingUnicodeEntities</span><span class="p">];</span> <span class="c1">// "Fish &amp;#038; Chips"
-</span></code></pre>
+<span class="n">NSString</span> <span class="o">*</span><span class="n">escapedSnack</span> <span class="o">=</span> <span class="p">[</span><span class="n">snack</span> <span class="nf">stringByAddingUnicodeEntities</span><span class="p">];</span> <span class="c1">// "Fish &amp;#038; Chips"</span>
+</code></pre>
 <h3 id='unescaping-examples' class='heading'>Unescaping Examples</h3>
 <pre class="highlight objective_c"><code><span class="k">@import</span> <span class="n">HTMLString</span><span class="p">;</span>
 
 <span class="n">NSString</span> <span class="o">*</span><span class="n">escapedEmoji</span> <span class="o">=</span> <span class="s">@"My favorite emoji is &amp;#x1F643;"</span><span class="p">;</span>
-<span class="n">NSString</span> <span class="o">*</span><span class="n">emoji</span> <span class="o">=</span> <span class="p">[</span><span class="n">escapedEmoji</span> <span class="nf">stringByRemovingHTMLEntities</span><span class="p">];</span> <span class="c1">// "My favorite emoji is 🙃"
-</span>
+<span class="n">NSString</span> <span class="o">*</span><span class="n">emoji</span> <span class="o">=</span> <span class="p">[</span><span class="n">escapedEmoji</span> <span class="nf">stringByRemovingHTMLEntities</span><span class="p">];</span> <span class="c1">// "My favorite emoji is 🙃"</span>
+
 <span class="n">NSString</span> <span class="o">*</span><span class="n">escapedSnack</span> <span class="o">=</span> <span class="s">@"Fish &amp;amp; Chips"</span><span class="p">;</span>
-<span class="n">NSString</span> <span class="o">*</span><span class="n">snack</span> <span class="o">=</span> <span class="p">[</span><span class="n">escapedSnack</span> <span class="nf">stringByRemovingHTMLEntities</span><span class="p">];</span> <span class="c1">// "Fish &amp; Chips"
-</span></code></pre>
+<span class="n">NSString</span> <span class="o">*</span><span class="n">snack</span> <span class="o">=</span> <span class="p">[</span><span class="n">escapedSnack</span> <span class="nf">stringByRemovingHTMLEntities</span><span class="p">];</span> <span class="c1">// "Fish &amp; Chips"</span>
+</code></pre>
 <h2 id='author' class='heading'>Author</h2>
 
 <ul>
-<li>Alexis Aubry, <a href="mailto:me@alexaubry.fr">me@alexaubry.fr</a></li>
+<li>Alexis Aubry-Akers, <a href="mailto:hi@alexisonline.dev">hi@alexisonline.dev</a></li>
 <li>You can find me on Twitter: <a href="https://twitter.com/_alexaubry">@_alexaubry</a></li>
 </ul>
 <h2 id='license' class='heading'>License</h2>
 
 <p>HTMLString is available under the MIT license. See the <a href="LICENSE">LICENSE</a> file for more info.</p>
-<h2 id='128175-acknowledgements' class='heading'>&#128175; Acknowledgements</h2>
-
-<p><img src="https://i.giphy.com/QBC5foQmcOkdq.gif" alt="Thanks @google"></p>
-
-<p>This library was originally inspired by <a href="https://github.com/google/google-toolbox-for-mac"><strong>@google</strong>&lsquo;s Toolbox for Mac</a>.</p>
 
           </section>
         </section>
         <section id="footer">
-          <p>Copyright © 2017 Alexis Aubry. Available under the MIT License.</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>Copyright © 2016 - present Alexis Aubry-Akers. Available under the MIT License.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

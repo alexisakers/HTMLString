@@ -8,15 +8,23 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/swift/Extension/NSString" class="dashAnchor"></a>
     <a title="NSString Extension Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">HTMLString Docs</a> (100% documented)</p>
+        <p><a href="../index.html">HTMLString 6.0.0 Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/alexaubry/HTMLString"><img src="../img/gh.png"/>View on GitHub</a></p>
-        <p class="header-right"><a href="dash-feed://https%3A%2F%2Falexaubry%2Egithub%2Eio%2Fdocsets%2FHTMLString%2Exml"><img src="../img/dash.png"/>Install in Dash</a></p>
+        <p class="header-right"><a href="dash-feed://https%3A%2F%2Falexaubry.github.io%2FHTMLString%2Fdocsets%2FHTMLString.xml"><img src="../img/dash.png"/>Install in Dash</a></p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -38,9 +46,6 @@
               <li class="nav-group-task">
                 <a href="../Extensions/String.html">String</a>
               </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/UnicodeScalar.html">UnicodeScalar</a>
-              </li>
             </ul>
           </li>
         </ul>
@@ -49,6 +54,13 @@
         <section>
           <section class="section">
             <h1>NSString</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">NSString</span></code></pre>
+
+                </div>
+              </div>
             
           </section>
           <section class="section task-group-section">
@@ -105,12 +117,13 @@ encoding (UTF-16 or UTF-8) is replaced by a decimal HTML entity.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addingUnicodeEntities</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">NSString</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span><span class="p">(</span><span class="n">stringByAddingUnicodeEntities</span><span class="p">)</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">addingUnicodeEntities</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">NSString</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/alexaubry/HTMLString/tree/master/Sources/HTMLString/NSString+HTMLString.swift#L22-L24">Show on GitHub</a>
+                        <a href="https://github.com/alexaubry/HTMLString/tree/main/Sources/HTMLString/NSString+HTMLString.swift#L21-L23">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -170,12 +183,13 @@ as it is faster and produces a less bloated and more readable HTML.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addingASCIIEntities</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">NSString</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span><span class="p">(</span><span class="n">stringByAddingASCIIEntities</span><span class="p">)</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">addingASCIIEntities</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">NSString</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/alexaubry/HTMLString/tree/master/Sources/HTMLString/NSString+HTMLString.swift#L46-L48">Show on GitHub</a>
+                        <a href="https://github.com/alexaubry/HTMLString/tree/main/Sources/HTMLString/NSString+HTMLString.swift#L45-L47">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -241,12 +255,13 @@ Unicode character.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">removingHTMLEntities</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">NSString</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span><span class="p">(</span><span class="n">stringByRemovingHTMLEntities</span><span class="p">)</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">removingHTMLEntities</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">NSString</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/alexaubry/HTMLString/tree/master/Sources/HTMLString/NSString+HTMLString.swift#L67-L69">Show on GitHub</a>
+                        <a href="https://github.com/alexaubry/HTMLString/tree/main/Sources/HTMLString/NSString+HTMLString.swift#L66-L68">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -256,8 +271,8 @@ Unicode character.</p>
           </section>
         </section>
         <section id="footer">
-          <p>Copyright © 2017 Alexis Aubry. Available under the MIT License.</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>Copyright © 2016 - present Alexis Aubry-Akers. Available under the MIT License.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
