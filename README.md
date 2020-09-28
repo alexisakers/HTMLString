@@ -28,7 +28,7 @@
 &#009989; | Fully unit tested
 &#009889; | Fast
 &#128218; | [Documented](https://alexaubry.github.io/HTMLString/)
-&#129302; | [Compatible with Objective-C](https://github.com/alexaubry/HTMLString/tree/master/README.md#objective%2Dc-api)
+&#129302; | [Compatible with Objective-C](https://github.com/alexaubry/HTMLString/tree/main/README.md#objective%2Dc-api)
 
 ## Supported Platforms
 
@@ -45,7 +45,7 @@
 Add this line to your `Package.swift` :
 
 ~~~swift
-.Package(url: "https://github.com/alexaubry/HTMLString", majorVersion: 5, minor: 0)
+.Package(url: "https://github.com/alexaubry/HTMLString", from: "6.0.0")
 ~~~
 
 ### CocoaPods
@@ -53,7 +53,7 @@ Add this line to your `Package.swift` :
 Add this line to your `Podfile`:
 
 ~~~ruby
-pod 'HTMLString', '~> 5.0'
+pod 'HTMLString', '~> 6.0'
 ~~~
 
 ### Carthage
@@ -61,7 +61,7 @@ pod 'HTMLString', '~> 5.0'
 Add this line to your Cartfile:
 
 ~~~
-github "alexaubry/HTMLString" ~> 5.0
+github "alexaubry/HTMLString" ~> 6.0
 ~~~
 
 ## Usage
@@ -113,7 +113,7 @@ let snack = escapedSnack.removingHTMLEntities // "Fish & Chips"
 
 ## Objective-C API
 
-With Obj-C Mix and Match, you can import and use the `HTMLString` module from in Objective-C code.
+With Obj-C interoperability, you can import and use the `HTMLString` module from in Objective-C code.
 
 The library introduces a set of Objective-C specific APIs as categories on the `NSString` type:
 
