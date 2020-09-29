@@ -24,10 +24,6 @@
 		5E441F181E5263C70041CF34 /* HTMLStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* HTMLStringTests.swift */; };
 		5E441F191E5263C70041CF34 /* HTMLStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* HTMLStringTests.swift */; };
 		5E441F1A1E5263C70041CF34 /* HTMLStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* HTMLStringTests.swift */; };
-		5E441F201E526DD70041CF34 /* NSString+HTMLString.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* NSString+HTMLString.swift */; };
-		5E441F211E526DD70041CF34 /* NSString+HTMLString.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* NSString+HTMLString.swift */; };
-		5E441F221E526DD70041CF34 /* NSString+HTMLString.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* NSString+HTMLString.swift */; };
-		5E441F231E526DD80041CF34 /* NSString+HTMLString.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* NSString+HTMLString.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,7 +62,6 @@
 		5E441EFE1E5262910041CF34 /* HTMLString-tvOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HTMLString-tvOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E441F0D1E52629D0041CF34 /* HTMLString-macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HTMLString-macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_10 /* Mappings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Mappings.swift; path = HTMLString/Mappings.swift; sourceTree = "<group>"; };
-		OBJ_11 /* NSString+HTMLString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "NSString+HTMLString.swift"; path = "HTMLString/NSString+HTMLString.swift"; sourceTree = "<group>"; };
 		OBJ_14 /* HTMLStringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HTMLStringTests.swift; path = HTMLStringTests/HTMLStringTests.swift; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		OBJ_9 /* HTMLString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HTMLString.swift; path = HTMLString/HTMLString.swift; sourceTree = "<group>"; };
@@ -191,7 +186,6 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_9 /* HTMLString.swift */,
-				OBJ_11 /* NSString+HTMLString.swift */,
 				OBJ_10 /* Mappings.swift */,
 			);
 			path = Sources;
@@ -486,7 +480,6 @@
 			files = (
 				5E441EB91E525FCA0041CF34 /* Mappings.swift in Sources */,
 				5E441EB81E525FCA0041CF34 /* HTMLString.swift in Sources */,
-				5E441F201E526DD70041CF34 /* NSString+HTMLString.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,7 +489,6 @@
 			files = (
 				5E441EE31E5260980041CF34 /* Mappings.swift in Sources */,
 				5E441EE21E5260980041CF34 /* HTMLString.swift in Sources */,
-				5E441F211E526DD70041CF34 /* NSString+HTMLString.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,7 +498,6 @@
 			files = (
 				5E441EE61E5260990041CF34 /* Mappings.swift in Sources */,
 				5E441EE51E5260990041CF34 /* HTMLString.swift in Sources */,
-				5E441F221E526DD70041CF34 /* NSString+HTMLString.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,7 +507,6 @@
 			files = (
 				5E441EE91E5260990041CF34 /* Mappings.swift in Sources */,
 				5E441EE81E5260990041CF34 /* HTMLString.swift in Sources */,
-				5E441F231E526DD80041CF34 /* NSString+HTMLString.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
