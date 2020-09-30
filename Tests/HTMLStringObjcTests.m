@@ -120,16 +120,16 @@
 -(void) testUnescapingPerformance {
     // baseline average: 0.001s
     [self measureBlock:^{
-        [@"Hello, world." stringByRemovingHTMLEntities];
-        [@"Fish & Chips" stringByRemovingHTMLEntities];
-        [@"My phone number starts with a &#49;" stringByRemovingHTMLEntities];
-        [@"My phone number starts with a &#4_9;!" stringByRemovingHTMLEntities];
-        [@"Let's meet at the caf&#xe9;" stringByRemovingHTMLEntities];
-        [@"Let's meet at the caf&#xzi;!"stringByRemovingHTMLEntities];
-        [@"What is this character ? -> &#xd8ff;" stringByRemovingHTMLEntities];
-        [@"I love &swift;" stringByRemovingHTMLEntities];
-        [@"Do you know &aleph;?" stringByRemovingHTMLEntities];
-        [@"a &amp;&amp; b" stringByRemovingHTMLEntities];
+        (void)[@"Hello, world." stringByRemovingHTMLEntities];
+        (void)[@"Fish & Chips" stringByRemovingHTMLEntities];
+        (void)[@"My phone number starts with a &#49;" stringByRemovingHTMLEntities];
+        (void)[@"My phone number starts with a &#4_9;!" stringByRemovingHTMLEntities];
+        (void)[@"Let's meet at the caf&#xe9;" stringByRemovingHTMLEntities];
+        (void)[@"Let's meet at the caf&#xzi;!"stringByRemovingHTMLEntities];
+        (void)[@"What is this character ? -> &#xd8ff;" stringByRemovingHTMLEntities];
+        (void)[@"I love &swift;" stringByRemovingHTMLEntities];
+        (void)[@"Do you know &aleph;?" stringByRemovingHTMLEntities];
+        (void)[@"a &amp;&amp; b" stringByRemovingHTMLEntities];
     }];
 }
 
@@ -138,15 +138,15 @@
     // baseline average: 0.001s
 
     [self measureBlock: ^{
-        [@"Fish & Chips" stringByAddingASCIIEntities];
-        [@"a ⪰̸ b" stringByAddingASCIIEntities];
-        [@"Hey 🙃" stringByAddingASCIIEntities];
-        [@"Going to the 🇺🇸 next June" stringByAddingASCIIEntities];
+        (void)[@"Fish & Chips" stringByAddingASCIIEntities];
+        (void)[@"a ⪰̸ b" stringByAddingASCIIEntities];
+        (void)[@"Hey 🙃" stringByAddingASCIIEntities];
+        (void)[@"Going to the 🇺🇸 next June" stringByAddingASCIIEntities];
 
-        [@"Fish & Chips" stringByAddingUnicodeEntities];
-        [@"a ⪰̸ b" stringByAddingUnicodeEntities];
-        [@"Hey 🙃!" stringByAddingUnicodeEntities];
-        [@"Going to the 🇺🇸 next June" stringByAddingUnicodeEntities];
+        (void)[@"Fish & Chips" stringByAddingUnicodeEntities];
+        (void)[@"a ⪰̸ b" stringByAddingUnicodeEntities];
+        (void)[@"Hey 🙃!" stringByAddingUnicodeEntities];
+        (void)[@"Going to the 🇺🇸 next June" stringByAddingUnicodeEntities];
     }];
 }
 
@@ -154,7 +154,7 @@
 -(void) testLargeUnescapingPerformance {
     // baseline average: 0.3s
     [self measureBlock:^ {
-        [HTMLTestLongUnescapableString stringByRemovingHTMLEntities];
+        (void)[HTMLTestLongUnescapableString stringByRemovingHTMLEntities];
     }];
 }
 @end
