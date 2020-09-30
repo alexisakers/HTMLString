@@ -1,7 +1,7 @@
 #import <XCTest/XCTest.h>
 #import <HTMLString/HTMLString-Swift.h>
 #import <HTMLString_Tests-Swift.h>
-
+#import "TestDataObjc.h"
 ///
 /// Tests HTML escaping/unescaping in objective-c
 ///
@@ -144,10 +144,16 @@
 }
 
 /// Measures the average perforance of unescaping a long String with a large number of entities.
--(void) testLargeUnescapingPerformance {
+-(void) testLargeUnescapingPerformanceStringFromSwift {
     // baseline average: 0.3s
     [self measureBlock:^ {
         (void)[[TestData HTMLTestLongUnescapableString] stringByRemovingHTMLEntities];
+    }];
+}
+
+-(void) testLargeUnescapingPerformanceStringFromObjC {
+    [self measureBlock:^ {
+        (void)[[TestDataObjc HTMLTestLongUnescapableString] stringByRemovingHTMLEntities];
     }];
 }
 @end

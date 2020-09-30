@@ -142,13 +142,19 @@ class HTMLStringTests: XCTestCase {
     }
 
     /// Measures the average perforance of unescaping a long String with a large number of entities.
-    func testLargeUnescapingPerformance() {
+    func testLargeUnescapingPerformanceStringFromSwift() {
         // baseline average: 0.3s
         self.measure {
             _ = TestData.HTMLTestLongUnescapableString.removingHTMLEntities
         }
     }
 
+    func testLargeUnescapingPerformanceStringFromObjc() {
+        // baseline average: 0.3s
+        self.measure {
+            _ = TestDataObjc.htmlTestLongUnescapableString().removingHTMLEntities
+        }
+    }
 }
 
 extension HTMLStringTests {
@@ -160,7 +166,8 @@ extension HTMLStringTests {
             ("testUnescaping", testUnescaping),
             ("testUnescapingPerformance", testUnescapingPerformance),
             ("testEscapingPerformance", testEscapingPerformance),
-            ("testLargeUnescapingPerformance", testLargeUnescapingPerformance)
+            ("testLargeUnescapingPerformanceStringFromSwift", testLargeUnescapingPerformanceStringFromSwift),
+            ("testLargeUnescapingPerformanceStringFromObjc", testLargeUnescapingPerformanceStringFromObjc)
         ]
     }
 
