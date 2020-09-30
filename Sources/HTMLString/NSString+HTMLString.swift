@@ -18,8 +18,8 @@ extension NSString {
     ///
 
     @objc(stringByAddingUnicodeEntities)
-    public func addingUnicodeEntitiesObjc() -> NSString {
-        return (self as String).addingUnicodeEntities() as NSString
+    public func addingUnicodeEntities() -> NSString {
+        return NSString(string: String(self).addingUnicodeEntities())
     }
 
     ///
@@ -42,8 +42,8 @@ extension NSString {
     ///
 
     @objc(stringByAddingASCIIEntities)
-    public func addingASCIIEntitiesObjc() -> NSString {
-        return (self as String).addingASCIIEntities() as NSString
+    public func addingASCIIEntities() -> NSString {
+        return NSString(string: String(self).addingASCIIEntities())
     }
 
     ///
@@ -63,8 +63,8 @@ extension NSString {
     ///
 
     @objc(stringByRemovingHTMLEntities)
-    public func removingHTMLEntitiesObjc() -> NSString {
-        return (self as String).removingHTMLEntities() as NSString
+    public func removingHTMLEntities() -> NSString {
+        return NSString(string: String(self).removingHTMLEntities())
     }
 }
 #endif
