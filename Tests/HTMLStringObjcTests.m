@@ -8,7 +8,6 @@
 #import <XCTest/XCTest.h>
 #import <HTMLString/HTMLString-Swift.h>
 #import "ObjcTestData.h"
-#import <XCTest/XCTestObservationCenter.h>
 ///
 /// Tests HTML escaping/unescaping in objective-c
 ///
