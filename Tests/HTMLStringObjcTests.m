@@ -1,6 +1,6 @@
 #import <XCTest/XCTest.h>
 #import <HTMLString/HTMLString-Swift.h>
-#import <HTMLString_iOS_Tests-Swift.h>
+#import <HTMLString_Tests-Swift.h>
 
 ///
 /// Tests HTML escaping/unescaping in objective-c
