@@ -148,13 +148,6 @@ class HTMLStringTests: XCTestCase {
             _ = TestData.HTMLTestLongUnescapableString.removingHTMLEntities
         }
     }
-
-    func testLargeUnescapingPerformanceStringFromObjc() {
-        // baseline average: 0.3s
-        self.measure {
-            _ = TestDataObjc.htmlTestLongUnescapableString().removingHTMLEntities
-        }
-    }
 }
 
 extension HTMLStringTests {
@@ -166,8 +159,7 @@ extension HTMLStringTests {
             ("testUnescaping", testUnescaping),
             ("testUnescapingPerformance", testUnescapingPerformance),
             ("testEscapingPerformance", testEscapingPerformance),
-            ("testLargeUnescapingPerformanceStringFromSwift", testLargeUnescapingPerformanceStringFromSwift),
-            ("testLargeUnescapingPerformanceStringFromObjc", testLargeUnescapingPerformanceStringFromObjc)
+            ("testLargeUnescapingPerformanceStringFromSwift", testLargeUnescapingPerformanceStringFromSwift)
         ]
     }
 
