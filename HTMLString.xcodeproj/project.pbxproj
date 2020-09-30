@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4238F7262523971E00AD5902 /* HTMLStringObjcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4238F7232523971D00AD5902 /* HTMLStringObjcTests.m */; };
+		4238F7272523971E00AD5902 /* HTMLStringObjcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4238F7232523971D00AD5902 /* HTMLStringObjcTests.m */; };
+		4238F7282523971E00AD5902 /* HTMLStringObjcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4238F7232523971D00AD5902 /* HTMLStringObjcTests.m */; };
+		4238F7292523971E00AD5902 /* ObjcTestData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4238F7252523971E00AD5902 /* ObjcTestData.m */; };
+		4238F72A2523971E00AD5902 /* ObjcTestData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4238F7252523971E00AD5902 /* ObjcTestData.m */; };
+		4238F72B2523971E00AD5902 /* ObjcTestData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4238F7252523971E00AD5902 /* ObjcTestData.m */; };
 		55BFFFD71F59574E00F13633 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BFFFD61F59574E00F13633 /* TestData.swift */; };
 		55BFFFD81F59574E00F13633 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BFFFD61F59574E00F13633 /* TestData.swift */; };
 		55BFFFD91F59574E00F13633 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BFFFD61F59574E00F13633 /* TestData.swift */; };
@@ -55,6 +61,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4238F7232523971D00AD5902 /* HTMLStringObjcTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLStringObjcTests.m; sourceTree = "<group>"; };
+		4238F7242523971E00AD5902 /* ObjcTestData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjcTestData.h; sourceTree = "<group>"; };
+		4238F7252523971E00AD5902 /* ObjcTestData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjcTestData.m; sourceTree = "<group>"; };
 		55BFFFD61F59574E00F13633 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TestData.swift; path = HTMLStringTests/TestData.swift; sourceTree = "<group>"; };
 		5E441EA91E525F2D0041CF34 /* HTMLString.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = HTMLString.plist; path = Configs/HTMLString.plist; sourceTree = "<group>"; };
 		5E441EAA1E525F340041CF34 /* HTMLStringTests.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = HTMLStringTests.plist; path = Configs/HTMLStringTests.plist; sourceTree = "<group>"; };
@@ -156,6 +165,9 @@
 		OBJ_12 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				4238F7232523971D00AD5902 /* HTMLStringObjcTests.m */,
+				4238F7242523971E00AD5902 /* ObjcTestData.h */,
+				4238F7252523971E00AD5902 /* ObjcTestData.m */,
 				OBJ_14 /* HTMLStringTests.swift */,
 				55BFFFD61F59574E00F13633 /* TestData.swift */,
 			);
@@ -388,17 +400,17 @@
 					};
 					5E441EEE1E5262540041CF34 = {
 						CreatedOnToolsVersion = 8.2;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1170;
 						ProvisioningStyle = Manual;
 					};
 					5E441EFD1E5262910041CF34 = {
 						CreatedOnToolsVersion = 8.2;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1170;
 						ProvisioningStyle = Manual;
 					};
 					5E441F0C1E52629D0041CF34 = {
 						CreatedOnToolsVersion = 8.2;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1170;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -525,7 +537,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E441F181E5263C70041CF34 /* HTMLStringTests.swift in Sources */,
+				4238F7292523971E00AD5902 /* ObjcTestData.m in Sources */,
 				55BFFFD71F59574E00F13633 /* TestData.swift in Sources */,
+				4238F7262523971E00AD5902 /* HTMLStringObjcTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,7 +548,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E441F191E5263C70041CF34 /* HTMLStringTests.swift in Sources */,
+				4238F72B2523971E00AD5902 /* ObjcTestData.m in Sources */,
 				55BFFFD91F59574E00F13633 /* TestData.swift in Sources */,
+				4238F7282523971E00AD5902 /* HTMLStringObjcTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -543,7 +559,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E441F1A1E5263C70041CF34 /* HTMLStringTests.swift in Sources */,
+				4238F72A2523971E00AD5902 /* ObjcTestData.m in Sources */,
 				55BFFFD81F59574E00F13633 /* TestData.swift in Sources */,
+				4238F7272523971E00AD5902 /* HTMLStringObjcTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1103,6 +1121,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 5.0;
 			};
@@ -1203,6 +1222,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 5.0;
 			};
@@ -1303,6 +1323,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 5.0;
 			};

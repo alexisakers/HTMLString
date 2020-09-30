@@ -64,7 +64,7 @@ extension NSString {
 
     @objc(stringByRemovingHTMLEntities)
     public func removingHTMLEntities() -> NSString {
-        return NSString(string: String(self).addingASCIIEntities())
+        return NSString(string: String(self).removingHTMLEntities())
     }
 }
 #endif
