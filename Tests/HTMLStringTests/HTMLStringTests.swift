@@ -107,16 +107,16 @@ final class HTMLStringTests: XCTestCase {
     func testUnescapingPerformance() {
         // baseline average: 0.001s
         self.measure {
-            _ = "Hello, world.".removingHTMLEntities
-            _ = "Fish & Chips".removingHTMLEntities
-            _ = "My phone number starts with a &#49;".removingHTMLEntities
-            _ = "My phone number starts with a &#4_9;!".removingHTMLEntities
-            _ = "Let's meet at the caf&#xe9;".removingHTMLEntities
-            _ = "Let's meet at the caf&#xzi;!".removingHTMLEntities
-            _ = "What is this character ? -> &#xd8ff;".removingHTMLEntities
-            _ = "I love &swift;".removingHTMLEntities
-            _ = "Do you know &aleph;?".removingHTMLEntities
-            _ = "a &amp;&amp; b".removingHTMLEntities
+            _ = "Hello, world.".removingHTMLEntities()
+            _ = "Fish & Chips".removingHTMLEntities()
+            _ = "My phone number starts with a &#49;".removingHTMLEntities()
+            _ = "My phone number starts with a &#4_9;!".removingHTMLEntities()
+            _ = "Let's meet at the caf&#xe9;".removingHTMLEntities()
+            _ = "Let's meet at the caf&#xzi;!".removingHTMLEntities()
+            _ = "What is this character ? -> &#xd8ff;".removingHTMLEntities()
+            _ = "I love &swift;".removingHTMLEntities()
+            _ = "Do you know &aleph;?".removingHTMLEntities()
+            _ = "a &amp;&amp; b".removingHTMLEntities()
         }
     }
 
@@ -124,15 +124,15 @@ final class HTMLStringTests: XCTestCase {
     func testEscapingPerformance() {
         // baseline average: 0.001s
         self.measure {
-            _ = ("Fish & Chips").addingASCIIEntities
-            _ = ("a ⪰̸ b").addingASCIIEntities
-            _ = ("Hey 🙃").addingASCIIEntities
-            _ = ("Going to the 🇺🇸 next June").addingASCIIEntities
+            _ = ("Fish & Chips").addingASCIIEntities()
+            _ = ("a ⪰̸ b").addingASCIIEntities()
+            _ = ("Hey 🙃").addingASCIIEntities()
+            _ = ("Going to the 🇺🇸 next June").addingASCIIEntities()
 
-            _ = ("Fish & Chips").addingUnicodeEntities
-            _ = ("a ⪰̸ b").addingUnicodeEntities
-            _ = ("Hey 🙃!").addingUnicodeEntities
-            _ = ("Going to the 🇺🇸 next June").addingUnicodeEntities
+            _ = ("Fish & Chips").addingUnicodeEntities()
+            _ = ("a ⪰̸ b").addingUnicodeEntities()
+            _ = ("Hey 🙃!").addingUnicodeEntities()
+            _ = ("Going to the 🇺🇸 next June").addingUnicodeEntities()
         }
     }
 

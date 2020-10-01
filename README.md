@@ -75,8 +75,8 @@ When a character is not supported into the specified encoding, the library will 
 
 You can choose between ASCII and Unicode escaping:
 
-- Use the `addingASCIIEntities` property to escape for ASCII-encoded content
-- Use the `addingUnicodeEntities` property to escape for Unicode-compatible content
+- Use the `addingASCIIEntities` function to escape for ASCII-encoded content
+- Use the `addingUnicodeEntities` function to escape for Unicode-compatible content
 
 > &#128161; **Pro Tip**: When your content supports UTF-8 or UTF-16, use Unicode escaping as it is faster and produces a less bloated output.
 
@@ -86,17 +86,17 @@ You can choose between ASCII and Unicode escaping:
 import HTMLString
 
 let emoji = "My favorite emoji is 🙃"
-let escapedEmoji = emoji.addingASCIIEntities // "My favorite emoji is &#128579;"
-let noNeedToEscapeThatEmoji = emoji.addingUnicodeEntities // "My favorite emoji is 🙃"
+let escapedEmoji = emoji.addingASCIIEntities() // "My favorite emoji is &#128579;"
+let noNeedToEscapeThatEmoji = emoji.addingUnicodeEntities() // "My favorite emoji is 🙃"
 
 let snack = "Fish & Chips"
-let escapedSnack = snack.addingASCIIEntities // "Fish &#038; Chips"
-let weAlsoNeedToEscapeThisSnack = snack.addingUnicodeEntities // "Fish &#038; Chips"
+let escapedSnack = snack.addingASCIIEntities() // "Fish &#038; Chips"
+let weAlsoNeedToEscapeThisSnack = snack.addingUnicodeEntities() // "Fish &#038; Chips"
 ~~~
 
 ### &#128221; Removing HTML Entities (Unescape)
 
-To remove all the HTML entities from a String, use the `removingHTMLEntities` property.
+To remove all the HTML entities from a String, use the `removingHTMLEntities` function.
 
 #### Example
 
@@ -104,10 +104,10 @@ To remove all the HTML entities from a String, use the `removingHTMLEntities` pr
 import HTMLString
 
 let escapedEmoji = "My favorite emoji is &#x1F643;"
-let emoji = escapedEmoji.removingHTMLEntities // "My favorite emoji is 🙃"
+let emoji = escapedEmoji.removingHTMLEntities() // "My favorite emoji is 🙃"
 
 let escapedSnack = "Fish &amp; Chips"
-let snack = escapedSnack.removingHTMLEntities // "Fish & Chips"
+let snack = escapedSnack.removingHTMLEntities() // "Fish & Chips"
 ~~~
 
 ## Objective-C API

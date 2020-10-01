@@ -1,5 +1,12 @@
 # Updates to HTMLString
 
+## 🔖 v6.0.1 — 2020-10-01
+### Changes
+- Add Obj-C tests
+
+### Fixes
+- Fix infinite loop when using Obj-C methods
+
 ## 🔖 v6.0.0 — 2020-09-28
 ### Changes
 - Require iOS 9 and Swift 5
