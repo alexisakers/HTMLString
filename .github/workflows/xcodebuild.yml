@@ -5,8 +5,7 @@ env:
 on:
   push:
     branches: [ main ]
-env:
-    DEVELOPER_DIR: /Applications/Xcode_12.app/Contents/Developer
+
 jobs:
   build:
 
