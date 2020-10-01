@@ -1,12 +1,7 @@
 import XCTest
 @testable import HTMLString
 
-///
-/// Tests HTML escaping/unescaping.
-///
-
-class HTMLStringTests: XCTestCase {
-
+final class HTMLStringTests: XCTestCase {
     // MARK: - Escaping
 
     /// Tests escaping a string for ASCII.
@@ -142,17 +137,27 @@ class HTMLStringTests: XCTestCase {
     }
 
     /// Measures the average perforance of unescaping a long String with a large number of entities.
-    func testLargeUnescapingPerformance() {
+    /// - Named entities : 1448
+    /// - Hexadecimal entities : 1448
+    /// - Decimal entities : 1448
+    /// - Length : 468973 characters
+    func testLargeUnescapingPerformanceStringFromSwift() {
+        guard
+            let largeText = Bundle.testResources
+                .url(forResource: "large-text", withExtension: "txt")
+                .flatMap({ try? String(contentsOf: $0) })
+        else {
+            return XCTFail("Could not load text fixture")
+        }
+
         // baseline average: 0.3s
         self.measure {
-            _ = HTMLTestLongUnescapableString.removingHTMLEntities
+            _ = largeText.removingHTMLEntities()
         }
     }
-
 }
 
 extension HTMLStringTests {
-
     static var allTests: [(String, (HTMLStringTests) -> () throws -> Void)] {
         return [
             ("testStringASCIIEscaping", testStringASCIIEscaping),
@@ -160,8 +165,7 @@ extension HTMLStringTests {
             ("testUnescaping", testUnescaping),
             ("testUnescapingPerformance", testUnescapingPerformance),
             ("testEscapingPerformance", testEscapingPerformance),
-            ("testLargeUnescapingPerformance", testLargeUnescapingPerformance)
+            ("testLargeUnescapingPerformanceStringFromSwift", testLargeUnescapingPerformanceStringFromSwift)
         ]
     }
-
 }

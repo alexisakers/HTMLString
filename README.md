@@ -29,6 +29,8 @@
 
 ## Supported Platforms
 
+This package requires Swift 5 and Xcode 12.
+
 - iOS 9.0+
 - macOS 10.10+
 - tvOS 9.0+
