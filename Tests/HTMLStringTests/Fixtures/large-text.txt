@@ -1,16 +1,7 @@
-import Foundation
+<!DOCTYPE html>
+<html>
 
-///
-/// A long text that contains 4928 unescapable entities.
-///
-/// - Named entities : 1448
-/// - Hexadecimal entities : 1448
-/// - Decimal entities : 1448
-/// - Length : 468973 characters
-///
-@objcMembers class TestData: NSObject {
-    static let HTMLTestLongUnescapableString = """
-    <!DOCTYPE html>
+<head>
     <meta charset="UTF-8">
     <title>Character Entity Reference Chart</title>
     <style>
@@ -27,6 +18,9 @@ import Foundation
     tr:hover .hex, tr:hover .dec { visibility: visible; }
     xtr:hover .desc { display: block; top: 100%; left: 0; }
     </style>
+</head>
+
+<body>
     <table>
     <tr title="U+00009 CHARACTER TABULATION" data-block="C0 Controls and Basic Latin" data-category="Cc" data-set="mmlextra"><td class="character">     <td class="named"><code>&Tab;</code><td class="hex"><code>&#x00009;</code><td class="dec"><code>&#9;</code><td class="desc">CHARACTER TABULATION
     <tr title="U+0000A LINE FEED (LF)" data-block="C0 Controls and Basic Latin" data-category="Cc" data-set="mmlextra"><td class="character">
@@ -1478,6 +1472,6 @@ import Foundation
     <tr title="U+1D56A MATHEMATICAL DOUBLE-STRUCK SMALL Y" data-block="Mathematical Alphanumeric Symbols" data-category="Ll" data-set="mmlextra"><td class="character"> 𝕪<td class="named"><code>&yopf;</code><td class="hex"><code>&#x1D56A;</code><td class="dec"><code>&#120170;</code><td class="desc">MATHEMATICAL DOUBLE-STRUCK SMALL Y
     <tr title="U+1D56B MATHEMATICAL DOUBLE-STRUCK SMALL Z" data-block="Mathematical Alphanumeric Symbols" data-category="Ll" data-set="mmlextra"><td class="character"> 𝕫<td class="named"><code>&zopf;</code><td class="hex"><code>&#x1D56B;</code><td class="dec"><code>&#120171;</code><td class="desc">MATHEMATICAL DOUBLE-STRUCK SMALL Z
     </table>
-    """
+</body>
 
-}
+</html>

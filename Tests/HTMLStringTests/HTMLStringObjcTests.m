@@ -1,10 +1,5 @@
-#import <XCTest/XCTest.h>
-#import <HTMLString/HTMLString-Swift.h>
-#import <HTMLString_Tests-Swift.h>
-#import "TestDataObjc.h"
-///
-/// Tests HTML escaping/unescaping in objective-c
-///
+@import XCTest;
+@import HTMLString;
 
 @interface HTMLStringObjcTests : XCTestCase
 
@@ -31,6 +26,7 @@
     NSString* doubleEmojiEscape = [@"Going to the 🇺🇸 next June" stringByAddingASCIIEntities];
     XCTAssertTrue([doubleEmojiEscape isEqualToString: @"Going to the &#127482;&#127480; next June"]);
 }
+
 /// Tests escaping a string for Unicode.
 - (void) testStringUnicodeEscaping {
     NSString* requiredEscape = [@"Fish & Chips" stringByAddingUnicodeEntities];
@@ -144,16 +140,18 @@
 }
 
 /// Measures the average perforance of unescaping a long String with a large number of entities.
--(void) testLargeUnescapingPerformanceStringFromSwift {
+-(void) testLargeUnescapingPerformanceString {
+    NSURL *largeTextURL = [[NSBundle bundleForClass:HTMLStringObjcTests.class] URLForResource:@"large-text" withExtension:@"txt"];
+    if (!largeTextURL) {
+        return XCTFail("Cannot load test fixture.");
+    }
+
+    NSString *textString = [NSString stringWithContentsOfURL:largeTextURL encoding:NSUTF8StringEncoding error:nil];
+
     // baseline average: 0.3s
     [self measureBlock:^ {
-        (void)[[TestData HTMLTestLongUnescapableString] stringByRemovingHTMLEntities];
+        (void)[textString stringByRemovingHTMLEntities];
     }];
 }
 
--(void) testLargeUnescapingPerformanceStringFromObjC {
-    [self measureBlock:^ {
-        (void)[[TestDataObjc HTMLTestLongUnescapableString] stringByRemovingHTMLEntities];
-    }];
-}
 @end

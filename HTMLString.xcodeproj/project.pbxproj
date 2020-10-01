@@ -10,15 +10,9 @@
 		4238F742252447BE00AD5902 /* HTMLStringObjcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4238F741252447BE00AD5902 /* HTMLStringObjcTests.m */; };
 		4238F743252447BE00AD5902 /* HTMLStringObjcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4238F741252447BE00AD5902 /* HTMLStringObjcTests.m */; };
 		4238F744252447BE00AD5902 /* HTMLStringObjcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4238F741252447BE00AD5902 /* HTMLStringObjcTests.m */; };
-		4238F74E2524AE5500AD5902 /* TestDataObjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 4238F74D2524AE5500AD5902 /* TestDataObjc.m */; };
-		4238F74F2524AE5500AD5902 /* TestDataObjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 4238F74D2524AE5500AD5902 /* TestDataObjc.m */; };
-		4238F7502524AE5500AD5902 /* TestDataObjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 4238F74D2524AE5500AD5902 /* TestDataObjc.m */; };
-		42E07E302524BA70006D6526 /* HTMLStringTests+ObjectiveC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E07E202524BA55006D6526 /* HTMLStringTests+ObjectiveC.swift */; };
-		42E07E382524BA70006D6526 /* HTMLStringTests+ObjectiveC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E07E202524BA55006D6526 /* HTMLStringTests+ObjectiveC.swift */; };
-		42E07E402524BA70006D6526 /* HTMLStringTests+ObjectiveC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E07E202524BA55006D6526 /* HTMLStringTests+ObjectiveC.swift */; };
-		55BFFFD71F59574E00F13633 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BFFFD61F59574E00F13633 /* TestData.swift */; };
-		55BFFFD81F59574E00F13633 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BFFFD61F59574E00F13633 /* TestData.swift */; };
-		55BFFFD91F59574E00F13633 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BFFFD61F59574E00F13633 /* TestData.swift */; };
+		55BFFFD71F59574E00F13633 /* Bundle+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BFFFD61F59574E00F13633 /* Bundle+Helpers.swift */; };
+		55BFFFD81F59574E00F13633 /* Bundle+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BFFFD61F59574E00F13633 /* Bundle+Helpers.swift */; };
+		55BFFFD91F59574E00F13633 /* Bundle+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BFFFD61F59574E00F13633 /* Bundle+Helpers.swift */; };
 		5E441EB81E525FCA0041CF34 /* HTMLString.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* HTMLString.swift */; };
 		5E441EB91E525FCA0041CF34 /* Mappings.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Mappings.swift */; };
 		5E441EE21E5260980041CF34 /* HTMLString.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* HTMLString.swift */; };
@@ -37,6 +31,9 @@
 		5E441F211E526DD70041CF34 /* NSString+HTMLString.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* NSString+HTMLString.swift */; };
 		5E441F221E526DD70041CF34 /* NSString+HTMLString.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* NSString+HTMLString.swift */; };
 		5E441F231E526DD80041CF34 /* NSString+HTMLString.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* NSString+HTMLString.swift */; };
+		5E9B95E125261FDF00E99B03 /* large-text.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5E9B95E025261FDF00E99B03 /* large-text.txt */; };
+		5E9B95E225261FDF00E99B03 /* large-text.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5E9B95E025261FDF00E99B03 /* large-text.txt */; };
+		5E9B95E325261FDF00E99B03 /* large-text.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5E9B95E025261FDF00E99B03 /* large-text.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,12 +61,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4238F73E252447BE00AD5902 /* HTMLStringTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HTMLStringTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		4238F741252447BE00AD5902 /* HTMLStringObjcTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTMLStringObjcTests.m; sourceTree = "<group>"; };
-		4238F74C2524AA0500AD5902 /* TestDataObjc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestDataObjc.h; sourceTree = "<group>"; };
-		4238F74D2524AE5500AD5902 /* TestDataObjc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestDataObjc.m; sourceTree = "<group>"; };
-		42E07E202524BA55006D6526 /* HTMLStringTests+ObjectiveC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTMLStringTests+ObjectiveC.swift"; sourceTree = "<group>"; };
-		55BFFFD61F59574E00F13633 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TestData.swift; path = HTMLStringTests/TestData.swift; sourceTree = "<group>"; };
+		55BFFFD61F59574E00F13633 /* Bundle+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Bundle+Helpers.swift"; path = "HTMLStringTests/Bundle+Helpers.swift"; sourceTree = "<group>"; };
 		5E441EA91E525F2D0041CF34 /* HTMLString.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = HTMLString.plist; path = Configs/HTMLString.plist; sourceTree = "<group>"; };
 		5E441EAA1E525F340041CF34 /* HTMLStringTests.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = HTMLStringTests.plist; path = Configs/HTMLStringTests.plist; sourceTree = "<group>"; };
 		5E441EB01E525FB70041CF34 /* HTMLString.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HTMLString.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,6 +72,7 @@
 		5E441EEF1E5262540041CF34 /* HTMLString-iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HTMLString-iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E441EFE1E5262910041CF34 /* HTMLString-tvOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HTMLString-tvOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E441F0D1E52629D0041CF34 /* HTMLString-macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HTMLString-macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E9B95E025261FDF00E99B03 /* large-text.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "large-text.txt"; sourceTree = "<group>"; };
 		OBJ_10 /* Mappings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Mappings.swift; path = HTMLString/Mappings.swift; sourceTree = "<group>"; };
 		OBJ_11 /* NSString+HTMLString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "NSString+HTMLString.swift"; path = "HTMLString/NSString+HTMLString.swift"; sourceTree = "<group>"; };
 		OBJ_14 /* HTMLStringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HTMLStringTests.swift; path = HTMLStringTests/HTMLStringTests.swift; sourceTree = "<group>"; };
@@ -167,16 +161,22 @@
 			name = Tests;
 			sourceTree = "<group>";
 		};
+		5E9B95DF25261FDF00E99B03 /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				5E9B95E025261FDF00E99B03 /* large-text.txt */,
+			);
+			name = Fixtures;
+			path = HTMLStringTests/Fixtures;
+			sourceTree = "<group>";
+		};
 		OBJ_12 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				5E9B95DF25261FDF00E99B03 /* Fixtures */,
 				OBJ_14 /* HTMLStringTests.swift */,
-				55BFFFD61F59574E00F13633 /* TestData.swift */,
 				4238F741252447BE00AD5902 /* HTMLStringObjcTests.m */,
-				4238F73E252447BE00AD5902 /* HTMLStringTests-Bridging-Header.h */,
-				4238F74C2524AA0500AD5902 /* TestDataObjc.h */,
-				4238F74D2524AE5500AD5902 /* TestDataObjc.m */,
-				42E07E202524BA55006D6526 /* HTMLStringTests+ObjectiveC.swift */,
+				55BFFFD61F59574E00F13633 /* Bundle+Helpers.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -479,6 +479,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E9B95E125261FDF00E99B03 /* large-text.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +487,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E9B95E325261FDF00E99B03 /* large-text.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,6 +495,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E9B95E225261FDF00E99B03 /* large-text.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -544,10 +547,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E441F181E5263C70041CF34 /* HTMLStringTests.swift in Sources */,
-				4238F74E2524AE5500AD5902 /* TestDataObjc.m in Sources */,
-				55BFFFD71F59574E00F13633 /* TestData.swift in Sources */,
+				55BFFFD71F59574E00F13633 /* Bundle+Helpers.swift in Sources */,
 				4238F742252447BE00AD5902 /* HTMLStringObjcTests.m in Sources */,
-				42E07E302524BA70006D6526 /* HTMLStringTests+ObjectiveC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,10 +557,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E441F191E5263C70041CF34 /* HTMLStringTests.swift in Sources */,
-				4238F7502524AE5500AD5902 /* TestDataObjc.m in Sources */,
-				55BFFFD91F59574E00F13633 /* TestData.swift in Sources */,
+				55BFFFD91F59574E00F13633 /* Bundle+Helpers.swift in Sources */,
 				4238F744252447BE00AD5902 /* HTMLStringObjcTests.m in Sources */,
-				42E07E402524BA70006D6526 /* HTMLStringTests+ObjectiveC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,10 +567,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E441F1A1E5263C70041CF34 /* HTMLStringTests.swift in Sources */,
-				4238F74F2524AE5500AD5902 /* TestDataObjc.m in Sources */,
-				55BFFFD81F59574E00F13633 /* TestData.swift in Sources */,
+				55BFFFD81F59574E00F13633 /* Bundle+Helpers.swift in Sources */,
 				4238F743252447BE00AD5902 /* HTMLStringObjcTests.m in Sources */,
-				42E07E382524BA70006D6526 /* HTMLStringTests+ObjectiveC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1131,7 +1128,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "Tests/HTMLStringTests-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "HTMLString_Tests-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
@@ -1180,7 +1176,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = "Tests/HTMLStringTests-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "HTMLString_Tests-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
@@ -1236,7 +1231,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "Tests/HTMLStringTests-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "HTMLString_Tests-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
@@ -1286,7 +1280,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
-				SWIFT_OBJC_BRIDGING_HEADER = "Tests/HTMLStringTests-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "HTMLString_Tests-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
@@ -1341,7 +1334,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "Tests/HTMLStringTests-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "HTMLString_Tests-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
@@ -1390,7 +1382,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.HTMLString.HTMLString-macOS-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Tests/HTMLStringTests-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "HTMLString_Tests-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
