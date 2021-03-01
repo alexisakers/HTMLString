@@ -2,7 +2,7 @@ import Foundation
 
 // MARK: Escaping
 
-extension String {
+extension StringProtocol {
 
     ///
     /// Returns a copy of the current `String` where every character incompatible with HTML Unicode
@@ -78,7 +78,7 @@ extension String {
 
 // MARK: - Unescaping
 
-extension String {
+extension StringProtocol {
 
     ///
     /// Replaces every HTML entity in the receiver with the matching Unicode character.
