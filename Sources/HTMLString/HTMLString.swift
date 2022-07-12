@@ -8,6 +8,8 @@ extension String {
     /// Returns a copy of the current `String` where every character incompatible with HTML Unicode
     /// encoding (UTF-16 or UTF-8) is replaced by a decimal HTML entity.
     ///
+    /// Pass `unsafeUnicodeCharacters` to override the default set of unsafe characters (`!"$%&'+,<=>@[]\`{}`).
+    ///
     /// ### Examples
     ///
     /// | String | Result | Format |
@@ -18,11 +20,13 @@ extension String {
     /// | `a` | `a` | Not escaped (alphanumerical) |
     ///
 
-    public func addingUnicodeEntities() -> String {
+    public func addingUnicodeEntities(unsafeUnicodeCharacters: Set<Character>? = nil) -> String {
         var result = ""
 
+        let unsafeCharacters = unsafeUnicodeCharacters ?? HTMLStringMappings.unsafeUnicodeCharacters
+
         for character in self {
-            if HTMLStringMappings.unsafeUnicodeCharacters.contains(character) {
+            if unsafeCharacters.contains(character) {
                 // One of the required escapes for security reasons
                 result.append(contentsOf: "&#\(character.asciiValue!);")
             } else {
