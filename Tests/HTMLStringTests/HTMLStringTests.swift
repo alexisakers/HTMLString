@@ -37,6 +37,15 @@ final class HTMLStringTests: XCTestCase {
         XCTAssertEqual(doubleEmojiEscape, "Going to the 🇺🇸 next June")
     }
 
+    /// Tests escaping a string for Unicode with a custom blocklist
+    func testStringUnicodeEscapingWithCustomUnsafeCharacters() {
+        let requiredEscape = ("Fish & Chips").addingUnicodeEntities()
+        XCTAssertEqual(requiredEscape, "Fish &#38; Chips")
+
+        let notRequiredEscape = ("Fish & Chips").addingUnicodeEntities(unsafeUnicodeCharacters: [])
+        XCTAssertEqual(notRequiredEscape, "Fish & Chips")
+    }
+
     // MARK: - Unescaping
 
     /// Tests unescaping strings.
